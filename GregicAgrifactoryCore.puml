@@ -1,0 +1,153 @@
+@startuml
+class io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCoreGTAddon {
++ GTRegistrate getRegistrate()
++ void initializeAddon()
++ String addonModId()
++ void registerTagPrefixes()
++ void addRecipes(Consumer<FinishedRecipe>)
+}
+
+class io.thedogofchaos.GregicAgrifactoryCore.block.IronOreCrop {
++ {static} int MAX_AGE
++ {static} IntegerProperty AGE
++ <<Create>> IronOreCrop(Properties)
++ ItemLike getBaseSeedId()
++ IntegerProperty getAgeProperty()
++ int getMaxAge()
+# void createBlockStateDefinition(StateDefinition.Builder<Block,BlockState>)
+}
+note left of io.thedogofchaos.GregicAgrifactoryCore.block.IronOreCrop::MAX_AGE
+ This is one of a few tests to get a feel for making crops before I try to make a Builder class or add direct GregTech material compat.
+end note
+
+
+class io.thedogofchaos.GregicAgrifactoryCore.datagen.BlockStateProv {
++ <<Create>> BlockStateProv(PackOutput,ExistingFileHelper)
+# void registerStatesAndModels()
++ void makeIronOreCrop(CropBlock,String,String)
+- ConfiguredModel[] ironOreCropStates(BlockState,CropBlock,String,String)
+}
+
+class io.thedogofchaos.GregicAgrifactoryCore.datagen.DataGen {
++ {static} void gatherData(GatherDataEvent)
+}
+
+class io.thedogofchaos.GregicAgrifactoryCore.block.OreCrop {
+- {static} int maxAge
+- int color
+- Crop crop
++ <<Create>> OreCrop(Crop)
++ boolean isBonemealSuccess(Level,RandomSource,BlockPos,BlockState)
+# ItemLike getBaseSeedId()
+# IntegerProperty getAgeProperty()
++ int compareTo(OreCrop)
+}
+note left of io.thedogofchaos.GregicAgrifactoryCore.block.OreCrop::maxAge
+ leave this class as-is until I formulate a way to dynamically generate crops.
+end note
+
+
+class io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore {
++ {static} String MOD_ID
++ {static} Logger LOGGER
++ {static} GTRegistrate GREGIC_AGRIFACTORY_CORE_REGISTRATE
++ <<Create>> GregicAgrifactoryCore()
+- void commonSetup(FMLCommonSetupEvent)
+- void clientSetup(FMLClientSetupEvent)
+- void addMaterialRegistries(MaterialRegistryEvent)
+- void addMaterials(MaterialEvent)
+- void modifyMaterials(PostMaterialEvent)
+- void registerRecipeTypes(GTCEuAPI.RegisterEvent<ResourceLocation,GTRecipeType>)
+- void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation,MachineDefinition>)
+}
+
+note left of io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore::addMaterialRegistries(MaterialRegistryEvent)
+ Remember to register them not to GT's namespace, but your own.
+end note
+note right of io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore::addMaterials(MaterialEvent)
+ As well as this.
+end note
+note left of io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore::modifyMaterials(PostMaterialEvent)
+ This is optional, though.
+end note
+
+class io.thedogofchaos.GregicAgrifactoryCore.datagen.LootTableProvider {
++ {static} net.minecraft.data.loot.LootTableProvider create(PackOutput)
+}
+
+class io.thedogofchaos.GregicAgrifactoryCore.registry.Registry {
+- {static} DeferredRegister<Block> BLOCKS
+- {static} DeferredRegister<Item> ITEMS
+- {static} DeferredRegister<Block> CROP_BLOCKS
+- {static} DeferredRegister<Item> CROP_ITEMS
++ {static} RegistryObject<Block> IRON_ORE_CROP
++ {static} RegistryObject<Item> IRON_ORE_SEEDS
+- {static} RegistryObject<T> registerBlock(String,Supplier<T>)
+- {static} RegistryObject<T> registerBlock(String,Supplier<T>,boolean)
+- {static} RegistryObject<T> registerBlock(String,Supplier<T>,boolean,boolean)
+- {static} RegistryObject<Item> registerBlockItem(String,RegistryObject<T>)
++ {static} void register(IEventBus)
+}
+note left of io.thedogofchaos.GregicAgrifactoryCore.registry.Registry::BLOCKS
+ All the normal blocks and items go to the following two registers.
+end note
+note right of io.thedogofchaos.GregicAgrifactoryCore.registry.Registry::CROP_BLOCKS
+ These two registers are only for Crops, their seeds, their harvested items, and their essences.
+end note
+note left of io.thedogofchaos.GregicAgrifactoryCore.registry.Registry::IRON_ORE_CROP
+ Let's Define.
+end note
+
+note left of io.thedogofchaos.GregicAgrifactoryCore.registry.Registry::registerBlock(String,Supplier<T>)
+ Helper Methods, with a side of overloading
+end note
+note right of io.thedogofchaos.GregicAgrifactoryCore.registry.Registry::register(IEventBus)
+ Gotta register them all!
+end note
+
+class io.thedogofchaos.GregicAgrifactoryCore.crops.Crop {
+- ResourceLocation id
+- Component displayName
+- int maxCropAge
+- int flowerColor
+- int essenceColor
+- int seedColor
+- Supplier<? extends CropBlock> crop
+- Supplier<? extends Item> essence
+- Supplier<? extends ItemNameBlockItem> seeds
+- Supplier<? extends Block> crux
+- boolean enabled
+- <<Create>> Crop()
++ ItemLike getId()
+}
+note left of io.thedogofchaos.GregicAgrifactoryCore.crops.Crop::id
+ leave this class as-is until I formulate a way to dynamically generate crops.
+end note
+
+
+class io.thedogofchaos.GregicAgrifactoryCore.crops.Crop$Builder {
++ <<Create>> Builder()
+}
+
+class io.thedogofchaos.GregicAgrifactoryCore.datagen.ItemModelProv {
++ <<Create>> ItemModelProv(PackOutput,ExistingFileHelper)
+# void registerModels()
+- ItemModelBuilder simpleItem(RegistryObject<Item>)
+}
+
+class io.thedogofchaos.GregicAgrifactoryCore.datagen.loot.BlockLootTables {
++ <<Create>> BlockLootTables()
+# void generate()
+}
+
+
+
+com.gregtechceu.gtceu.api.addon.IGTAddon <|.. io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCoreGTAddon
+net.minecraft.world.level.block.CropBlock <|-- io.thedogofchaos.GregicAgrifactoryCore.block.IronOreCrop
+io.thedogofchaos.GregicAgrifactoryCore.datagen.BlockStateProvider <|-- io.thedogofchaos.GregicAgrifactoryCore.datagen.BlockStateProv
+io.thedogofchaos.GregicAgrifactoryCore.block.Comparable <|.. io.thedogofchaos.GregicAgrifactoryCore.block.OreCrop
+net.minecraft.world.level.block.CropBlock <|-- io.thedogofchaos.GregicAgrifactoryCore.block.OreCrop
+io.thedogofchaos.GregicAgrifactoryCore.crops.Crop +.. io.thedogofchaos.GregicAgrifactoryCore.crops.Crop$Builder
+net.minecraftforge.client.model.generators.ItemModelProvider <|-- io.thedogofchaos.GregicAgrifactoryCore.datagen.ItemModelProv
+net.minecraft.data.loot.BlockLootSubProvider <|-- io.thedogofchaos.GregicAgrifactoryCore.datagen.loot.BlockLootTables
+@enduml
