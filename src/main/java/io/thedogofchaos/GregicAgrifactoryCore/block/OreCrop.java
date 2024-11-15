@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 
 @MethodsReturnNonnullByDefault
 public class OreCrop extends CropBlock implements Comparable<OreCrop> {
+    // leave this class as-is until I formulate a way to dynamically generate crops.
     private static int maxAge;
     private int color;
 

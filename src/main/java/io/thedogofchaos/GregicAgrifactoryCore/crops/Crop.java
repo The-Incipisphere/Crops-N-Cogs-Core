@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.CropBlock;
 import java.util.function.Supplier;
 
 public class Crop {
+    // leave this class as-is until I formulate a way to dynamically generate crops.
     private ResourceLocation id;
     private Component displayName;
     private int maxCropAge;
