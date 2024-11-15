@@ -31,7 +31,7 @@ public class Registry {
             () -> new ItemNameBlockItem(IRON_ORE_CROP.get(), new Item.Properties()));
 
 
-    // Helper Methods.
+    // Helper Methods, with a side of overloading
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         return registerBlock(name, block, true, false);
     }
@@ -42,14 +42,12 @@ public class Registry {
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, boolean alsoRegisterBlockItem, boolean isCrop) {
         RegistryObject<T> registeredBlock;
-        if (isCrop) {
+        if (isCrop) { // CropBlocks do not have a BlockItem, and also should not be registered by BLOCKS.
             registeredBlock = CROP_BLOCKS.register(name, block);
         }else{
             registeredBlock = BLOCKS.register(name, block);
             if (alsoRegisterBlockItem) registerBlockItem(name, registeredBlock);
-        };
-         // CropBlocks do not have a BlockItem.
-
+        }
         return registeredBlock;
     }
 
