@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.concurrent.CompletableFuture;
 
 @Mod.EventBusSubscriber(modid = GregicAgrifactoryCore.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class GregicAgrifactoryDataGen {
+public class DataGen {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
         DataGenerator gen = event.getGenerator();
@@ -20,6 +20,8 @@ public class GregicAgrifactoryDataGen {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
+        gen.addProvider(event.includeClient(), new BlockStateProv(packOutput, existingFileHelper));
+        gen.addProvider(event.includeClient(), new ItemModelProv(packOutput, existingFileHelper));
         gen.addProvider(event.includeServer(), LootTableProvider.create(packOutput));
     }
 }

@@ -19,12 +19,12 @@ public class IronOreCrop extends CropBlock {
     }
 
     @Override
-    protected ItemLike getBaseSeedId(){
+    public ItemLike getBaseSeedId(){
         return Registry.IRON_ORE_SEEDS.get();
     }
 
     @Override
-    protected IntegerProperty getAgeProperty(){
+    public IntegerProperty getAgeProperty(){
         return AGE;
     }
 
