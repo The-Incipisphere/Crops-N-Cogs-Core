@@ -19,19 +19,19 @@ public class BlockStateJsonGenerator extends net.minecraftforge.client.model.gen
 
     @Override
     protected void registerStatesAndModels() {
-        makeIronOreCrop((CropBlock) Registry.IRON_ORE_CROP.get(), "iron_ore_crop_stage", "iron_ore_crop_stage");
+        makeIronOreCrop((CropBlock) Registry.IRON_ORE_CROP.get(), "iron_ore_crop_age", "iron_ore_crop_age", "crop/iron_ore/");
     }
 
-    public void makeIronOreCrop(CropBlock block, String modelName, String textureName) {
-        Function<BlockState, ConfiguredModel[]> function = state -> ironOreCropStates(state, block, modelName, textureName);
+    public void makeIronOreCrop(CropBlock block, String modelName, String textureName, String path) {
+        Function<BlockState, ConfiguredModel[]> function = state -> ironOreCropStates(state, block, modelName, textureName, path);
 
         getVariantBuilder(block).forAllStates(function);
     }
 
-    private ConfiguredModel[] ironOreCropStates(BlockState state, CropBlock block, String modelName, String textureName) {
+    private ConfiguredModel[] ironOreCropStates(BlockState state, CropBlock block, String modelName, String textureName, String path) {
         ConfiguredModel[] models = new ConfiguredModel[1];
         models[0] = new ConfiguredModel(models().crop(modelName + state.getValue(((IronOreCrop) block).getAgeProperty()),
-                new ResourceLocation(GregicAgrifactoryCore.MOD_ID, "block/" + textureName + state.getValue(((IronOreCrop) block).getAgeProperty()))).renderType("cutout"));
+                new ResourceLocation(GregicAgrifactoryCore.MOD_ID, "block/" + path + textureName + state.getValue(((IronOreCrop) block).getAgeProperty()))).renderType("cutout"));
 
         return models;
     }
