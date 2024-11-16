@@ -20,8 +20,8 @@ public class DataGen {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-        gen.addProvider(event.includeClient(), new BlockStateProv(packOutput, existingFileHelper));
-        gen.addProvider(event.includeClient(), new ItemModelProv(packOutput, existingFileHelper));
-        gen.addProvider(event.includeServer(), LootTableProvider.create(packOutput));
+        gen.addProvider(event.includeClient(), new BlockStateJsonGenerator(packOutput, existingFileHelper));
+        gen.addProvider(event.includeClient(), new ItemModelJsonGenerator(packOutput, existingFileHelper));
+        gen.addProvider(event.includeServer(), LootTableJsonGenerator.create(packOutput));
     }
 }

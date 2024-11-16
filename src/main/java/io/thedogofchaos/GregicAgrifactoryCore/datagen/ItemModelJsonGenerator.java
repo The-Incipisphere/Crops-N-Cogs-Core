@@ -10,9 +10,9 @@ import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 
-public class ItemModelProv extends ItemModelProvider {
+public class ItemModelJsonGenerator extends ItemModelProvider {
 
-    public ItemModelProv(PackOutput output, ExistingFileHelper existingFileHelper) {
+    public ItemModelJsonGenerator(PackOutput output, ExistingFileHelper existingFileHelper) {
         super(output, GregicAgrifactoryCore.MOD_ID, existingFileHelper);
     }
 

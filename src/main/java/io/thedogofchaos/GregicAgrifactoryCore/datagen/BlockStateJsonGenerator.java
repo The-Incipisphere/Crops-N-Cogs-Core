@@ -12,8 +12,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 
 import java.util.function.Function;
 
-public class BlockStateProv extends net.minecraftforge.client.model.generators.BlockStateProvider {
-    public BlockStateProv(PackOutput output, ExistingFileHelper exFileHelper) {
+public class BlockStateJsonGenerator extends net.minecraftforge.client.model.generators.BlockStateProvider {
+    public BlockStateJsonGenerator(PackOutput output, ExistingFileHelper exFileHelper) {
         super(output, GregicAgrifactoryCore.MOD_ID, exFileHelper);
     }
 
