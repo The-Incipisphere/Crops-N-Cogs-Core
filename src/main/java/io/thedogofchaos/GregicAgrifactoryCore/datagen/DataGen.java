@@ -23,6 +23,6 @@ public class DataGen {
         gen.addProvider(event.includeClient(), new BlockStateJsonGenerator(packOutput, existingFileHelper));
         gen.addProvider(event.includeClient(), new ItemModelJsonGenerator(packOutput, existingFileHelper));
         gen.addProvider(event.includeServer(), LootTableJsonGenerator.create(packOutput));
-        
+
     }
 }

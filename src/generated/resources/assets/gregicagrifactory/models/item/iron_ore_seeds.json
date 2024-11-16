@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "gregicagrifactory:item/seeds/iron_ore_seeds"
+  }
+}
