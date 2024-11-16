@@ -1,12 +1,5 @@
 package io.thedogofchaos.GregicAgrifactoryCore;
 
-import com.gregtechceu.gtceu.api.GTCEuAPI;
-import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
-import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialRegistryEvent;
-import com.gregtechceu.gtceu.api.data.chemical.material.event.PostMaterialEvent;
-import com.gregtechceu.gtceu.api.machine.MachineDefinition;
-import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
-import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import io.thedogofchaos.GregicAgrifactoryCore.registry.Registry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
@@ -24,7 +17,6 @@ import org.apache.logging.log4j.Logger;
 public class GregicAgrifactoryCore {
     public static final String MOD_ID = "gregicagrifactory";
     public static final Logger LOGGER = LogManager.getLogger();
-    public static GTRegistrate GREGIC_AGRIFACTORY_CORE_REGISTRATE = GTRegistrate.create(GregicAgrifactoryCore.MOD_ID);
 
     public GregicAgrifactoryCore() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus(); //Ignore the deprecation, it is for 1.21.1 and later.
@@ -33,11 +25,6 @@ public class GregicAgrifactoryCore {
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
-        modEventBus.addListener(this::addMaterialRegistries);
-        modEventBus.addListener(this::addMaterials);
-        modEventBus.addListener(this::modifyMaterials);
-        modEventBus.addGenericListener(GTRecipeType.class, this::registerRecipeTypes);
-        modEventBus.addGenericListener(MachineDefinition.class, this::registerMachines);
 
         // Most other events are fired on Forge's bus.
         // If we want to use annotations to register event listeners,
@@ -56,27 +43,4 @@ public class GregicAgrifactoryCore {
         LOGGER.info("Hey, we're on Minecraft version {}!", Minecraft.getInstance().getLaunchedVersion());
     }
 
-    // You need to have this for custom materials.
-    // Remember to register them not to GT's namespace, but your own.
-    private void addMaterialRegistries(MaterialRegistryEvent event) {
-        GTCEuAPI.materialManager.createRegistry(GregicAgrifactoryCore.MOD_ID);
-    }
-
-    // As well as this.
-    private void addMaterials(MaterialEvent event) {
-        //CustomMaterials.init();
-    }
-
-    // This is optional, though.
-    private void modifyMaterials(PostMaterialEvent event) {
-        //CustomMaterials.modify();
-    }
-
-    private void registerRecipeTypes(GTCEuAPI.RegisterEvent<ResourceLocation, GTRecipeType> event) {
-        //CustomRecipeTypes.init();
-    }
-
-    private void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
-        //CustomMachines.init();
-    }
 }
