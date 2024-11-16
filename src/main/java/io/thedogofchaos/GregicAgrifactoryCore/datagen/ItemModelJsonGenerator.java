@@ -18,12 +18,24 @@ public class ItemModelJsonGenerator extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        simpleItem(Registry.IRON_ORE_SEEDS);
+        simpleItem(Registry.IRON_ORE_SEEDS, "seeds/");
     }
 
-    private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
-        return withExistingParent(item.getId().getPath(),
-                new ResourceLocation("item/generated")).texture("layer0",
-                new ResourceLocation(GregicAgrifactoryCore.MOD_ID,"item/" + item.getId().getPath()));
+    /**
+     * Creates an item model.
+     *
+     * @param item The {@link RegistryObject} containing the {@link Item} to generate a model for.
+     * @param path A {@link String} representing the path (after namespace/textures/item/) to the item texture's location
+     * @return the created model object
+     * @since 1.0.0
+     */
+    private ItemModelBuilder simpleItem(RegistryObject<Item> item, String path) {
+        return withExistingParent(
+            item.getId().getPath(),
+            new ResourceLocation("item/generated") // The item model will be generated here.
+        ).texture("layer0",
+            // The location of the texture that the item model file will point to.
+            new ResourceLocation(GregicAgrifactoryCore.MOD_ID,"item/" + path + item.getId().getPath())
+        );
     }
 }

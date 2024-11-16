@@ -7,12 +7,13 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 import java.util.function.Function;
 
-public class BlockStateJsonGenerator extends net.minecraftforge.client.model.generators.BlockStateProvider {
+public class BlockStateJsonGenerator extends BlockStateProvider {
     public BlockStateJsonGenerator(PackOutput output, ExistingFileHelper exFileHelper) {
         super(output, GregicAgrifactoryCore.MOD_ID, exFileHelper);
     }
