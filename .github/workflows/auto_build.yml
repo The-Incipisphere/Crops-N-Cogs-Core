@@ -20,9 +20,6 @@ jobs:
       - uses: actions/checkout@v4
       - name: Setup Build
         uses: ./.github/actions/build_setup
-      - name: Get Version
-        id: ver
-        run: echo "version=$(./gradlew -q printVersion)" >> $GITHUB_OUTPUT
       - name: Build
         run: ./gradlew build --build-cache
       - name: Upload Artifacts
@@ -32,12 +29,3 @@ jobs:
           path: build/libs/*
           if-no-files-found: error
           retention-days: 90
-      - name: Changelog
-        id: changelog
-        uses: mikepenz/release-changelog-builder-action@v5
-        with:
-          configuration: ./.github/json/config-latest.json
-          fromTag: latest-${{ github.ref_name }}
-          toTag: ${{ github.ref }}
-          fetchViaCommits: true
-          failOnError: false
