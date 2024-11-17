@@ -20,7 +20,7 @@ public class BlockRegistry {
      * @param name A {@link String} with the name of the block to register.
      * @param block A {@link Supplier} with the block to register.
      * @return {@code registerBlock(name, block, true)}
-     * @since 1.0.0
+     * @since 0.0.1
      * @param <T> The type of the {@link Supplier}.
      */
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
@@ -33,7 +33,7 @@ public class BlockRegistry {
      * @param block A {@link Supplier} with the block to register.
      * @param alsoRegisterBlockItem If true, also register a {@link BlockItem}.
      * @return The {@code registeredBlock}.
-     * @since 1.0.0
+     * @since 0.0.1
      * @param <T> The type of the {@link Supplier}.
      */
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, boolean alsoRegisterBlockItem) {
