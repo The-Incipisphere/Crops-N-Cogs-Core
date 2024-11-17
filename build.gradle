@@ -218,3 +218,9 @@ publishing {
         // retrieving dependencies.
     }
 }
+
+task printVersion {
+    doLast {
+        println mod_version
+    }
+}
