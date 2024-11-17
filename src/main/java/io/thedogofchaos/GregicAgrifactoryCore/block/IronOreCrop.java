@@ -1,6 +1,6 @@
 package io.thedogofchaos.GregicAgrifactoryCore.block;
 
-import io.thedogofchaos.GregicAgrifactoryCore.registry.Registry;
+import io.thedogofchaos.GregicAgrifactoryCore.registry.CropRegistry;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
@@ -20,7 +20,7 @@ public class IronOreCrop extends CropBlock {
 
     @Override
     public ItemLike getBaseSeedId(){
-        return Registry.IRON_ORE_SEEDS.get();
+        return CropRegistry.IRON_ORE_SEEDS.get();
     }
 
     @Override

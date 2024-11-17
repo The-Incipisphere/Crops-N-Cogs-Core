@@ -1,7 +1,7 @@
 package io.thedogofchaos.GregicAgrifactoryCore.datagen;
 
 import io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore;
-import io.thedogofchaos.GregicAgrifactoryCore.registry.Registry;
+import io.thedogofchaos.GregicAgrifactoryCore.registry.CropRegistry;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -18,7 +18,7 @@ public class ItemModelJsonGenerator extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        simpleItem(Registry.IRON_ORE_SEEDS, "seeds/");
+        simpleItem(CropRegistry.IRON_ORE_SEEDS, "seeds/");
     }
 
     /**

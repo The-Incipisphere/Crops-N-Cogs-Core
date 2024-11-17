@@ -2,7 +2,7 @@ package io.thedogofchaos.GregicAgrifactoryCore.datagen;
 
 import io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore;
 import io.thedogofchaos.GregicAgrifactoryCore.block.IronOreCrop;
-import io.thedogofchaos.GregicAgrifactoryCore.registry.Registry;
+import io.thedogofchaos.GregicAgrifactoryCore.registry.CropRegistry;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.CropBlock;
@@ -20,7 +20,7 @@ public class BlockStateJsonGenerator extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        makeIronOreCrop((CropBlock) Registry.IRON_ORE_CROP.get(), "iron_ore_crop_age", "iron_ore_crop_age", "crop/iron_ore/");
+        makeIronOreCrop((CropBlock) CropRegistry.IRON_ORE_CROP.get(), "iron_ore_crop_age", "iron_ore_crop_age", "crop/iron_ore/");
     }
 
     public void makeIronOreCrop(CropBlock block, String modelName, String textureName, String path) {

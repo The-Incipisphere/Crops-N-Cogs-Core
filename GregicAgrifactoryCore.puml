@@ -1,12 +1,4 @@
 @startuml
-class io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCoreGTAddon {
-+ GTRegistrate getRegistrate()
-+ void initializeAddon()
-+ String addonModId()
-+ void registerTagPrefixes()
-+ void addRecipes(Consumer<FinishedRecipe>)
-}
-
 class io.thedogofchaos.GregicAgrifactoryCore.block.IronOreCrop {
 + {static} int MAX_AGE
 + {static} IntegerProperty AGE
@@ -21,11 +13,24 @@ note left of io.thedogofchaos.GregicAgrifactoryCore.block.IronOreCrop::MAX_AGE
 end note
 
 
-class io.thedogofchaos.GregicAgrifactoryCore.datagen.BlockStateProv {
-+ <<Create>> BlockStateProv(PackOutput,ExistingFileHelper)
-# void registerStatesAndModels()
-+ void makeIronOreCrop(CropBlock,String,String)
-- ConfiguredModel[] ironOreCropStates(BlockState,CropBlock,String,String)
+class io.thedogofchaos.GregicAgrifactoryCore.datagen.ItemModelJsonGenerator {
++ <<Create>> ItemModelJsonGenerator(PackOutput,ExistingFileHelper)
+# void registerModels()
+- ItemModelBuilder simpleItem(RegistryObject<Item>,String)
+}
+note left of io.thedogofchaos.GregicAgrifactoryCore.datagen.ItemModelJsonGenerator::simpleItem(RegistryObject<Item>,String)
+
+     * Creates an item model.
+     *
+     * @param item The {@link RegistryObject} containing the {@link Item} to generate a model for.
+     * @param path A {@link String} representing the path (after namespace/textures/item/) to the item texture's location
+     * @return the created model object
+     * @since 1.0.0
+     
+end note
+
+class io.thedogofchaos.GregicAgrifactoryCore.datagen.LootTableJsonGenerator {
++ {static} net.minecraft.data.loot.LootTableProvider create(PackOutput)
 }
 
 class io.thedogofchaos.GregicAgrifactoryCore.datagen.DataGen {
@@ -50,30 +55,11 @@ end note
 class io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore {
 + {static} String MOD_ID
 + {static} Logger LOGGER
-+ {static} GTRegistrate GREGIC_AGRIFACTORY_CORE_REGISTRATE
 + <<Create>> GregicAgrifactoryCore()
 - void commonSetup(FMLCommonSetupEvent)
 - void clientSetup(FMLClientSetupEvent)
-- void addMaterialRegistries(MaterialRegistryEvent)
-- void addMaterials(MaterialEvent)
-- void modifyMaterials(PostMaterialEvent)
-- void registerRecipeTypes(GTCEuAPI.RegisterEvent<ResourceLocation,GTRecipeType>)
-- void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation,MachineDefinition>)
 }
 
-note left of io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore::addMaterialRegistries(MaterialRegistryEvent)
- Remember to register them not to GT's namespace, but your own.
-end note
-note right of io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore::addMaterials(MaterialEvent)
- As well as this.
-end note
-note left of io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore::modifyMaterials(PostMaterialEvent)
- This is optional, though.
-end note
-
-class io.thedogofchaos.GregicAgrifactoryCore.datagen.LootTableProvider {
-+ {static} net.minecraft.data.loot.LootTableProvider create(PackOutput)
-}
 
 class io.thedogofchaos.GregicAgrifactoryCore.registry.Registry {
 - {static} DeferredRegister<Block> BLOCKS
@@ -129,10 +115,11 @@ class io.thedogofchaos.GregicAgrifactoryCore.crops.Crop$Builder {
 + <<Create>> Builder()
 }
 
-class io.thedogofchaos.GregicAgrifactoryCore.datagen.ItemModelProv {
-+ <<Create>> ItemModelProv(PackOutput,ExistingFileHelper)
-# void registerModels()
-- ItemModelBuilder simpleItem(RegistryObject<Item>)
+class io.thedogofchaos.GregicAgrifactoryCore.datagen.BlockStateJsonGenerator {
++ <<Create>> BlockStateJsonGenerator(PackOutput,ExistingFileHelper)
+# void registerStatesAndModels()
++ void makeIronOreCrop(CropBlock,String,String,String)
+- ConfiguredModel[] ironOreCropStates(BlockState,CropBlock,String,String,String)
 }
 
 class io.thedogofchaos.GregicAgrifactoryCore.datagen.loot.BlockLootTables {
@@ -142,12 +129,11 @@ class io.thedogofchaos.GregicAgrifactoryCore.datagen.loot.BlockLootTables {
 
 
 
-com.gregtechceu.gtceu.api.addon.IGTAddon <|.. io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCoreGTAddon
 net.minecraft.world.level.block.CropBlock <|-- io.thedogofchaos.GregicAgrifactoryCore.block.IronOreCrop
-io.thedogofchaos.GregicAgrifactoryCore.datagen.BlockStateProvider <|-- io.thedogofchaos.GregicAgrifactoryCore.datagen.BlockStateProv
+net.minecraftforge.client.model.generators.ItemModelProvider <|-- io.thedogofchaos.GregicAgrifactoryCore.datagen.ItemModelJsonGenerator
 io.thedogofchaos.GregicAgrifactoryCore.block.Comparable <|.. io.thedogofchaos.GregicAgrifactoryCore.block.OreCrop
 net.minecraft.world.level.block.CropBlock <|-- io.thedogofchaos.GregicAgrifactoryCore.block.OreCrop
 io.thedogofchaos.GregicAgrifactoryCore.crops.Crop +.. io.thedogofchaos.GregicAgrifactoryCore.crops.Crop$Builder
-net.minecraftforge.client.model.generators.ItemModelProvider <|-- io.thedogofchaos.GregicAgrifactoryCore.datagen.ItemModelProv
+net.minecraftforge.client.model.generators.BlockStateProvider <|-- io.thedogofchaos.GregicAgrifactoryCore.datagen.BlockStateJsonGenerator
 net.minecraft.data.loot.BlockLootSubProvider <|-- io.thedogofchaos.GregicAgrifactoryCore.datagen.loot.BlockLootTables
 @enduml

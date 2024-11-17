@@ -1,8 +1,7 @@
 package io.thedogofchaos.GregicAgrifactoryCore;
 
-import io.thedogofchaos.GregicAgrifactoryCore.registry.Registry;
+import io.thedogofchaos.GregicAgrifactoryCore.registry.CropRegistry;
 import net.minecraft.client.Minecraft;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -21,14 +20,11 @@ public class GregicAgrifactoryCore {
     public GregicAgrifactoryCore() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus(); //Ignore the deprecation, it is for 1.21.1 and later.
 
-        Registry.register(modEventBus);
+        CropRegistry.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
 
-        // Most other events are fired on Forge's bus.
-        // If we want to use annotations to register event listeners,
-        // we need to register our object like this!
         MinecraftForge.EVENT_BUS.register(this);
     }
 
