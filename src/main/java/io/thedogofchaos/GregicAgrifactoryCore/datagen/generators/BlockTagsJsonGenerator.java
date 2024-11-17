@@ -1,4 +1,21 @@
 package io.thedogofchaos.GregicAgrifactoryCore.datagen.generators;
 
-public class BlockTagsJsonGenerator {
+import io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
+import net.minecraftforge.common.data.BlockTagsProvider;
+import net.minecraftforge.common.data.ExistingFileHelper;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.concurrent.CompletableFuture;
+
+public class BlockTagsJsonGenerator extends BlockTagsProvider {
+    public BlockTagsJsonGenerator(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
+        super(packOutput, lookupProvider, GregicAgrifactoryCore.MOD_ID, existingFileHelper);
+    }
+
+    @Override
+    protected void addTags(HolderLookup.Provider provider) {
+
+    }
 }
