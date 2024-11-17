@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LootTableJsonGenerator extends VanillaBlockLoot {
+    // Note to self: This will need to be built to handle LootTable generation of Crops/Bushes at runtime.
     @Override
     protected void generate(){
 
