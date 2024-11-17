@@ -1,6 +1,7 @@
 package io.thedogofchaos.GregicAgrifactoryCore;
 
 import io.thedogofchaos.GregicAgrifactoryCore.registry.CropRegistry;
+import io.thedogofchaos.GregicAgrifactoryCore.registry.Registry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.MinecraftForge;
@@ -20,7 +21,7 @@ public class GregicAgrifactoryCore {
     public GregicAgrifactoryCore() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus(); //Ignore the deprecation, it is for 1.21.1 and later.
 
-        CropRegistry.register(modEventBus);
+        Registry.registerAll(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
@@ -29,10 +30,6 @@ public class GregicAgrifactoryCore {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> {
-            LOGGER.info("Hello from common setup! This is *after* registries are done, so we can do this:");
-            LOGGER.info("Look, I found a {}!", Items.DIAMOND);
-        });
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
