@@ -1,4 +1,8 @@
 @startuml
+class io.thedogofchaos.GregicAgrifactoryCore.registry.ItemRegistry {
+# {static} DeferredRegister<Item> ITEMS
+}
+
 class io.thedogofchaos.GregicAgrifactoryCore.block.IronOreCrop {
 + {static} int MAX_AGE
 + {static} IntegerProperty AGE
@@ -12,6 +16,23 @@ note left of io.thedogofchaos.GregicAgrifactoryCore.block.IronOreCrop::MAX_AGE
  This is one of a few tests to get a feel for making crops before I try to make a Builder class or add direct GregTech material compat.
 end note
 
+
+class io.thedogofchaos.GregicAgrifactoryCore.registry.BlockRegistry {
+# {static} DeferredRegister<Block> BLOCKS
+- {static} RegistryObject<T> registerBlock(String,Supplier<T>)
+- {static} RegistryObject<T> registerBlock(String,Supplier<T>,boolean)
+- {static} RegistryObject<Item> registerBlockItem(String,RegistryObject<T>)
+}
+
+note left of io.thedogofchaos.GregicAgrifactoryCore.registry.BlockRegistry::registerBlock(String,Supplier<T>)
+
+     * An overloaded method to register a block (and a BlockItem at the same time)
+     * @param name A {@link String} with the name of the block to register.
+     * @param block A {@link Supplier} with the block to register.
+     * @return registerBlock(name, block, true)
+     * @param <T> The type of the {@link Supplier}.
+     
+end note
 
 class io.thedogofchaos.GregicAgrifactoryCore.datagen.ItemModelJsonGenerator {
 + <<Create>> ItemModelJsonGenerator(PackOutput,ExistingFileHelper)
@@ -61,36 +82,6 @@ class io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore {
 }
 
 
-class io.thedogofchaos.GregicAgrifactoryCore.registry.Registry {
-- {static} DeferredRegister<Block> BLOCKS
-- {static} DeferredRegister<Item> ITEMS
-- {static} DeferredRegister<Block> CROP_BLOCKS
-- {static} DeferredRegister<Item> CROP_ITEMS
-+ {static} RegistryObject<Block> IRON_ORE_CROP
-+ {static} RegistryObject<Item> IRON_ORE_SEEDS
-- {static} RegistryObject<T> registerBlock(String,Supplier<T>)
-- {static} RegistryObject<T> registerBlock(String,Supplier<T>,boolean)
-- {static} RegistryObject<T> registerBlock(String,Supplier<T>,boolean,boolean)
-- {static} RegistryObject<Item> registerBlockItem(String,RegistryObject<T>)
-+ {static} void register(IEventBus)
-}
-note left of io.thedogofchaos.GregicAgrifactoryCore.registry.Registry::BLOCKS
- All the normal blocks and items go to the following two registers.
-end note
-note right of io.thedogofchaos.GregicAgrifactoryCore.registry.Registry::CROP_BLOCKS
- These two registers are only for Crops, their seeds, their harvested items, and their essences.
-end note
-note left of io.thedogofchaos.GregicAgrifactoryCore.registry.Registry::IRON_ORE_CROP
- Let's Define.
-end note
-
-note left of io.thedogofchaos.GregicAgrifactoryCore.registry.Registry::registerBlock(String,Supplier<T>)
- Helper Methods, with a side of overloading
-end note
-note right of io.thedogofchaos.GregicAgrifactoryCore.registry.Registry::register(IEventBus)
- Gotta register them all!
-end note
-
 class io.thedogofchaos.GregicAgrifactoryCore.crops.Crop {
 - ResourceLocation id
 - Component displayName
@@ -114,6 +105,36 @@ end note
 class io.thedogofchaos.GregicAgrifactoryCore.crops.Crop$Builder {
 + <<Create>> Builder()
 }
+
+class io.thedogofchaos.GregicAgrifactoryCore.registry.CropRegistry {
+- {static} DeferredRegister<Block> BLOCKS
+- {static} DeferredRegister<Item> ITEMS
+- {static} DeferredRegister<Block> CROP_BLOCKS
+- {static} DeferredRegister<Item> CROP_ITEMS
++ {static} RegistryObject<Block> IRON_ORE_CROP
++ {static} RegistryObject<Item> IRON_ORE_SEEDS
+- {static} RegistryObject<T> registerBlock(String,Supplier<T>)
+- {static} RegistryObject<T> registerBlock(String,Supplier<T>,boolean)
+- {static} RegistryObject<T> registerBlock(String,Supplier<T>,boolean,boolean)
+- {static} RegistryObject<Item> registerBlockItem(String,RegistryObject<T>)
++ {static} void register(IEventBus)
+}
+note left of io.thedogofchaos.GregicAgrifactoryCore.registry.CropRegistry::BLOCKS
+ All the normal blocks and items go to the following two registers.
+end note
+note right of io.thedogofchaos.GregicAgrifactoryCore.registry.CropRegistry::CROP_BLOCKS
+ These two registers are only for Crops, their seeds, their harvested items, and their essences.
+end note
+note left of io.thedogofchaos.GregicAgrifactoryCore.registry.CropRegistry::IRON_ORE_CROP
+ Let's Define.
+end note
+
+note left of io.thedogofchaos.GregicAgrifactoryCore.registry.CropRegistry::registerBlock(String,Supplier<T>)
+ Helper Methods, with a side of overloading
+end note
+note right of io.thedogofchaos.GregicAgrifactoryCore.registry.CropRegistry::register(IEventBus)
+ Gotta register them all!
+end note
 
 class io.thedogofchaos.GregicAgrifactoryCore.datagen.BlockStateJsonGenerator {
 + <<Create>> BlockStateJsonGenerator(PackOutput,ExistingFileHelper)
