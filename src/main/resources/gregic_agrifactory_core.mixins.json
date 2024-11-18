@@ -6,7 +6,6 @@
   "client": [
   ],
   "mixins": [
-    "MixinAbstractFurnaceBlockEntity"
   ],
   "injectors": {
     "defaultRequire": 1
