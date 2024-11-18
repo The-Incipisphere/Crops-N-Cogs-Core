@@ -1,5 +1,6 @@
 package io.thedogofchaos.GregicAgrifactoryCore;
 
+import io.thedogofchaos.GregicAgrifactoryCore.datagen.DataGen;
 import io.thedogofchaos.GregicAgrifactoryCore.registry.CropRegistry;
 import io.thedogofchaos.GregicAgrifactoryCore.registry.Registry;
 import net.minecraft.client.Minecraft;
@@ -25,6 +26,7 @@ public class GregicAgrifactoryCore {
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
+        modEventBus.addListener(DataGen::generate);
 
         MinecraftForge.EVENT_BUS.register(this);
     }
