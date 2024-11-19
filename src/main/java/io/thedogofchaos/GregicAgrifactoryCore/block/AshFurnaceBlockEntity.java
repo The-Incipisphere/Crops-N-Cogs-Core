@@ -50,6 +50,6 @@ public class AshFurnaceBlockEntity extends AbstractFurnaceBlockEntity {
 
 
     public isLit(){
-
+        //todo: do logic here
     };
 }
