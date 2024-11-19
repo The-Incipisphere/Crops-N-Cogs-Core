@@ -31,22 +31,6 @@ public class AshFurnaceBlock extends AbstractFurnaceBlock {
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new AshFurnaceBlockEntity(pos, state, RecipeType.SMELTING);
-    }
-
-    @Nullable
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        if (level.isClientSide) {
-            // We don't have anything to do on the client side
-            return null;
-        } else {
-            // Server side we delegate ticking to our block entity
-            return (lvl, pos, st, blockEntity) -> {
-                if (blockEntity instanceof AshFurnaceBlockEntity be) {
-                    be.tickServer(lvl, pos, st);
-                }
-            };
-        }
+        return new AshFurnaceBlockEntity(pos, state);
     }
 }
