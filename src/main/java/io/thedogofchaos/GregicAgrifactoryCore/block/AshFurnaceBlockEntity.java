@@ -24,6 +24,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AbstractFurnaceBlock;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.FurnaceBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.Nullable;
@@ -31,11 +32,14 @@ import javax.annotation.Nullable;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Ash;
 
-public class AshFurnaceBlockEntity extends AbstractFurnaceBlockEntity {
-    public static final String ITEMS_TAG = "Inventory";
+public class AshFurnaceBlockEntity extends FurnaceBlockEntity {
+    private static final int ASH_SLOT = 0;
+    private static final int FUEL_SLOT = 1;
+    private static final int SMELT_SLOT = 2;
+    private static final int MAX_ASH_DUST = 64;
 
     public AshFurnaceBlockEntity(BlockPos pos, BlockState blockState) {
-        super(BlockEntityType.FURNACE, pos, blockState, RecipeType.SMELTING);
+        super(pos, blockState);
     }
 
     @Override
@@ -48,8 +52,9 @@ public class AshFurnaceBlockEntity extends AbstractFurnaceBlockEntity {
         return null;
     }
 
-
-    public isLit(){
+    @Override
+    public boolean isLit(){
         //todo: do logic here
+        return REPLACEME;
     };
 }

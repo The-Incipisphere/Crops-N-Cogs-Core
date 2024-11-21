@@ -6,5 +6,6 @@ public class Registry {
     public static void registerAll(IEventBus eventBus){
         BlockRegistry.BLOCKS.register(eventBus);
         ItemRegistry.ITEMS.register(eventBus);
+        MenuRegistry.MENU_TYPES.register(eventBus);
     }
 }

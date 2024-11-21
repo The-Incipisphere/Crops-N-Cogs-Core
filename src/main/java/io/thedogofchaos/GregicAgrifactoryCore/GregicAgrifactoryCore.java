@@ -1,9 +1,12 @@
 package io.thedogofchaos.GregicAgrifactoryCore;
 
 import io.thedogofchaos.GregicAgrifactoryCore.datagen.DataGen;
+import io.thedogofchaos.GregicAgrifactoryCore.gui.screen.AshFurnaceScreen;
 import io.thedogofchaos.GregicAgrifactoryCore.registry.CropRegistry;
+import io.thedogofchaos.GregicAgrifactoryCore.registry.MenuRegistry;
 import io.thedogofchaos.GregicAgrifactoryCore.registry.Registry;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -36,6 +39,9 @@ public class GregicAgrifactoryCore {
 
     private void clientSetup(final FMLClientSetupEvent event) {
         LOGGER.info("Hey, we're on Minecraft version {}!", Minecraft.getInstance().getLaunchedVersion());
+        event.enqueueWork(() -> {
+            MenuScreens.register(MenuRegistry.ASH_FURNACE_CONTAINER.get(), AshFurnaceScreen::new);
+        });
     }
 
 }

@@ -16,17 +16,9 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
-public class AshFurnaceBlock extends AbstractFurnaceBlock {
+public class AshFurnaceBlock extends FurnaceBlock {
     public AshFurnaceBlock(Properties properties) {
         super(BlockBehaviour.Properties.copy(Blocks.FURNACE));
-    }
-
-    @Override
-    protected void openContainer(Level level, BlockPos pos, Player player) {
-        // Open your custom GUI
-        if (level.getBlockEntity(pos) instanceof AshFurnaceBlockEntity blockEntity) {
-            player.openMenu(blockEntity);
-        }
     }
 
     @Override
