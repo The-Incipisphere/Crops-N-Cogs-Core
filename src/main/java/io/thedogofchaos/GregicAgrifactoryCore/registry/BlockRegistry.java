@@ -1,9 +1,12 @@
 package io.thedogofchaos.GregicAgrifactoryCore.registry;
 
 import io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore;
+import io.thedogofchaos.GregicAgrifactoryCore.block.AshFurnaceBlock;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -14,6 +17,7 @@ import java.util.function.Supplier;
 public class BlockRegistry {
     protected static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, GregicAgrifactoryCore.MOD_ID);
 
+    public static final RegistryObject<Block> ASH_FURNACE = registerBlock("furnace", () -> new AshFurnaceBlock(BlockBehaviour.Properties.copy(Blocks.FURNACE)));
 
     // Helper methods below here.
     /**

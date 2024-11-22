@@ -4,14 +4,19 @@ import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.registry.GTRegistry;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import io.thedogofchaos.GregicAgrifactoryCore.registry.BlockEntityRegistry;
+import io.thedogofchaos.GregicAgrifactoryCore.registry.BlockRegistry;
+import io.thedogofchaos.GregicAgrifactoryCore.util.AdaptedItemHandler;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
+import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.Item;
@@ -26,21 +31,31 @@ import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.FurnaceBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.wrapper.CombinedInvWrapper;
+import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Ash;
 
-public class AshFurnaceBlockEntity extends FurnaceBlockEntity {
-    private static final int ASH_SLOT = 0;
-    private static final int FUEL_SLOT = 1;
-    private static final int SMELT_SLOT = 2;
-    private static final int MAX_ASH_DUST = 64;
+public class AshFurnaceBlockEntity extends AbstractFurnaceBlockEntity {
+    public static final int ASH_SLOT = 3;
+    public static final int FUEL_SLOT = 1;
+    public static final int INPUT_SLOT = 0;
+    public static final int OUTPUT_SLOT = 2;
+    public static final int MAX_ASH_DUST = 64;
+
+    private int ashSlotFullness;
 
     public AshFurnaceBlockEntity(BlockPos pos, BlockState blockState) {
-        super(pos, blockState);
+        super(BlockEntityRegistry.ASH_FURNACE_BLOCK_ENTITY.get(), pos, blockState, RecipeType.SMELTING);
     }
+    // BlockRegistry.ASH_FURNACE.get()
 
     @Override
     protected Component getDefaultName() {
@@ -52,9 +67,19 @@ public class AshFurnaceBlockEntity extends FurnaceBlockEntity {
         return null;
     }
 
+    /** @return AbstractFurnaceBlockEntity#litTime */
     @Override
     public boolean isLit(){
-        //todo: do logic here
-        return REPLACEME;
+        return dataAccess.get(0) > 0;
     };
+
+    public void load(CompoundTag tag) {
+        super.load(tag);
+        this.ashSlotFullness = tag.getInt("AshSlotFullness");
+    }
+
+    protected void saveAdditional(CompoundTag tag) {
+        super.saveAdditional(tag);
+        tag.putInt("AshSlotFullness", this.ashSlotFullness);
+    }
 }
