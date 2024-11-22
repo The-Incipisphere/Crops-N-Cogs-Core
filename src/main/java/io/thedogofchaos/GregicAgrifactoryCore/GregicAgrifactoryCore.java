@@ -21,11 +21,10 @@ import org.apache.logging.log4j.Logger;
 public class GregicAgrifactoryCore {
     public static final String MOD_ID = "gregicagrifactory";
     public static final Logger LOGGER = LogManager.getLogger();
+    public IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
     public GregicAgrifactoryCore() {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus(); //Ignore the deprecation, it is for 1.21.1 and later.
-
-        Registry.registerAll(modEventBus);
+        Registry.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
@@ -35,10 +34,14 @@ public class GregicAgrifactoryCore {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
+        LOGGER.info("Initialising commonSetup");
+
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
+        LOGGER.info("Initialising clientSetup");
         LOGGER.info("Hey, we're on Minecraft version {}!", Minecraft.getInstance().getLaunchedVersion());
+
         event.enqueueWork(() -> {
             MenuScreens.register(MenuRegistry.ASH_FURNACE_CONTAINER.get(), AshFurnaceScreen::new);
         });

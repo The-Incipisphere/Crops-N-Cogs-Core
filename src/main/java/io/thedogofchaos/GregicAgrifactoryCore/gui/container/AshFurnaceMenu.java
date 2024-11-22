@@ -1,38 +1,40 @@
 package io.thedogofchaos.GregicAgrifactoryCore.gui.container;
 
 import io.thedogofchaos.GregicAgrifactoryCore.block.AshFurnaceBlockEntity;
+import io.thedogofchaos.GregicAgrifactoryCore.gui.slots.AshSlot;
 import io.thedogofchaos.GregicAgrifactoryCore.registry.BlockRegistry;
 import io.thedogofchaos.GregicAgrifactoryCore.registry.MenuRegistry;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.AbstractCookingRecipe;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class AshFurnaceMenu extends AbstractContainerMenu {
-    private final BlockPos pos;
+public class AshFurnaceMenu extends AbstractFurnaceMenu {
+    private final Container container;
 
-    public AshFurnaceMenu(int containerId, Player player, BlockPos pos) {
-        super(MenuRegistry.ASH_FURNACE_CONTAINER.get(), containerId);
-        this.pos = pos;
-        if (player.level().getBlockEntity(pos) instanceof AshFurnaceBlockEntity furnace) {
-            addSlot(new SlotItemHandler(furnace.getInputItems(), AshFurnaceBlockEntity.INPUT_SLOT, 64, 24));
-            addSlot(new SlotItemHandler(furnace.getFuelItems(), AshFurnaceBlockEntity.FUEL_SLOT, 108, 24));
-            addSlot(new SlotItemHandler(furnace.getOutputItems(), AshFurnaceBlockEntity.OUTPUT_SLOT, 126, 24));
-            addSlot(new SlotItemHandler(furnace.getAshItems(), AshFurnaceBlockEntity.ASH_SLOT, 144, 24));
-        }
+    public AshFurnaceMenu(MenuType<?> menuType, RecipeType<? extends AbstractCookingRecipe> recipeType, RecipeBookType recipeBookType, int containerId, Inventory playerInventory) {
+        this(menuType, recipeType, recipeBookType, containerId, playerInventory, new SimpleContainer(3), new SimpleContainerData(4));
     }
 
+    public AshFurnaceMenu(MenuType<?> menuType, RecipeType<? extends AbstractCookingRecipe> recipeType, RecipeBookType recipeBookType, int containerId, Inventory playerInventory, Container container, ContainerData data) {
+        super(menuType, recipeType, recipeBookType, containerId, playerInventory);
+        this.container = container;
 
-    @Override
-    public ItemStack quickMoveStack(Player player, int index) {
-        return null;
+        this.addSlot(new AshSlot(playerInventory.player, container, 4, 38, 53));
+
+        this.addDataSlots(data);
     }
 
     @Override
     public boolean stillValid(Player player) {
-        return stillValid(ContainerLevelAccess.create(player.level(), pos), player, BlockRegistry.ASH_FURNACE.get());
+        return this.container.stillValid(player);
     }
 
 }
