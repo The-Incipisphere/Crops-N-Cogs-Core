@@ -17,7 +17,7 @@ import java.util.function.Supplier;
 public class BlockRegistry {
     protected static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, GregicAgrifactoryCore.MOD_ID);
 
-    public static final RegistryObject<Block> ASH_FURNACE = registerBlock("furnace", () -> new AshFurnaceBlock(BlockBehaviour.Properties.copy(Blocks.FURNACE)));
+    public static final RegistryObject<Block> ASH_FURNACE = registerBlock("furnace", AshFurnaceBlock::new);
 
     // Helper methods below here.
     /**
@@ -44,7 +44,7 @@ public class BlockRegistry {
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, boolean alsoRegisterBlockItem) {
         RegistryObject<T> registeredBlock;
         registeredBlock = BLOCKS.register(name, block);
-        if (alsoRegisterBlockItem) ItemRegistry.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+        if (alsoRegisterBlockItem) ItemRegistry.ITEMS.register(name, () -> new BlockItem(registeredBlock.get(), new Item.Properties()));
 
         return registeredBlock;
     }

@@ -17,6 +17,6 @@ public class MenuRegistry {
 
     public static final RegistryObject<MenuType<AshFurnaceMenu>> ASH_FURNACE_CONTAINER = MENU_TYPES.register("furnace_menu",
         () -> IForgeMenuType.create(
-            (windowId, inv, data) -> new AshFurnaceMenu(MenuType.FURNACE, RecipeType.SMELTING, RecipeBookType.FURNACE, windowId, inv.player.getInventory()))
+            (windowId, inv, data) -> new AshFurnaceMenu(windowId, inv.player.getInventory()))
     );
 }

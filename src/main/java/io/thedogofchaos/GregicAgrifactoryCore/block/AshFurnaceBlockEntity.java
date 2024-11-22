@@ -4,6 +4,7 @@ import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.registry.GTRegistry;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import io.thedogofchaos.GregicAgrifactoryCore.gui.container.AshFurnaceMenu;
 import io.thedogofchaos.GregicAgrifactoryCore.registry.BlockEntityRegistry;
 import io.thedogofchaos.GregicAgrifactoryCore.registry.BlockRegistry;
 import io.thedogofchaos.GregicAgrifactoryCore.util.AdaptedItemHandler;
@@ -19,6 +20,7 @@ import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.FurnaceMenu;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
@@ -45,26 +47,19 @@ import static com.gregtechceu.gtceu.common.data.GTMaterials.Ash;
 
 public class AshFurnaceBlockEntity extends AbstractFurnaceBlockEntity {
     public static final int ASH_SLOT = 3;
-    public static final int FUEL_SLOT = 1;
-    public static final int INPUT_SLOT = 0;
-    public static final int OUTPUT_SLOT = 2;
-    public static final int MAX_ASH_DUST = 64;
-
     private int ashSlotFullness;
 
     public AshFurnaceBlockEntity(BlockPos pos, BlockState blockState) {
         super(BlockEntityRegistry.ASH_FURNACE_BLOCK_ENTITY.get(), pos, blockState, RecipeType.SMELTING);
     }
-    // BlockRegistry.ASH_FURNACE.get()
 
     @Override
-    protected Component getDefaultName() {
+    protected @NotNull Component getDefaultName() {
         return Component.translatable("container.furnace");
     }
 
-    @Override
     protected AbstractContainerMenu createMenu(int containerId, Inventory inventory) {
-        return null;
+        return new AshFurnaceMenu(containerId, inventory, this, this.dataAccess);
     }
 
     /** @return AbstractFurnaceBlockEntity#litTime */

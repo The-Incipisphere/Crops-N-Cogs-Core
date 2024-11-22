@@ -19,22 +19,14 @@ import net.minecraftforge.items.SlotItemHandler;
 public class AshFurnaceMenu extends AbstractFurnaceMenu {
     private final Container container;
 
-    public AshFurnaceMenu(MenuType<?> menuType, RecipeType<? extends AbstractCookingRecipe> recipeType, RecipeBookType recipeBookType, int containerId, Inventory playerInventory) {
-        this(menuType, recipeType, recipeBookType, containerId, playerInventory, new SimpleContainer(3), new SimpleContainerData(4));
+    public AshFurnaceMenu(int containerId, Inventory playerInventory) {
+        this(containerId, playerInventory, new SimpleContainer(3), new SimpleContainerData(4));
     }
 
-    public AshFurnaceMenu(MenuType<?> menuType, RecipeType<? extends AbstractCookingRecipe> recipeType, RecipeBookType recipeBookType, int containerId, Inventory playerInventory, Container container, ContainerData data) {
-        super(menuType, recipeType, recipeBookType, containerId, playerInventory);
+    public AshFurnaceMenu(int containerId, Inventory playerInventory, Container container, ContainerData data) {
+        super(MenuRegistry.ASH_FURNACE_CONTAINER.get(), RecipeType.SMELTING, RecipeBookType.FURNACE, containerId, playerInventory);
         this.container = container;
-
         this.addSlot(new AshSlot(playerInventory.player, container, 4, 38, 53));
-
         this.addDataSlots(data);
     }
-
-    @Override
-    public boolean stillValid(Player player) {
-        return this.container.stillValid(player);
-    }
-
 }
