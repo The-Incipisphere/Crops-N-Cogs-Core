@@ -18,6 +18,7 @@ import net.minecraftforge.items.SlotItemHandler;
 
 public class AshFurnaceMenu extends AbstractFurnaceMenu {
     private final Container container;
+    private final ContainerData data;
 
     public AshFurnaceMenu(int containerId, Inventory playerInventory) {
         this(containerId, playerInventory, new SimpleContainer(3), new SimpleContainerData(4));
@@ -25,7 +26,10 @@ public class AshFurnaceMenu extends AbstractFurnaceMenu {
 
     public AshFurnaceMenu(int containerId, Inventory playerInventory, Container container, ContainerData data) {
         super(MenuRegistry.ASH_FURNACE_CONTAINER.get(), RecipeType.SMELTING, RecipeBookType.FURNACE, containerId, playerInventory);
+        checkContainerSize(container, 3);
+        checkContainerDataCount(data, 4);
         this.container = container;
+        this.data = data;
         this.addSlot(new AshSlot(playerInventory.player, container, 4, 38, 53));
         this.addDataSlots(data);
     }
