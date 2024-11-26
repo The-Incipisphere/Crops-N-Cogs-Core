@@ -25,7 +25,7 @@ public class AshFurnaceBlock extends AbstractFurnaceBlock {
         if (blockEntity instanceof AshFurnaceBlockEntity) {
             player.openMenu((MenuProvider) blockEntity);
         } else {
-            throw new IllegalStateException("Expected AshFurnaceBlockEntity but found: " + blockEntity.getClass().getName());
+            throw new IllegalStateException("Expected to open AshFurnaceBlockEntity but found: " + blockEntity.getClass().getName());
         }
     }
 
