@@ -1,16 +1,16 @@
 package io.thedogofchaos.GregicAgrifactoryCore.gui.screen;
 
 import io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore;
-import io.thedogofchaos.GregicAgrifactoryCore.gui.container.AshFurnaceMenu;
+import io.thedogofchaos.GregicAgrifactoryCore.gui.container.AshFurnaceContainer;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public class AshFurnaceScreen extends AbstractContainerScreen<AshFurnaceMenu> {
+public class AshFurnaceScreen extends AbstractContainerScreen<AshFurnaceContainer> {
     private final ResourceLocation GUI = new ResourceLocation(GregicAgrifactoryCore.MOD_ID, "textures/gui/furnace.png");
-    public AshFurnaceScreen(AshFurnaceMenu containerMenu, Inventory playerInventory, Component title) {
+    public AshFurnaceScreen(AshFurnaceContainer containerMenu, Inventory playerInventory, Component title) {
         super(containerMenu, playerInventory, title);
         this.inventoryLabelY = this.imageHeight - 110;
     }

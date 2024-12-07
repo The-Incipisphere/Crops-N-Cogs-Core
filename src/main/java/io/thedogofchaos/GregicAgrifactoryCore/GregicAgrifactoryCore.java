@@ -7,6 +7,7 @@ import io.thedogofchaos.GregicAgrifactoryCore.registry.MenuRegistry;
 import io.thedogofchaos.GregicAgrifactoryCore.registry.Registry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -46,5 +47,4 @@ public class GregicAgrifactoryCore {
             MenuScreens.register(MenuRegistry.ASH_FURNACE_CONTAINER.get(), AshFurnaceScreen::new);
         });
     }
-
 }

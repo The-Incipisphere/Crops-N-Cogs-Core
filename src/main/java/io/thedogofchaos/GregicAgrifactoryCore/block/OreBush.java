@@ -1,5 +1,10 @@
 package io.thedogofchaos.GregicAgrifactoryCore.block;
 
-public class OreBush {
+import net.minecraft.world.level.block.BushBlock;
 
+public class OreBush extends BushBlock {
+
+    public OreBush(Properties properties) {
+        super(properties);
+    }
 }
