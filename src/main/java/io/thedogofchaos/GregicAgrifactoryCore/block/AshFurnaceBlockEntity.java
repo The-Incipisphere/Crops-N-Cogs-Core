@@ -51,6 +51,7 @@ public class AshFurnaceBlockEntity extends AbstractFurnaceBlockEntity {
 
     public AshFurnaceBlockEntity(BlockPos pos, BlockState blockState) {
         super(BlockEntityRegistry.ASH_FURNACE_BLOCK_ENTITY.get(), pos, blockState, RecipeType.SMELTING);
+        this.items = NonNullList.withSize(4, ItemStack.EMPTY);
     }
 
     @Override
