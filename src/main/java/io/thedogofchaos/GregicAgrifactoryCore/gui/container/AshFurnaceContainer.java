@@ -8,6 +8,9 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.crafting.RecipeType;
 
+/**
+ * @!!! — The Ash Furnace is currently VERY broken.
+ */
 public class AshFurnaceContainer extends AbstractFurnaceMenu {
     private final Container container;
     private final ContainerData data;

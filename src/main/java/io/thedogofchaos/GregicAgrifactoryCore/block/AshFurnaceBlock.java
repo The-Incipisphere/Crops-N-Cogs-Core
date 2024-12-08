@@ -14,6 +14,9 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * @!!! — The Ash Furnace is currently VERY broken.
+ */
 public class AshFurnaceBlock extends AbstractFurnaceBlock {
     public AshFurnaceBlock() {
         super(BlockBehaviour.Properties.copy(Blocks.FURNACE));

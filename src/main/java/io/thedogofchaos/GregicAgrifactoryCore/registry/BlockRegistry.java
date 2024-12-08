@@ -17,9 +17,11 @@ import java.util.function.Supplier;
 public class BlockRegistry {
     protected static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, GregicAgrifactoryCore.MOD_ID);
 
+    /**
+     * @!!! — The Ash Furnace is currently VERY broken.
+     */
     public static final RegistryObject<Block> ASH_FURNACE = registerBlock("furnace", AshFurnaceBlock::new);
 
-    // Helper methods below here.
     /**
      * An overloaded method to register a block (and automatically, a {@link BlockItem} at the same time).
      * @param name A {@link String} with the name of the block to register.

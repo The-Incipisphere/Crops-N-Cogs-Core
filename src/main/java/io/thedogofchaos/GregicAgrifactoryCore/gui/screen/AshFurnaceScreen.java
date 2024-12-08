@@ -8,6 +8,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
+/**
+ * @!!! — The Ash Furnace is currently VERY broken.
+ */
 public class AshFurnaceScreen extends AbstractContainerScreen<AshFurnaceContainer> {
     private final ResourceLocation GUI = new ResourceLocation(GregicAgrifactoryCore.MOD_ID, "textures/gui/furnace.png");
     public AshFurnaceScreen(AshFurnaceContainer containerMenu, Inventory playerInventory, Component title) {

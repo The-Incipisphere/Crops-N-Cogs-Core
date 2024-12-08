@@ -8,20 +8,30 @@ public class Plant {
     private Set<ResourceLocation> requiredBiomes;
 
     /**
-     * A set of biome IDs that this crop can grow in.
-     * @return this crop's required biomes
+     * A {@link Set} of the biome IDs (of type {@link ResourceLocation}) that this plant can grow in.
+     * @return This {@link Plant}’s {@link Set} of required biomes
      */
     public Set<ResourceLocation> getRequiredBiomes() {
         return this.requiredBiomes;
     }
 
     /**
-     * Add a biome ID to the list of required biomes for this crop.
-     * @param id the biome ID
-     * @return this crop
+     * Add a biome ID to the {@link Set} of required biomes for this plant.
+     * @param id The biome ID to add.
+     * @return This {@link Plant}
      */
     public Plant addRequiredBiome(ResourceLocation id) {
         this.requiredBiomes.add(id);
+        return this;
+    }
+
+    /**
+     * Remove a biome ID from the {@link Set} of required biomes for this plant.
+     * @param id The biome ID to remove.
+     * @return This {@link Plant}.
+     */
+    public Plant removeRequiredBiome(ResourceLocation id) {
+        this.requiredBiomes.remove(id);
         return this;
     }
 }

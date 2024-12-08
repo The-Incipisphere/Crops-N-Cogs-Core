@@ -14,6 +14,9 @@ import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * @!!! — The Ash Furnace is currently VERY broken.
+ */
 public class AshFurnaceBlockEntity extends AbstractFurnaceBlockEntity {
     public static final int ASH_SLOT = 3;
     private int ashSlotFullness;

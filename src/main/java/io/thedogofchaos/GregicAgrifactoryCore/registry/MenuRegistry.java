@@ -12,8 +12,11 @@ import net.minecraftforge.registries.RegistryObject;
 public class MenuRegistry {
     protected static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(ForgeRegistries.MENU_TYPES, GregicAgrifactoryCore.MOD_ID);
 
+    /**
+     * @!!! — The Ash Furnace is currently VERY broken.
+     */
     public static final RegistryObject<MenuType<AshFurnaceContainer>> ASH_FURNACE_CONTAINER = MENU_TYPES.register("furnace_menu",
         () -> IForgeMenuType.create(
-            (windowId, inv, data) -> new AshFurnaceContainer(windowId, inv.player.getInventory()))
+           (windowId, inv, data) -> new AshFurnaceContainer(windowId, inv.player.getInventory()))
     );
 }
