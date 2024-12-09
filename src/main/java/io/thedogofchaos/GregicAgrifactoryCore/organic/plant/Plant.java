@@ -1,10 +1,14 @@
 package io.thedogofchaos.GregicAgrifactoryCore.organic.plant;
 
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.Set;
 
 public class Plant {
+    private Component displayName;
+    private PlantType plantType;
+    private PlantTextures plantTextures;
     private Set<ResourceLocation> requiredBiomes;
 
     /**
