@@ -1,6 +1,8 @@
 package io.thedogofchaos.GregicAgrifactoryCore.block;
 
-import io.thedogofchaos.GregicAgrifactoryCore.crop.Crop;
+import io.thedogofchaos.GregicAgrifactoryCore.organic.plant.crop.Crop;
+import io.thedogofchaos.GregicAgrifactoryCore.organic.plant.IPlantProvider;
+import io.thedogofchaos.GregicAgrifactoryCore.organic.plant.Plant;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -8,15 +10,13 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.HashMap;
-import java.util.Properties;
 
-public class OreCrop extends CropBlock {
+public class OreCrop extends CropBlock implements IPlantProvider {
     private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D);
     public HashMap cropType;
     private Crop crop;
@@ -48,5 +48,10 @@ public class OreCrop extends CropBlock {
         }
 
         return true;
+    }
+
+    @Override
+    public Plant getPlant() {
+        return this.crop;
     }
 }

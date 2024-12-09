@@ -1,4 +1,4 @@
-package io.thedogofchaos.GregicAgrifactoryCore.crop;
+package io.thedogofchaos.GregicAgrifactoryCore.organic.plant;
 
 import net.minecraft.resources.ResourceLocation;
 
