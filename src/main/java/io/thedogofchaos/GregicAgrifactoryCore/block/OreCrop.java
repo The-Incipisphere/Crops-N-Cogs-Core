@@ -1,6 +1,6 @@
 package io.thedogofchaos.GregicAgrifactoryCore.block;
 
-import io.thedogofchaos.GregicAgrifactoryCore.organic.plant.crop.Crop;
+import io.thedogofchaos.GregicAgrifactoryCore.organic.plant.plants.Crop;
 import io.thedogofchaos.GregicAgrifactoryCore.organic.plant.IPlantProvider;
 import io.thedogofchaos.GregicAgrifactoryCore.organic.plant.Plant;
 import net.minecraft.core.BlockPos;
