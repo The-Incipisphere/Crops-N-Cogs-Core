@@ -18,7 +18,6 @@ import java.util.HashMap;
 
 public class OreCrop extends CropBlock implements IPlantProvider {
     private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D);
-    public HashMap cropType;
     private Crop crop;
 
     public OreCrop(Properties properties) {
