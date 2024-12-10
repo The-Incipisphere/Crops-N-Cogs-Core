@@ -1,7 +1,5 @@
 package io.thedogofchaos.GregicAgrifactoryCore.organic.plant;
 
-import io.thedogofchaos.GregicAgrifactoryCore.organic.plant.plants.Bush;
-import io.thedogofchaos.GregicAgrifactoryCore.organic.plant.plants.Crop;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -12,9 +10,8 @@ import java.util.Set;
 import java.util.function.Supplier;
 
 /**
- * This is the base class for all the ore plants to extend from.
- * Contains everything necessary for a functional plant, but individual builders will be delegated to the classes they need to be created for.
- * ({@link Crop.CropBuilder} in {@link Crop}, {@link Bush.BushBuilder} in {@link Bush}, etc.)
+ * The base class for all generatable plants to inherit from.
+ * @- Contains the frameworks necessary for all plants, such as adding required biomes, choosing what plant to generate, among others.
  */
 public class Plant {
     private Component displayName;
@@ -24,6 +21,16 @@ public class Plant {
     private Supplier<? extends Item> essence;
     private Supplier<? extends ItemNameBlockItem> seeds;
     private Set<ResourceLocation> requiredBiomes;
+
+    public Plant(Component displayName, PlantType plantType, PlantTextures plantTextures, Supplier<? extends BushBlock> plant, Supplier<? extends Item> essence, Supplier<? extends ItemNameBlockItem> seeds, Set<ResourceLocation> requiredBiomes) {
+        this.displayName = displayName;
+        this.plantType = plantType;
+        this.plantTextures = plantTextures;
+        this.plant = plant;
+        this.essence = essence;
+        this.seeds = seeds;
+        this.requiredBiomes = requiredBiomes;
+    }
 
     /**
      * A {@link Set} of the biome IDs (of type {@link ResourceLocation}) that this plant can grow in.
@@ -48,7 +55,7 @@ public class Plant {
      * @param id The biome ID to remove.
      * @return This {@link Plant}.
      */
-    public Plant removeRequiredBiome(ResourceLocation id) {
+    public Plant removeRequiredBiome(ResourceLocation id) { // This may never get used, but oh well.
         this.requiredBiomes.remove(id);
         return this;
     }
