@@ -25,4 +25,5 @@ public class PlantTextures {
 
     /** This set of PlantTextures is intended for Crops specifically.<br> Use for other plants at your own risk! */
     public static final PlantTextures FLOWERS = of("flowers");
+    public static final PlantTextures DEFAULT = of("default");
 }

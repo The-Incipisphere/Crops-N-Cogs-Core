@@ -28,6 +28,7 @@ public class Plant {
 
     protected void registerPlant() {
         // pluh
+        // TODO: figure out how to register plants and their items
     }
 
     public static class PlantBuilder {
@@ -65,7 +66,7 @@ public class Plant {
             return plant;
         }
     }
-    
+
     public static class PlantInfo {
 
         private final ResourceLocation plantName;

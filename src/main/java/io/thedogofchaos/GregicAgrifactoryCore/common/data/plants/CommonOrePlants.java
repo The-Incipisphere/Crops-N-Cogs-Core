@@ -12,6 +12,6 @@ public class CommonOrePlants {
                 .setPlantTextures(PlantTextures.FLOWERS)
                 .color(0x9d9d9d)
                 .setRequiredBiomes(new ResourceLocation("minecraft", "plains"))
-                .buildAndRegister(); //
+                .buildAndRegister();
     }
 }
