@@ -1,5 +1,6 @@
 package io.thedogofchaos.GregicAgrifactoryCore;
 
+import com.gregtechceu.gtceu.utils.FormattingUtil;
 import io.thedogofchaos.GregicAgrifactoryCore.datagen.DataGen;
 import io.thedogofchaos.GregicAgrifactoryCore.gui.screen.AshFurnaceScreen;
 import io.thedogofchaos.GregicAgrifactoryCore.registry.CropRegistry;
@@ -47,4 +48,5 @@ public class GregicAgrifactoryCore {
             MenuScreens.register(MenuRegistry.ASH_FURNACE_CONTAINER.get(), AshFurnaceScreen::new);
         });
     }
+
 }

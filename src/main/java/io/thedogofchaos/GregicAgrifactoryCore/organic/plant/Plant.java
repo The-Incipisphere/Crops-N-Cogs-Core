@@ -59,4 +59,9 @@ public class Plant {
         this.requiredBiomes.remove(id);
         return this;
     }
+
+    public static class PlantBuilder {
+        public PlantBuilder(ResourceLocation id) {
+        }
+    }
 }
