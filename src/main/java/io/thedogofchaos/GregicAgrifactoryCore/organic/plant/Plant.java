@@ -1,8 +1,8 @@
 package io.thedogofchaos.GregicAgrifactoryCore.organic.plant;
 
-import io.thedogofchaos.GregicAgrifactoryCore.registry.PlantRegistry;
 import lombok.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
@@ -40,6 +40,8 @@ public class Plant {
         }
 
         /** Set the set of textures that this plant & its harvested items has.
+         * <br>
+         * <b>!!- THIS METHOD IS REQUIRED -!!</b>
          * @param plantTextures
          */
         public PlantBuilder setPlantTextures(PlantTextures plantTextures) {
@@ -48,18 +50,33 @@ public class Plant {
         }
 
         /** Set the required biomes for this plant to be able to grow in.
-         * @param biomes
+         * @param biomes Any amount of {@link ResourceLocation}s.
          */
         public PlantBuilder setRequiredBiomes(ResourceLocation... biomes){
-            plantInfo.requiredBiomes.addAll(Arrays.asList(biomes));
+            var biomesToAdd = Arrays.asList(biomes);
+            biomesToAdd.forEach(ResourceLocationToTest -> {
+                if (!ForgeRegistries.BIOMES.containsKey(ResourceLocationToTest)) throw new IllegalStateException("Tried to set "+ResourceLocationToTest.toString()+" as a required biome for "+plantInfo.plantName.toString());
+            });
+            plantInfo.requiredBiomes.addAll(biomesToAdd);
             return this;
         }
 
-        public PlantBuilder color(int color) {
-            plantInfo.color = color;
+        /** Sets the colour that this plant’s texture set will be tinted by.
+         * <br>
+         * If you don't call this method with your own colour, it will default to {@code 0xFFFFFF}.
+         * @param colour The colour to set
+         */
+        public PlantBuilder setColour(int colour) {
+            plantInfo.colour = colour;
             return this;
         }
 
+        /**
+         * Builds and registers the plant.
+         * <br>
+         * <b>!!- THIS METHOD IS REQUIRED -!!</b>
+         * @return The {@link Plant} that you’re trying to register.
+         */
         public Plant buildAndRegister(){
             var plant = new Plant(plantInfo);
             plant.registerPlant();
@@ -81,7 +98,7 @@ public class Plant {
 
         @Getter
         @Setter
-        private int color;
+        private int colour;
 
         @Getter
         @Setter

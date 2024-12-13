@@ -10,7 +10,7 @@ public class CommonOrePlants {
     public static void register() {
         Magnetite = new Plant.PlantBuilder(ResLocUtils.id("magnetite"), PlantType.CROP)
                 .setPlantTextures(PlantTextures.FLOWERS)
-                .color(0x9d9d9d)
+                .setColour(0x9d9d9d)
                 .setRequiredBiomes(new ResourceLocation("minecraft", "plains"))
                 .buildAndRegister();
     }
