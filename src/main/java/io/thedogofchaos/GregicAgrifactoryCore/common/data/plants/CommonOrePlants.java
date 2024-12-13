@@ -12,9 +12,9 @@ import static io.thedogofchaos.GregicAgrifactoryCore.common.data.plants.Plants.*
 
 public class CommonOrePlants {
     public static void register() {
-        Magnetite = new Plant.PlantBuilder("Magnetite", PlantType.CROP)
-                .setPlantTextures(PlantTextures.FLOWERS)
-                .setRequiredBiomes(new ResourceLocation("minecraft", "plains"))
-                .build();
+        Magnetite = new Plant.PlantBuilder("Magnetite", PlantType.CROP) // TODO: Define 'PlantBuilder(String, PlantType)'
+                .setPlantTextures(PlantTextures.FLOWERS) // TODO: Define 'setPlantTextures(PlantTextures)'
+                .setRequiredBiomes(new ResourceLocation("minecraft", "plains")) // TODO: Define 'setRequiredBiomes(ResourceLocation...)'
+                .build(); // TODO: Define 'build()'
     }
 }

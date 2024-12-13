@@ -4,10 +4,29 @@ import io.thedogofchaos.GregicAgrifactoryCore.util.ResLocUtils;
 import net.minecraft.resources.ResourceLocation;
 
 public class PlantTextures {
-    public static final ResourceLocation CROP_FLOWERS = ResLocUtils.id("block/crop/flower");
-    public static final ResourceLocation ITEM_FLOWERS = ResLocUtils.id("block/item/flower");
+    private final ResourceLocation plantBlockTexture;
+    private final ResourceLocation harvestedItemTexture;
 
-    public static final PlantTextures FLOWERS = PlantTextures(CROP_FLOWERS,ITEM_FLOWERS);
+    public PlantTextures(ResourceLocation plantBlockTexture, ResourceLocation harvestedItemTexture) {
+        this.plantBlockTexture = plantBlockTexture;
+        this.harvestedItemTexture = harvestedItemTexture;
+    }
 
+    public static PlantTextures of(String textureName) {
+        return new PlantTextures(
+            ResLocUtils.id("block/plant/" + textureName),
+            ResLocUtils.id("item/plant" + textureName)
+        );
+    }
 
+    public ResourceLocation getPlantBlockTexture() {
+        return plantBlockTexture;
+    }
+
+    public ResourceLocation getHarvestedItemTexture() {
+        return harvestedItemTexture;
+    }
+
+    /** This set of PlantTextures is intended for Crops specifically.<br> Use for other plants at your own risk! */
+    public static final PlantTextures FLOWERS = of("flowers");
 }
