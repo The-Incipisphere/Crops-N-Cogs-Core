@@ -1,67 +1,94 @@
 package io.thedogofchaos.GregicAgrifactoryCore.organic.plant;
 
-import net.minecraft.network.chat.Component;
+import io.thedogofchaos.GregicAgrifactoryCore.registry.PlantRegistry;
+import lombok.*;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemNameBlockItem;
-import net.minecraft.world.level.block.BushBlock;
+import org.jetbrains.annotations.NotNull;
 
+import java.util.Arrays;
 import java.util.Set;
-import java.util.function.Supplier;
 
 /**
  * The base class for all generatable plants to inherit from.
  * @- Contains the frameworks necessary for all plants, such as adding required biomes, choosing what plant to generate, among others.
  */
 public class Plant {
-    private Component displayName;
-    private PlantType plantType;
-    private PlantTextures plantTextures;
-    private Supplier<? extends BushBlock> plant;
-    private Supplier<? extends Item> essence;
-    private Supplier<? extends ItemNameBlockItem> seeds;
-    private Set<ResourceLocation> requiredBiomes;
+    @NotNull
+    @Getter
+    private final PlantInfo plantInfo;
 
-    public Plant(Component displayName, PlantType plantType, PlantTextures plantTextures, Supplier<? extends BushBlock> plant, Supplier<? extends Item> essence, Supplier<? extends ItemNameBlockItem> seeds, Set<ResourceLocation> requiredBiomes) {
-        this.displayName = displayName;
-        this.plantType = plantType;
-        this.plantTextures = plantTextures;
-        this.plant = plant;
-        this.essence = essence;
-        this.seeds = seeds;
-        this.requiredBiomes = requiredBiomes;
+    public Plant(@NotNull PlantInfo plantInfo) {
+        this.plantInfo = plantInfo;
     }
 
-    /**
-     * A {@link Set} of the biome IDs (of type {@link ResourceLocation}) that this plant can grow in.
-     * @return This {@link Plant}’s {@link Set} of required biomes
-     */
-    public Set<ResourceLocation> getRequiredBiomes() {
-        return this.requiredBiomes;
+    protected Plant(ResourceLocation resourceLocation) {
+        plantInfo = new PlantInfo(resourceLocation, PlantType.BUSH /*!: NOT DEFINED YET */);
+        plantInfo.plantTextures = PlantTextures.DEFAULT /*!: NOT DEFINED YET */;
     }
 
-    /**
-     * Add a biome ID to the {@link Set} of required biomes for this plant.
-     * @param id The biome ID to add.
-     * @return This {@link Plant}
-     */
-    public Plant addRequiredBiome(ResourceLocation id) {
-        this.requiredBiomes.add(id);
-        return this;
-    }
-
-    /**
-     * Remove a biome ID from the {@link Set} of required biomes for this plant.
-     * @param id The biome ID to remove.
-     * @return This {@link Plant}.
-     */
-    public Plant removeRequiredBiome(ResourceLocation id) { // This may never get used, but oh well.
-        this.requiredBiomes.remove(id);
-        return this;
+    protected void registerPlant() {
+        // pluh
     }
 
     public static class PlantBuilder {
-        public PlantBuilder(ResourceLocation id) {
+        private final PlantInfo plantInfo;
+
+        public PlantBuilder(ResourceLocation resourceLocation, PlantType plantType) {
+            String name = resourceLocation.getPath();
+            plantInfo = new PlantInfo(resourceLocation, plantType);
+        }
+
+        /** Set the set of textures that this plant & its harvested items has.
+         * @param plantTextures
+         */
+        public PlantBuilder setPlantTextures(PlantTextures plantTextures) {
+            plantInfo.plantTextures = plantTextures;
+            return this;
+        }
+
+        /** Set the required biomes for this plant to be able to grow in.
+         * @param biomes
+         */
+        public PlantBuilder setRequiredBiomes(ResourceLocation... biomes){
+            plantInfo.requiredBiomes.addAll(Arrays.asList(biomes));
+            return this;
+        }
+
+        public PlantBuilder color(int color) {
+            plantInfo.color = color;
+            return this;
+        }
+
+        public Plant buildAndRegister(){
+            var plant = new Plant(plantInfo);
+            plant.registerPlant();
+            return plant;
+        }
+    }
+    
+    public static class PlantInfo {
+
+        private final ResourceLocation plantName;
+
+        @Getter
+        @Setter
+        private final PlantType plantType;
+
+        @Getter
+        @Setter
+        private PlantTextures plantTextures;
+
+        @Getter
+        @Setter
+        private int color;
+
+        @Getter
+        @Setter
+        private Set<ResourceLocation> requiredBiomes;
+
+        public PlantInfo(ResourceLocation plantName, PlantType plantType) {
+            this.plantName = plantName;
+            this.plantType = plantType;
         }
     }
 }
