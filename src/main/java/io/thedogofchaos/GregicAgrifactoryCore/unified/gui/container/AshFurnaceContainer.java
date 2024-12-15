@@ -1,7 +1,6 @@
 package io.thedogofchaos.GregicAgrifactoryCore.unified.gui.container;
 
 import io.thedogofchaos.GregicAgrifactoryCore.unified.gui.slots.AshSlot;
-import io.thedogofchaos.GregicAgrifactoryCore.registry.MenuRegistry;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -20,7 +19,7 @@ public class AshFurnaceContainer extends AbstractFurnaceMenu {
     }
 
     public AshFurnaceContainer(int containerId, Inventory playerInventory, Container container, ContainerData data) {
-        super(MenuRegistry.ASH_FURNACE_CONTAINER.get(), RecipeType.SMELTING, RecipeBookType.FURNACE, containerId, playerInventory);
+        super(null, RecipeType.SMELTING, RecipeBookType.FURNACE, containerId, playerInventory);
         checkContainerSize(container, 4);
         checkContainerDataCount(data, 4);
         this.container = container;

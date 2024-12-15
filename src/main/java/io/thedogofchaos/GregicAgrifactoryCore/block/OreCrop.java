@@ -1,6 +1,5 @@
 package io.thedogofchaos.GregicAgrifactoryCore.block;
 
-import io.thedogofchaos.GregicAgrifactoryCore.organic.plant.plants.Crop;
 import io.thedogofchaos.GregicAgrifactoryCore.organic.IPlantProvider;
 import io.thedogofchaos.GregicAgrifactoryCore.organic.Plant;
 import net.minecraft.core.BlockPos;
@@ -14,8 +13,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class OreCrop extends CropBlock implements IPlantProvider {
-    private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D);
-    private Crop crop;
 
     public OreCrop(Properties properties) {
         super(Properties.copy(Blocks.WHEAT));
@@ -38,8 +35,13 @@ public class OreCrop extends CropBlock implements IPlantProvider {
         return true; //
     }
 
+    /**
+     * Gets the {@link Plant} from this object.
+     *
+     * @return The {@link Plant}
+     */
     @Override
     public Plant getPlant() {
-        return this.crop;
+        return null;
     }
 }

@@ -1,7 +1,6 @@
 package io.thedogofchaos.GregicAgrifactoryCore.block;
 
 import io.thedogofchaos.GregicAgrifactoryCore.unified.gui.container.AshFurnaceContainer;
-import io.thedogofchaos.GregicAgrifactoryCore.registry.BlockEntityRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -22,7 +21,7 @@ public class AshFurnaceBlockEntity extends AbstractFurnaceBlockEntity {
     private int ashSlotFullness;
 
     public AshFurnaceBlockEntity(BlockPos pos, BlockState blockState) {
-        super(BlockEntityRegistry.ASH_FURNACE_BLOCK_ENTITY.get(), pos, blockState, RecipeType.SMELTING);
+        super(null, pos, blockState, RecipeType.SMELTING);
         this.items = NonNullList.withSize(4, ItemStack.EMPTY);
     }
 

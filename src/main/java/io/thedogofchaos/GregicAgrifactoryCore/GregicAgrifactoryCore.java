@@ -1,11 +1,13 @@
 package io.thedogofchaos.GregicAgrifactoryCore;
 
+import com.gregtechceu.gtceu.utils.FormattingUtil;
 import io.thedogofchaos.GregicAgrifactoryCore.client.ClientProxy;
 import io.thedogofchaos.GregicAgrifactoryCore.unified.UnifiedProxy;
 
 import com.lowdragmc.lowdraglib.Platform;
 import com.tterrag.registrate.Registrate;
 
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 
@@ -21,6 +23,7 @@ import org.apache.logging.log4j.Logger;
 @Mod(GregicAgrifactoryCore.MOD_ID)
 public class GregicAgrifactoryCore {
     public static final String MOD_ID = "gregicagrifactory";
+    public static final String MOD_NAME = "Gregic Agrifactory Core";
     public static final Logger LOGGER = LogManager.getLogger();
     public static final Registrate REGISTRATE = Registrate.create(MOD_ID);
 
@@ -30,6 +33,10 @@ public class GregicAgrifactoryCore {
     }
 
     public static void init() {
-        LOGGER.info("We're loading {} on the {}", MOD_ID, Platform.platformName());
+        LOGGER.info("We're loading {} on the {}", MOD_NAME, Platform.platformName());
+    }
+
+    public static ResourceLocation id(String path) {
+        return new ResourceLocation(GregicAgrifactoryCore.MOD_ID, FormattingUtil.toLowerCaseUnder(path));
     }
 }
