@@ -1,50 +1,35 @@
 package io.thedogofchaos.GregicAgrifactoryCore;
 
+import io.thedogofchaos.GregicAgrifactoryCore.client.ClientProxy;
+import io.thedogofchaos.GregicAgrifactoryCore.unified.UnifiedProxy;
+
+import com.lowdragmc.lowdraglib.Platform;
 import com.tterrag.registrate.Registrate;
-import io.thedogofchaos.GregicAgrifactoryCore.datagen.DataGen;
-import io.thedogofchaos.GregicAgrifactoryCore.client.gui.screen.AshFurnaceScreen;
-import io.thedogofchaos.GregicAgrifactoryCore.registry.MenuRegistry;
-import io.thedogofchaos.GregicAgrifactoryCore.registry.Registry;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.IEventBus;
+
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/** “Life is a hideous thing, and from the background behind what we know of it peer daemoniacal hints of truth which make it sometimes a thousandfold more hideous.
+ * <br>Science, already oppressive with its shocking revelations, will perhaps be the ultimate exterminator of our human species
+ * —if separate species we be—
+ * for its reserve of unguessed horrors could never be borne by mortal brains if loosed upon the world.”
+ * <br>- H.P. Lovecraft
+ */
 @Mod(GregicAgrifactoryCore.MOD_ID)
 public class GregicAgrifactoryCore {
     public static final String MOD_ID = "gregicagrifactory";
     public static final Logger LOGGER = LogManager.getLogger();
     public static final Registrate REGISTRATE = Registrate.create(MOD_ID);
-    public IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
     public GregicAgrifactoryCore() {
-        Registry.register(modEventBus);
-
-        modEventBus.addListener(this::commonSetup);
-        modEventBus.addListener(this::clientSetup);
-        modEventBus.addListener(DataGen::generate);
-
-        MinecraftForge.EVENT_BUS.register(this);
+        GregicAgrifactoryCore.init();
+        DistExecutor.safeRunForDist(() -> ClientProxy::new, () -> UnifiedProxy::new); // !: Keep this as safeRunForDist for now. Only switch to unsafeRunForDist when this coremod is stable.
     }
 
-    private void commonSetup(final FMLCommonSetupEvent event) {
-        LOGGER.info("Initialising commonSetup");
-
+    public static void init() {
+        LOGGER.info("We're loading {} on the {}", MOD_ID, Platform.platformName());
     }
-
-    private void clientSetup(final FMLClientSetupEvent event) {
-        LOGGER.info("Initialising clientSetup");
-        LOGGER.info("Hey, we're on Minecraft version {}!", Minecraft.getInstance().getLaunchedVersion());
-
-        event.enqueueWork(() -> {
-            MenuScreens.register(MenuRegistry.ASH_FURNACE_CONTAINER.get(), AshFurnaceScreen::new);
-        });
-    }
-
 }
