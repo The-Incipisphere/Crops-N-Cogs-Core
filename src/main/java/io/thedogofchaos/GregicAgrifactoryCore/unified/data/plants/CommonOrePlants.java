@@ -6,7 +6,7 @@ import io.thedogofchaos.GregicAgrifactoryCore.organic.PlantType;
 import io.thedogofchaos.GregicAgrifactoryCore.util.ResLocUtils;
 import net.minecraft.resources.ResourceLocation;
 
-import static io.thedogofchaos.GregicAgrifactoryCore.unified.data.plants.Plants.*;
+import static io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModPlants.*;
 
 public class CommonOrePlants {
     public static void register() {
