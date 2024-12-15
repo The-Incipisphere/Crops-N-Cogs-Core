@@ -1,4 +1,4 @@
-package io.thedogofchaos.GregicAgrifactoryCore.organic.plant;
+package io.thedogofchaos.GregicAgrifactoryCore.organic;
 
 import io.thedogofchaos.GregicAgrifactoryCore.util.ResLocUtils;
 import lombok.*;
@@ -21,7 +21,6 @@ public class PlantTextures {
             ResLocUtils.id("item/plant" + textureName)
         );
     }
-
 
     /** This set of PlantTextures is intended for Crops specifically.<br> Use for other plants at your own risk! */
     public static final PlantTextures FLOWERS = of("flowers");

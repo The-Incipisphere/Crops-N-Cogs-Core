@@ -1,6 +1,6 @@
 package io.thedogofchaos.GregicAgrifactoryCore.block;
 
-import io.thedogofchaos.GregicAgrifactoryCore.gui.container.AshFurnaceContainer;
+import io.thedogofchaos.GregicAgrifactoryCore.unified.gui.container.AshFurnaceContainer;
 import io.thedogofchaos.GregicAgrifactoryCore.registry.BlockEntityRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;

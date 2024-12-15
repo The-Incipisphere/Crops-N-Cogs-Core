@@ -1,7 +1,7 @@
 package io.thedogofchaos.GregicAgrifactoryCore.registry;
 
 import io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore;
-import io.thedogofchaos.GregicAgrifactoryCore.gui.container.AshFurnaceContainer;
+import io.thedogofchaos.GregicAgrifactoryCore.unified.gui.container.AshFurnaceContainer;
 import net.minecraft.world.inventory.MenuType;
 
 import net.minecraftforge.common.extensions.IForgeMenuType;

@@ -1,4 +1,4 @@
-package io.thedogofchaos.GregicAgrifactoryCore.organic.plant;
+package io.thedogofchaos.GregicAgrifactoryCore.organic;
 
 public enum PlantType {
     /** <a href="https://minecraft.wiki/w/Crops">https://minecraft.wiki/w/Crops</a> */

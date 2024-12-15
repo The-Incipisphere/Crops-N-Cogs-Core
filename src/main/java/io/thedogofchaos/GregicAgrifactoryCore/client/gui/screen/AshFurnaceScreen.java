@@ -1,7 +1,7 @@
-package io.thedogofchaos.GregicAgrifactoryCore.gui.screen;
+package io.thedogofchaos.GregicAgrifactoryCore.client.gui.screen;
 
 import io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore;
-import io.thedogofchaos.GregicAgrifactoryCore.gui.container.AshFurnaceContainer;
+import io.thedogofchaos.GregicAgrifactoryCore.unified.gui.container.AshFurnaceContainer;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;

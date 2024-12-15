@@ -1,4 +1,4 @@
-package io.thedogofchaos.GregicAgrifactoryCore.organic.plant;
+package io.thedogofchaos.GregicAgrifactoryCore.organic;
 
 public interface IPlantProvider {
     /**

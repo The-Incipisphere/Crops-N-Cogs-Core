@@ -1,15 +1,12 @@
 package io.thedogofchaos.GregicAgrifactoryCore;
 
-import com.gregtechceu.gtceu.utils.FormattingUtil;
+import com.tterrag.registrate.Registrate;
 import io.thedogofchaos.GregicAgrifactoryCore.datagen.DataGen;
-import io.thedogofchaos.GregicAgrifactoryCore.gui.screen.AshFurnaceScreen;
-import io.thedogofchaos.GregicAgrifactoryCore.registry.CropRegistry;
+import io.thedogofchaos.GregicAgrifactoryCore.client.gui.screen.AshFurnaceScreen;
 import io.thedogofchaos.GregicAgrifactoryCore.registry.MenuRegistry;
 import io.thedogofchaos.GregicAgrifactoryCore.registry.Registry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Items;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -23,6 +20,7 @@ import org.apache.logging.log4j.Logger;
 public class GregicAgrifactoryCore {
     public static final String MOD_ID = "gregicagrifactory";
     public static final Logger LOGGER = LogManager.getLogger();
+    public static final Registrate REGISTRATE = Registrate.create(MOD_ID);
     public IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
     public GregicAgrifactoryCore() {

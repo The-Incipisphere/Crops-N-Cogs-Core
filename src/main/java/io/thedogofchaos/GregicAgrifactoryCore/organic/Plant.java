@@ -1,4 +1,4 @@
-package io.thedogofchaos.GregicAgrifactoryCore.organic.plant;
+package io.thedogofchaos.GregicAgrifactoryCore.organic;
 
 import lombok.*;
 import net.minecraft.resources.ResourceLocation;
@@ -22,8 +22,8 @@ public class Plant {
     }
 
     protected Plant(ResourceLocation resourceLocation) {
-        plantInfo = new PlantInfo(resourceLocation, PlantType.BUSH /*!: NOT DEFINED YET */);
-        plantInfo.plantTextures = PlantTextures.DEFAULT /*!: NOT DEFINED YET */;
+        plantInfo = new PlantInfo(resourceLocation, PlantType.BUSH);
+        plantInfo.plantTextures = PlantTextures.DEFAULT;
     }
 
     protected void registerPlant() {
@@ -41,7 +41,7 @@ public class Plant {
 
         /** Set the set of textures that this plant & its harvested items has.
          * <br>
-         * <b>!!- THIS METHOD IS REQUIRED -!!</b>
+         * <b>!!- THIS METHOD IS REQUIRED WHEN REGISTERING A PLANT-!!</b>
          * @param plantTextures
          */
         public PlantBuilder setPlantTextures(PlantTextures plantTextures) {
@@ -74,7 +74,7 @@ public class Plant {
         /**
          * Builds and registers the plant.
          * <br>
-         * <b>!!- THIS METHOD IS REQUIRED -!!</b>
+         * <b>!!- THIS METHOD IS REQUIRED WHEN REGISTERING A PLANT-!!</b>
          * @return The {@link Plant} that you’re trying to register.
          */
         public Plant buildAndRegister(){

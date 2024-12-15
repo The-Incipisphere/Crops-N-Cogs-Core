@@ -1,10 +1,12 @@
-package io.thedogofchaos.GregicAgrifactoryCore.common.data.plants;
+package io.thedogofchaos.GregicAgrifactoryCore.unified.data.plants;
 
-import io.thedogofchaos.GregicAgrifactoryCore.organic.plant.*;
+import io.thedogofchaos.GregicAgrifactoryCore.organic.Plant;
+import io.thedogofchaos.GregicAgrifactoryCore.organic.PlantTextures;
+import io.thedogofchaos.GregicAgrifactoryCore.organic.PlantType;
 import io.thedogofchaos.GregicAgrifactoryCore.util.ResLocUtils;
 import net.minecraft.resources.ResourceLocation;
 
-import static io.thedogofchaos.GregicAgrifactoryCore.common.data.plants.Plants.*;
+import static io.thedogofchaos.GregicAgrifactoryCore.unified.data.plants.Plants.*;
 
 public class CommonOrePlants {
     public static void register() {

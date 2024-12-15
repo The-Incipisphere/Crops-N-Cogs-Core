@@ -1,6 +1,6 @@
-package io.thedogofchaos.GregicAgrifactoryCore.common.data.plants;
+package io.thedogofchaos.GregicAgrifactoryCore.unified.data.plants;
 
-import io.thedogofchaos.GregicAgrifactoryCore.organic.plant.Plant;
+import io.thedogofchaos.GregicAgrifactoryCore.organic.Plant;
 
 public class Plants {
     public static Plant Magnetite;

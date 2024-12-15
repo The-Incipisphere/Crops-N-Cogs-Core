@@ -1,6 +1,6 @@
-package io.thedogofchaos.GregicAgrifactoryCore.gui.container;
+package io.thedogofchaos.GregicAgrifactoryCore.unified.gui.container;
 
-import io.thedogofchaos.GregicAgrifactoryCore.gui.slots.AshSlot;
+import io.thedogofchaos.GregicAgrifactoryCore.unified.gui.slots.AshSlot;
 import io.thedogofchaos.GregicAgrifactoryCore.registry.MenuRegistry;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;

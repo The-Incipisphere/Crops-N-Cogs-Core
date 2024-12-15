@@ -1,12 +1,9 @@
-package io.thedogofchaos.GregicAgrifactoryCore.gui.slots;
+package io.thedogofchaos.GregicAgrifactoryCore.unified.gui.slots;
 
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
-import net.minecraftforge.event.ForgeEventFactory;
 
 public class AshSlot extends Slot {
     private final Player player;
