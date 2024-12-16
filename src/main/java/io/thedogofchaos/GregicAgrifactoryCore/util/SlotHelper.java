@@ -25,8 +25,9 @@ public class SlotHelper {
         }
         return index;
     }
+
     public static void layoutPlayerInventorySlots(Consumer<Slot> slotConsumer, Container playerInventory, int leftCol, int topRow) {
-        // Note: May have to modify this method later if the player's inventory and hotbar need to both be in different locations.
+        // TODO: May have to modify this method later if the player's inventory and hotbar need to both be in different locations.
         addSlotBox(slotConsumer, playerInventory, 9, leftCol, topRow, 9, 18, 3, 18);
         topRow += 58;
         addSlotRange(slotConsumer, playerInventory, 0, leftCol, topRow, 9, 18);

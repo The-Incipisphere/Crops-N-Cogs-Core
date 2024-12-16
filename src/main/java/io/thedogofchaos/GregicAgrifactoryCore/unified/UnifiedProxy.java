@@ -1,7 +1,5 @@
 package io.thedogofchaos.GregicAgrifactoryCore.unified;
 
-import io.thedogofchaos.GregicAgrifactoryCore.registry.Registries;
-import io.thedogofchaos.GregicAgrifactoryCore.unified.data.*;
 import io.thedogofchaos.GregicAgrifactoryCore.unified.network.Network;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -10,35 +8,27 @@ import net.minecraftforge.fml.event.lifecycle.FMLConstructModEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 public class UnifiedProxy {
-    @SuppressWarnings("deprecation")
+    @SuppressWarnings("deprecated")
     public UnifiedProxy(){
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        modEventBus.register(this);
-        //Registries.init();
+        IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
+        init(modBus);
+        modBus.register(this);
     }
 
-    public static void init(){
+    public static void init(IEventBus modBus){
         Network.init();
-        initPlants();
-        ModBlocks.init();
-        ModItems.init();
+        UnifiedRegistry.init(modBus);
     }
-
-    public static void initPlants(){
-
-    }
-
 
     @SubscribeEvent
     public void modConstruct(FMLConstructModEvent event) {
-        // this is done to delay initialization of content to be after KJS has set up.
-        event.enqueueWork(UnifiedProxy::init);
+        // bingus
     }
 
     @SubscribeEvent
     public void commonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-
+            // do shit here
         });
     }
 }

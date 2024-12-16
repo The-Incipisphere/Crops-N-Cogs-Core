@@ -58,7 +58,7 @@ class io.thedogofchaos.GregicAgrifactoryCore.datagen.DataGen {
 + {static} void gatherData(GatherDataEvent)
 }
 
-class io.thedogofchaos.GregicAgrifactoryCore.block.OreCrop {
+class io.thedogofchaos.GregicAgrifactoryCore.block.MagnetiteCropBlock {
 - {static} int maxAge
 - int color
 - Crop crop
@@ -68,7 +68,7 @@ class io.thedogofchaos.GregicAgrifactoryCore.block.OreCrop {
 # IntegerProperty getAgeProperty()
 + int compareTo(OreCrop)
 }
-note left of io.thedogofchaos.GregicAgrifactoryCore.block.OreCrop::maxAge
+note left of io.thedogofchaos.GregicAgrifactoryCore.block.MagnetiteCropBlock::maxAge
  leave this class as-is until I formulate a way to dynamically generate crops.
 end note
 
@@ -152,8 +152,8 @@ class io.thedogofchaos.GregicAgrifactoryCore.datagen.loot.BlockLootTables {
 
 net.minecraft.world.level.block.CropBlock <|-- io.thedogofchaos.GregicAgrifactoryCore.block.IronOreCrop
 net.minecraftforge.client.model.generators.ItemModelProvider <|-- io.thedogofchaos.GregicAgrifactoryCore.datagen.ItemModelJsonGenerator
-io.thedogofchaos.GregicAgrifactoryCore.block.Comparable <|.. io.thedogofchaos.GregicAgrifactoryCore.block.OreCrop
-net.minecraft.world.level.block.CropBlock <|-- io.thedogofchaos.GregicAgrifactoryCore.block.OreCrop
+io.thedogofchaos.GregicAgrifactoryCore.block.Comparable <|.. io.thedogofchaos.GregicAgrifactoryCore.block.MagnetiteCropBlock
+net.minecraft.world.level.block.CropBlock <|-- io.thedogofchaos.GregicAgrifactoryCore.block.MagnetiteCropBlock
 io.thedogofchaos.GregicAgrifactoryCore.crops.Crop +.. io.thedogofchaos.GregicAgrifactoryCore.crops.Crop$Builder
 net.minecraftforge.client.model.generators.BlockStateProvider <|-- io.thedogofchaos.GregicAgrifactoryCore.datagen.BlockStateJsonGenerator
 net.minecraft.data.loot.BlockLootSubProvider <|-- io.thedogofchaos.GregicAgrifactoryCore.datagen.loot.BlockLootTables
