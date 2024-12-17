@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "gregicagrifactory:item/crop/harvested/magnetite_harvested"
+  }
+}
