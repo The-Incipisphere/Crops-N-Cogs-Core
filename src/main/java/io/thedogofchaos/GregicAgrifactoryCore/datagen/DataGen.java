@@ -24,7 +24,6 @@ public class DataGen {
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
         generator.addProvider(event.includeClient(), new BlockStateJsonGenerator(packOutput, event.getExistingFileHelper()));
-        generator.addProvider(event.includeClient(), new BlockModelJsonGenerator(packOutput, event.getExistingFileHelper()));
         generator.addProvider(event.includeClient(), new ItemModelJsonGenerator(packOutput, event.getExistingFileHelper()));
         generator.addProvider(event.includeClient(), new LanguageJsonGenerator(packOutput, "en_us"));
 

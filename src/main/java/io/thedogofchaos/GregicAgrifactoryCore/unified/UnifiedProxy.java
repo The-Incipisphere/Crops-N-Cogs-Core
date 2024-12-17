@@ -8,9 +8,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLConstructModEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 public class UnifiedProxy {
-    @SuppressWarnings("deprecated")
+    IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
     public UnifiedProxy(){
-        IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
         init(modBus);
         modBus.register(this);
     }
