@@ -2,6 +2,7 @@ package io.thedogofchaos.GregicAgrifactoryCore.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.CropBlock;
@@ -9,7 +10,11 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModItems;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.storage.loot.LootParams;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MagnetiteCropBlock extends CropBlock {
 
