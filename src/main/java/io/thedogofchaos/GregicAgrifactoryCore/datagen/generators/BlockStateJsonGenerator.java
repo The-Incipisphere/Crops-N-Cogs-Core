@@ -36,7 +36,7 @@ public class BlockStateJsonGenerator extends BlockStateProvider {
     private ConfiguredModel[] magnetiteCropStates(BlockState state, CropBlock block, String modelName, String textureName) {
         ConfiguredModel[] models = new ConfiguredModel[1];
         models[0] = new ConfiguredModel(
-                models().crop(
+                models().cross(
                         modelName + state.getValue(((MagnetiteCropBlock) block).getAgeProperty()),
                         new ResourceLocation(
                                 GregicAgrifactoryCore.MOD_ID,
