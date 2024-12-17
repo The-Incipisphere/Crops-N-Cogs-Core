@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "crop": "gregicagrifactory:block/crop/magnetite/magnetite_crop_age1"
+  }
+}
