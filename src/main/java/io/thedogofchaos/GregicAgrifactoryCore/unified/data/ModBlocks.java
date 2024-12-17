@@ -21,7 +21,7 @@ import java.util.function.Supplier;
 public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, GregicAgrifactoryCore.MOD_ID);
 
-    public static final RegistryObject<Block> MAGNETITE_CROP = registerBlock("magnetite_crop",
+    public static final RegistryObject<Block> MAGNETITE_CROP = BLOCKS.register("magnetite_crop",
             () -> new MagnetiteCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission()));
 
 
