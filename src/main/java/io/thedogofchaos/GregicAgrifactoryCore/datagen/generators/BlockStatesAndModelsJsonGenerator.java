@@ -6,20 +6,17 @@ import io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModBlocks;
 
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
-import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 import java.util.function.Function;
 
-public class BlockStateJsonGenerator extends BlockStateProvider {
-    // Note to self: This will need to be built to handle Model/Blockstate generation of Crops/Bushes at runtime.
-    public BlockStateJsonGenerator(PackOutput packOutput, ExistingFileHelper existingFileHelper) {
+public class BlockStatesAndModelsJsonGenerator extends BlockStateProvider {
+    public BlockStatesAndModelsJsonGenerator(PackOutput packOutput, ExistingFileHelper existingFileHelper) {
         super(packOutput, GregicAgrifactoryCore.MOD_ID, existingFileHelper);
     }
 

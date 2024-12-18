@@ -11,7 +11,6 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ItemModelJsonGenerator extends ItemModelProvider {
-    // Note to self: This will need to be built to handle ItemModel generation of seeds/harvestedItems/rawEssences at runtime.
     public ItemModelJsonGenerator(PackOutput packOutput, ExistingFileHelper existingFileHelper) {
         super(packOutput, GregicAgrifactoryCore.MOD_ID, existingFileHelper);
     }

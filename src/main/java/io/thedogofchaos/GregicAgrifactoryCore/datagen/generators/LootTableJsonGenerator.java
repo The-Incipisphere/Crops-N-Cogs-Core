@@ -9,6 +9,7 @@ import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -58,7 +59,8 @@ public class LootTableJsonGenerator extends BlockLootSubProvider {
      * @return The LootTable Builder, to continue building loot tables if need be.
      */
     public LootTable.Builder alwaysSingleSeedDrop(Block cropBlock, Item harvestedItem, Item seedItem, IntegerProperty ageProperty) {
-        return applyExplosionDecay(cropBlock,
+        return applyExplosionDecay(
+                cropBlock,
                 LootTable.lootTable()
                         .withPool(LootPool.lootPool()
                                 .add(LootItem.lootTableItem(harvestedItem)
