@@ -19,11 +19,15 @@ public class ModItems {
     /*/////////////////////*/
     public static final RegistryObject<Item> MAGNETITE_SEEDS = ITEMS.register("magnetite_seeds",
             () -> new ItemNameBlockItem(ModBlocks.MAGNETITE_CROP.get(), new Item.Properties()));
+    public static final RegistryObject<Item> CHALCOPYRITE_SEEDS = ITEMS.register("chalcopyrite_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.CHALCOPYRITE_CROP.get(), new Item.Properties()));
 
     /*///////////////////////////////*/
     /*/ ***** HARVESTED CROPS ***** /*/
     /*///////////////////////////////*/
     public static final RegistryObject<Item> MAGNETITE_HARVESTED = ITEMS.register("magnetite_harvested",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> CHALCOPYRITE_HARVESTED = ITEMS.register("chalcopyrite_harvested",
             () -> new Item(new Item.Properties()));
 
     public static void init(IEventBus modBus){

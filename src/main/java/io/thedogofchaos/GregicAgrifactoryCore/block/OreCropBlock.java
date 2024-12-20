@@ -12,6 +12,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
+/** The common class for ALL OreCrops. */
 public class OreCropBlock extends CropBlock {
     // Use a Supplier to delay figuring out the value of seedItem until getBaseSeedId() is called
     // to stop the game shitting itself because said seedItem isn't registered yet.
@@ -24,7 +25,8 @@ public class OreCropBlock extends CropBlock {
 
     @Override
     protected ItemLike getBaseSeedId() {
-        // This would not be possible if I was doing ModItems.INSERTSEEDIDHERE.get() directly
+        // This would not be possible if I was doing ModItems.INSERTSEEDIDHERE.get()
+        // directly as a parameter of the constructor
         // for reasons explained at seedItem’s field definition.
         return seedItem.get();
     }
@@ -38,7 +40,7 @@ public class OreCropBlock extends CropBlock {
         return AGE;
     }
 
-/*
+/*  // Come back to these methods if I decide that I want biome requirements for crops.
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         if (!this.canGrow(level, pos))

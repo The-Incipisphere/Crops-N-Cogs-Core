@@ -20,10 +20,9 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, GregicAgrifactoryCore.MOD_ID);
 
     public static final RegistryObject<Block> MAGNETITE_CROP = BLOCKS.register("magnetite_crop",
-            () -> new OreCropBlock(
-                    BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission(),
-                    ModItems.MAGNETITE_SEEDS::get
-            ));
+            () -> new OreCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission(), ModItems.MAGNETITE_SEEDS::get));
+    public static final RegistryObject<Block> CHALCOPYRITE_CROP = BLOCKS.register("chalcopyrite_crop",
+            () -> new OreCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission(), ModItems.CHALCOPYRITE_SEEDS::get));
 
 
     /*//////////////////////////////*/

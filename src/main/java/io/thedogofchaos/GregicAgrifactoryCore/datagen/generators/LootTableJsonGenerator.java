@@ -37,6 +37,14 @@ public class LootTableJsonGenerator extends BlockLootSubProvider {
                         OreCropBlock.AGE
                 )
         );
+        this.add(ModBlocks.CHALCOPYRITE_CROP.get(),
+                alwaysSingleSeedDrop(
+                        ModBlocks.CHALCOPYRITE_CROP.get(),
+                        ModItems.CHALCOPYRITE_HARVESTED.get(),
+                        ModItems.CHALCOPYRITE_SEEDS.get(),
+                        OreCropBlock.AGE
+                )
+        );
     }
 
     @Override
