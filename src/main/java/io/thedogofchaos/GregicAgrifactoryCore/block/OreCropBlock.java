@@ -25,8 +25,8 @@ public class OreCropBlock extends CropBlock {
 
     @Override
     protected ItemLike getBaseSeedId() {
-        // This would not be possible if I was doing ModItems.INSERTSEEDIDHERE.get()
-        // directly as a parameter of the constructor
+        // This would not be possible if I passed ModItems.INSERTSEEDIDHERE.get()
+        // directly as a parameter of the constructor when instantiating this class
         // for reasons explained at seedItem’s field definition.
         return seedItem.get();
     }

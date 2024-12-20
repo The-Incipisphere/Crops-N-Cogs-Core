@@ -3,6 +3,9 @@ package io.thedogofchaos.GregicAgrifactoryCore.unified.data;
 import com.gregtechceu.gtceu.api.gui.editor.EditableUI;
 import io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore;
 
+import net.minecraft.world.flag.FeatureFlag;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 
@@ -13,6 +16,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, GregicAgrifactoryCore.MOD_ID);
+
 
     /*/////////////////////*/
     /*/ ***** SEEDS ***** /*/
@@ -29,6 +33,12 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> CHALCOPYRITE_HARVESTED = ITEMS.register("chalcopyrite_harvested",
             () -> new Item(new Item.Properties()));
+
+    /*////////////////////*/
+    /*/ ***** MISC ***** /*/
+    /*////////////////////*/
+    public static final RegistryObject<ArmorItem> ANTI_TRAMPLE_BOOTS = ITEMS.register("anti_trample_boots",
+            () -> new ArmorItem(ArmorMaterials.LEATHER, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant()));
 
     public static void init(IEventBus modBus){
         ITEMS.register(modBus);
