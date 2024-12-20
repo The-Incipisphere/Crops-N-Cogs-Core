@@ -1,7 +1,7 @@
 package io.thedogofchaos.GregicAgrifactoryCore.datagen.generators;
 
 import io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore;
-import io.thedogofchaos.GregicAgrifactoryCore.block.MagnetiteCropBlock;
+import io.thedogofchaos.GregicAgrifactoryCore.block.OreCropBlock;
 import io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModBlocks;
 
 import net.minecraft.data.PackOutput;
@@ -22,22 +22,22 @@ public class BlockStatesAndModelsJsonGenerator extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        makeMagnetiteCrop((CropBlock) ModBlocks.MAGNETITE_CROP.get(), "magnetite_crop_age", "magnetite_crop_age");
+        makeCrop((CropBlock) ModBlocks.MAGNETITE_CROP.get(), "magnetite/", "magnetite_crop_age");
     }
 
-    public void makeMagnetiteCrop(CropBlock cropBlock, String modelName, String textureName) {
-        Function<BlockState, ConfiguredModel[]> function = state -> magnetiteCropStates(state, cropBlock, modelName, textureName);
+    public void makeCrop(CropBlock cropBlock, String texturePath, String modelName) {
+        Function<BlockState, ConfiguredModel[]> function = state -> cropStates(state, cropBlock, texturePath, modelName);
         getVariantBuilder(cropBlock).forAllStates(function);
     }
 
-    private ConfiguredModel[] magnetiteCropStates(BlockState state, CropBlock block, String modelName, String textureName) {
+    private ConfiguredModel[] cropStates(BlockState state, CropBlock block, String texturePath, String modelName) {
         ConfiguredModel[] models = new ConfiguredModel[1];
         models[0] = new ConfiguredModel(
                 models().cross(
-                        modelName + state.getValue(((MagnetiteCropBlock) block).getAgeProperty()),
+                        modelName + state.getValue(((OreCropBlock) block).getAgeProperty()),
                         new ResourceLocation(
                                 GregicAgrifactoryCore.MOD_ID,
-                                "block/crop/magnetite/" + textureName + state.getValue(((MagnetiteCropBlock) block).getAgeProperty())
+                                "block/crop/" + texturePath + modelName + state.getValue(((OreCropBlock) block).getAgeProperty())
                         )
                 ).renderType("cutout").parent(models().getExistingFile(new ResourceLocation("minecraft", "block/cross"))));
         return models;

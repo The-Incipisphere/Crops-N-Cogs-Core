@@ -1,20 +1,18 @@
 package io.thedogofchaos.GregicAgrifactoryCore.unified.data;
 
 import io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore;
-import io.thedogofchaos.GregicAgrifactoryCore.block.MagnetiteCropBlock;
+import io.thedogofchaos.GregicAgrifactoryCore.block.OreCropBlock;
 
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
@@ -22,7 +20,10 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, GregicAgrifactoryCore.MOD_ID);
 
     public static final RegistryObject<Block> MAGNETITE_CROP = BLOCKS.register("magnetite_crop",
-            () -> new MagnetiteCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission()));
+            () -> new OreCropBlock(
+                    BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission(),
+                    ModItems.MAGNETITE_SEEDS::get
+            ));
 
 
     /*//////////////////////////////*/

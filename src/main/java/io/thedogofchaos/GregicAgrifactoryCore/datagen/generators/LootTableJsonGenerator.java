@@ -1,7 +1,7 @@
 package io.thedogofchaos.GregicAgrifactoryCore.datagen.generators;
 
 import io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore;
-import io.thedogofchaos.GregicAgrifactoryCore.block.MagnetiteCropBlock;
+import io.thedogofchaos.GregicAgrifactoryCore.block.OreCropBlock;
 import io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModBlocks;
 import io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModItems;
 
@@ -9,7 +9,6 @@ import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -17,7 +16,6 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Map;
@@ -36,7 +34,7 @@ public class LootTableJsonGenerator extends BlockLootSubProvider {
                         ModBlocks.MAGNETITE_CROP.get(),
                         ModItems.MAGNETITE_HARVESTED.get(),
                         ModItems.MAGNETITE_SEEDS.get(),
-                        MagnetiteCropBlock.AGE
+                        OreCropBlock.AGE
                 )
         );
     }
