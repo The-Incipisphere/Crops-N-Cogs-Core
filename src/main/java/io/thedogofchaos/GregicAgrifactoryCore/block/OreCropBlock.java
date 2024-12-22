@@ -1,5 +1,7 @@
 package io.thedogofchaos.GregicAgrifactoryCore.block;
 
+import io.thedogofchaos.GregicAgrifactoryCore.organic.PlantColorPalette;
+import lombok.Getter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ItemLike;
@@ -8,20 +10,26 @@ import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
 /** The common class for ALL OreCrops. */
 public class OreCropBlock extends CropBlock {
-    // Use a Supplier to delay figuring out the value of seedItem until getBaseSeedId() is called
-    // to stop the game shitting itself because said seedItem isn't registered yet.
-    private final Supplier<ItemLike> seedItem;
+    // Use a Supplier to delay figuring out the value of seedItem until getBaseSeedId() is called, to stop the game shitting itself because said seedItem isn't registered yet.
 
-    public OreCropBlock(Properties properties, Supplier<ItemLike> seedItem) {
+    private final Supplier<ItemLike> seedItem; // Delayed initialisation for seed items.
+
+    @Getter
+    private final PlantColorPalette palette; //
+
+    public OreCropBlock(Properties properties, Supplier<ItemLike> seedItem, PlantColorPalette palette) {
         super(properties);
         this.seedItem = seedItem;
+        this.palette = palette;
     }
+
 
     @Override
     protected ItemLike getBaseSeedId() {
