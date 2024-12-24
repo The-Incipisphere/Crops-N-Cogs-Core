@@ -1,11 +1,13 @@
 package io.thedogofchaos.GregicAgrifactoryCore.organic;
 
+import io.thedogofchaos.GregicAgrifactoryCore.unified.registry.CropRegistry;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.level.block.CropBlock;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
@@ -27,9 +29,6 @@ public class Crop {
         this.cropInfo = cropInfo;
     }
 
-    public ResourceLocation getCropId(){
-        return this.cropInfo.id;
-    }
     public String getCropName(){
         return this.cropInfo.id.getPath();
     }
@@ -48,6 +47,9 @@ public class Crop {
         return this.seedItem == null ? null : this.seedItem.get();
     }
 
+    protected void registerCrop() {
+        CropRegistry.getInstance().register(this);
+    }
 
     public static class Builder {
         private final CropInfo cropInfo;
@@ -78,20 +80,25 @@ public class Crop {
         }
 
         public Builder setRequiredBiomes(ResourceLocation... biomeIds) {
-            cropInfo.requiredBiomes.addAll(Arrays.asList(biomeIds));
+            Arrays.asList(biomeIds).forEach(biomeToAdd -> {
+                if(ForgeRegistries.BIOMES.getValue(biomeToAdd) == null) throw new IllegalArgumentException("Tried to add non-biome ResourceLocation '"+biomeToAdd.toString()+"' as a required biome of crop '"+cropInfo.id+"'!");
+                cropInfo.requiredBiomes.add(biomeToAdd);
+            });
             return this;
         }
 
-        public Crop build() {
-            return new Crop(cropInfo);
+        public Crop buildAndRegister() {
+            Crop crop = new Crop(cropInfo);
+            crop.registerCrop();
+            return crop;
         }
     }
 
-    private static class CropInfo {
+    public static class CropInfo {
         @Getter private final ResourceLocation id;
-        @Getter private int flowerColor;
-        @Getter private int pistilColor;
-        @Getter private int stemColor;
+        @Getter private int flowerColor = 0x808080;
+        @Getter private int pistilColor = 0xc0c0c0;
+        @Getter private int stemColor = 0x177b04;
         @Getter private CropTextures textures;
         @Getter private Set<ResourceLocation> requiredBiomes;
 

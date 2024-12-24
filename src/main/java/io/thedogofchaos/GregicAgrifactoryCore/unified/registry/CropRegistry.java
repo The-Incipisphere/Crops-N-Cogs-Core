@@ -5,7 +5,6 @@ import io.thedogofchaos.GregicAgrifactoryCore.block.OreCropBlock;
 import io.thedogofchaos.GregicAgrifactoryCore.item.OreHarvestedItem;
 import io.thedogofchaos.GregicAgrifactoryCore.item.OreSeedItem;
 import io.thedogofchaos.GregicAgrifactoryCore.organic.Crop;
-import io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModCrops;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.resources.ResourceLocation;
@@ -15,8 +14,15 @@ import net.minecraftforge.registries.DeferredRegister;
 
 import java.util.*;
 
-public class PlantRegistry implements IPlantRegistry {
-    private static final PlantRegistry INSTANCE = new PlantRegistry();
+/*
+ * All my credit for this registry system’s concept goes to BlakeBr0.
+ * BlakeBr0, if you ever read this,
+ * I’m sorry this is almost an ad-verbatim copy of
+ * Mystical Agriculture’s crop registry system,
+ * but your shit just… works.
+ */
+public class CropRegistry implements ICropRegistry {
+    private static final CropRegistry INSTANCE = new CropRegistry();
 
     private Map<ResourceLocation, Crop> crops = new LinkedHashMap<>();
     @Getter @Setter private boolean allowRegistration = false;
@@ -24,19 +30,19 @@ public class PlantRegistry implements IPlantRegistry {
     public void register(Crop crop) {
         if (this.allowRegistration) {
             if (this.crops.values().stream().noneMatch(c -> c.getCropName().equals(crop.getCropName()))) {
-                this.crops.put(crop.getCropId(), crop);
+                this.crops.put(crop.getCropInfo().getId(), crop);
             }
         }
     }
 
     @Override
     public List<Crop> getCrops() {
-        return List.of();
+        return List.copyOf(this.crops.values());
     }
 
     @Override
     public Crop getCropById(ResourceLocation id) {
-        return null;
+        return this.crops.get(id);
     }
 
     @Override
@@ -48,13 +54,11 @@ public class PlantRegistry implements IPlantRegistry {
         ).findFirst().orElse(null);
     }
 
-    public static PlantRegistry getInstance() {
+    public static CropRegistry getInstance() {
         return INSTANCE;
     }
 
     public void onRegisterBlocks(DeferredRegister<Block> registry){
-        ModCrops.onRegisterCrops(this);
-
         var crops = this.crops.values();
 
         crops.forEach(c -> {

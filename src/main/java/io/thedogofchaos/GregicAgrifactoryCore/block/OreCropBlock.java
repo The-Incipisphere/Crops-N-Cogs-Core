@@ -2,6 +2,8 @@ package io.thedogofchaos.GregicAgrifactoryCore.block;
 
 import io.thedogofchaos.GregicAgrifactoryCore.organic.Crop;
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
@@ -12,6 +14,7 @@ import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
@@ -49,7 +52,6 @@ public class OreCropBlock extends CropBlock implements ICropProvider {
         return this.crop;
     }
 
-/*  // Come back to these methods if I decide that I want biome requirements for crops.
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         if (!this.canGrow(level, pos))
@@ -58,7 +60,12 @@ public class OreCropBlock extends CropBlock implements ICropProvider {
     }
 
     private boolean canGrow(Level level, BlockPos pos) {
+        var biomes = this.crop.getCropInfo().getRequiredBiomes();
+        if (!biomes.isEmpty()) {
+            var biome = level.getBiome(pos);
+            var biomeId = ForgeRegistries.BIOMES.getKey(biome.value());
+            return biomes.contains(biomeId);
+        }
         return true;
     }
-*/
 }

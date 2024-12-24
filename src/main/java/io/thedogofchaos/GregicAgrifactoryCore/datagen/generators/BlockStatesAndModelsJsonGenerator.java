@@ -22,7 +22,7 @@ public class BlockStatesAndModelsJsonGenerator extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        makeCrop((CropBlock) ModBlocks.MAGNETITE_CROP.get(), "magnetite/", "magnetite_crop_age");
+
     }
 
     public void makeCrop(CropBlock cropBlock, String texturePath, String modelName) {

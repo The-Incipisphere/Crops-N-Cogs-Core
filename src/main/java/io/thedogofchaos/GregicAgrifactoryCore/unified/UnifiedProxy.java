@@ -9,10 +9,11 @@ import net.minecraftforge.fml.event.lifecycle.FMLConstructModEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 public class UnifiedProxy {
-    public IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
+    public FMLJavaModLoadingContext modLoadingContext = FMLJavaModLoadingContext.get();
+    public IEventBus modBus = modLoadingContext.getModEventBus();
     public UnifiedProxy(){
         init(modBus);
-        FMLJavaModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        modLoadingContext.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
         modBus.register(this);
     }
 

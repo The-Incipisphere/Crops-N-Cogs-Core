@@ -17,8 +17,7 @@ public class ItemModelJsonGenerator extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        simpleItem(ModItems.MAGNETITE_SEEDS, "crop/seed/");
-        simpleItem(ModItems.MAGNETITE_HARVESTED, "crop/harvested/");
+
     }
 
     /**
