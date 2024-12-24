@@ -15,6 +15,10 @@ public class Plant {
     @Getter
     private PlantTextures textures;
 
+    public Plant(ResourceLocation id) {
+        this(id, new PlantTextures(), 0x808080, 0xc0c0c0, 0x177b04);
+    }
+
     public Plant(ResourceLocation id, PlantTextures textures, int flowerColor, int pistilColor, int stemColor){
         this.id = id;
         this.textures = textures;

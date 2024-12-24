@@ -17,6 +17,10 @@ public class PlantTextures {
         this.harvestedItemTexture = harvestedItemTexture;
     }
 
+    public PlantTextures() {
+        this(null, null, null)
+    }
+
     public static PlantTextures of(String textureName) {
         return new PlantTextures(
             GregicAgrifactoryCore.id("block/plant/" + textureName),

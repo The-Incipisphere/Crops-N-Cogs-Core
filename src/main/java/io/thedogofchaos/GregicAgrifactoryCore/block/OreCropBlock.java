@@ -22,7 +22,7 @@ public class OreCropBlock extends CropBlock {
     private final Plant plant;
 
     //public OreCropBlock(Properties properties, Supplier<ItemLike> seedItem, int flowerColor, String textureSetName) {
-        // this(properties, seedItem, flowerColor, 0x177b04, textureSetName);
+        // this(properties, seedItem, flowerColor, , textureSetName);
     //}
     public OreCropBlock(Plant plant) {
         super(Properties.copy(Blocks.WHEAT));
