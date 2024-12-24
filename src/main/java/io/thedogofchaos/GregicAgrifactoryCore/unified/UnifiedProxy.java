@@ -1,18 +1,18 @@
 package io.thedogofchaos.GregicAgrifactoryCore.unified;
 
-import io.thedogofchaos.GregicAgrifactoryCore.event.FarmlandTrampleEvent;
 import io.thedogofchaos.GregicAgrifactoryCore.unified.network.Network;
+import io.thedogofchaos.GregicAgrifactoryCore.Config;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.IEventListener;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLConstructModEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 public class UnifiedProxy {
-    IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
+    public IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
     public UnifiedProxy(){
         init(modBus);
+        FMLJavaModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
         modBus.register(this);
     }
 
@@ -24,13 +24,6 @@ public class UnifiedProxy {
     @SubscribeEvent
     public void modConstruct(FMLConstructModEvent event) {
         // bingus
-    }
-
-    @SubscribeEvent
-    public void commonSetup(FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> {
-            // do shit here
-        });
     }
 }
 

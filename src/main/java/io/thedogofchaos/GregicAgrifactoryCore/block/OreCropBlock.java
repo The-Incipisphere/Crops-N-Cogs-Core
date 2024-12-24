@@ -1,13 +1,14 @@
 package io.thedogofchaos.GregicAgrifactoryCore.block;
 
-import io.thedogofchaos.GregicAgrifactoryCore.organic.Plant;
-import lombok.Getter;
+import io.thedogofchaos.GregicAgrifactoryCore.organic.Crop;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
@@ -17,25 +18,11 @@ import java.util.function.Supplier;
 
 /** The common class for ALL OreCrops. */
 public class OreCropBlock extends CropBlock {
-    // Use a Supplier to delay figuring out the value of seedItem until getBaseSeedId() is called, to stop the game shitting itself because said seedItem isn't registered yet.
-    private final Supplier<ItemLike> seedItem; // Delayed initialisation for seed items.
-    private final Plant plant;
+    private final Crop crop;
 
-    //public OreCropBlock(Properties properties, Supplier<ItemLike> seedItem, int flowerColor, String textureSetName) {
-        // this(properties, seedItem, flowerColor, , textureSetName);
-    //}
-    public OreCropBlock(Plant plant) {
+    public OreCropBlock(Crop crop) {
         super(Properties.copy(Blocks.WHEAT));
-        this.plant = plant;
-
-    }
-
-    @Override
-    protected ItemLike getBaseSeedId() {
-        // This would not be possible if I passed ModItems.INSERTSEEDIDHERE.get()
-        // directly as a parameter of the constructor when instantiating this class
-        // for reasons explained at seedItem’s field definition.
-        return seedItem.get();
+        this.crop = crop;
     }
 
     @Override
@@ -45,6 +32,16 @@ public class OreCropBlock extends CropBlock {
 
     public @NotNull IntegerProperty getAgeProperty() {
         return AGE;
+    }
+
+    @Override
+    protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
+        return state.getBlock() instanceof FarmBlock;
+    }
+
+    @Override
+    protected ItemLike getBaseSeedId() {
+        return this.crop.getSeedItem();
     }
 
 /*  // Come back to these methods if I decide that I want biome requirements for crops.
