@@ -1,52 +1,36 @@
 package io.thedogofchaos.GregicAgrifactoryCore.organic;
 
 import lombok.Getter;
-import lombok.Setter;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.level.block.CropBlock;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.function.Supplier;
 import java.util.Set;
 
 public class Crop {
-    @Getter private final ResourceLocation id;
-    @Getter @Setter private int flowerColor;
-    @Getter @Setter private int pistilColor;
-    @Getter @Setter private int stemColor;
-    @Getter private CropTextures textures;
+
+    @NotNull @Getter private final CropInfo cropInfo;
+
     private Supplier<? extends CropBlock> cropBlock;
     private Supplier<? extends Item> harvestedItem;
     private Supplier<? extends ItemNameBlockItem> seedItem;
-    @Getter private Set<ResourceLocation> requiredBiomes;
 
-    public Crop(ResourceLocation id) {
-        this(id, CropTextures.DEFAULT, 0x808080, 0xc0c0c0, 0x177b04);
+    protected Crop(ResourceLocation id) {
+        cropInfo = new CropInfo(id);
+    }
+    public Crop(@NotNull CropInfo cropInfo){
+        this.cropInfo = cropInfo;
     }
 
-    public Crop(ResourceLocation id, int flowerColor){
-        this(id, CropTextures.DEFAULT, flowerColor, 0xc0c0c0, 0x177b04);
+    public ResourceLocation getCropId(){
+        return this.cropInfo.id;
     }
-
-    public Crop(ResourceLocation id, CropTextures textures, int flowerColor, int pistilColor, int stemColor){
-        this.id = id;
-        this.textures = textures;
-        this.flowerColor = flowerColor;
-        this.pistilColor = pistilColor;
-        this.stemColor = stemColor;
-        this.requiredBiomes = new HashSet<>();
-    }
-
-    /**
-     * The internal name of this crop.
-     * This is used for registration, so it MUST be all lowercase with underscores for spaces
-     * @return The internal name of this crop
-     */
-    public String getName() {
-        return this.getId().getPath();
+    public String getCropName(){
+        return this.cropInfo.id.getPath();
     }
 
     // can't lombok my way out of these three methods
@@ -60,9 +44,55 @@ public class Crop {
         return this.seedItem == null ? null : this.seedItem.get();
     }
 
-    // Biomes
-    public Crop setRequiredBiomes(ResourceLocation... biomeIds) {
-        this.requiredBiomes.addAll(Arrays.asList(biomeIds));
-        return this;
+
+    public static class Builder {
+        private final CropInfo cropInfo;
+
+        public Builder(ResourceLocation id) {
+            if (id.getPath().charAt(id.getPath().length() - 1) == '_') throw new IllegalArgumentException("Plant name cannot end with a '_'!");
+            cropInfo = new CropInfo(id);
+        }
+
+        public Builder setTextures(CropTextures textures){
+            cropInfo.textures = textures;
+            return this;
+        }
+
+        public Builder setFlowerColor(int flowerColor){
+            cropInfo.flowerColor = flowerColor;
+            return this;
+        }
+
+        public Builder setPistilColor(int pistilColor){
+            cropInfo.pistilColor = pistilColor;
+            return this;
+        }
+
+        public Builder setStemColor(int stemColor){
+            cropInfo.stemColor = stemColor;
+            return this;
+        }
+
+        public Builder setRequiredBiomes(ResourceLocation... biomeIds) {
+            cropInfo.requiredBiomes.addAll(Arrays.asList(biomeIds));
+            return this;
+        }
+
+        public Crop build() {
+            return new Crop(cropInfo);
+        }
+    }
+
+    private static class CropInfo {
+        @Getter private final ResourceLocation id;
+        @Getter private int flowerColor;
+        @Getter private int pistilColor;
+        @Getter private int stemColor;
+        @Getter private CropTextures textures;
+        @Getter private Set<ResourceLocation> requiredBiomes;
+
+        private CropInfo(ResourceLocation id) {
+            this.id = id;
+        }
     }
 }
