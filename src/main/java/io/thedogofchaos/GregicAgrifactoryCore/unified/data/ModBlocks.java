@@ -21,7 +21,7 @@ public class ModBlocks {
 
     // Vanilla Materials
     public static final RegistryObject<Block> GOLD_CROP = BLOCKS.register("gold_crop",
-            () -> new OreCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission(), ModItems.GOLD_SEEDS::get, n));
+            () -> new OreCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission(), ModItems.GOLD_SEEDS::get, 0xfdf55f, "debug"));
     public static final RegistryObject<Block> COAL_CROP = BLOCKS.register("coal_crop",
             () -> new OreCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission(), ModItems.COAL_SEEDS::get));
     public static final RegistryObject<Block> REDSTONE_CROP = BLOCKS.register("redstone_crop",
