@@ -3,6 +3,7 @@ package io.thedogofchaos.GregicAgrifactoryCore.unified.data;
 import io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore;
 import io.thedogofchaos.GregicAgrifactoryCore.block.OreCropBlock;
 
+import io.thedogofchaos.GregicAgrifactoryCore.unified.registry.PlantRegistry;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -103,5 +104,6 @@ public class ModBlocks {
 
     public static void init(IEventBus modBus) {
         BLOCKS.register(modBus);
+        PlantRegistry.getInstance().onRegisterBlocks(BLOCKS);
     }
 }

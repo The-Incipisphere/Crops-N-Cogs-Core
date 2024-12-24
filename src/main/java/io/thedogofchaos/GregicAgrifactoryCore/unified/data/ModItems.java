@@ -3,6 +3,7 @@ package io.thedogofchaos.GregicAgrifactoryCore.unified.data;
 import com.gregtechceu.gtceu.api.gui.editor.EditableUI;
 import io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore;
 
+import io.thedogofchaos.GregicAgrifactoryCore.unified.registry.PlantRegistry;
 import net.minecraft.world.flag.FeatureFlag;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterials;
@@ -157,5 +158,6 @@ public class ModItems {
 
     public static void init(IEventBus modBus){
         ITEMS.register(modBus);
+        PlantRegistry.getInstance().onRegisterItems(ITEMS);
     }
 }

@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.Supplier;
 
 /** The common class for ALL OreCrops. */
-public class OreCropBlock extends CropBlock {
+public class OreCropBlock extends CropBlock implements ICropProvider {
     private final Crop crop;
 
     public OreCropBlock(Crop crop) {
@@ -42,6 +42,11 @@ public class OreCropBlock extends CropBlock {
     @Override
     protected ItemLike getBaseSeedId() {
         return this.crop.getSeedItem();
+    }
+
+    @Override
+    public Crop getCrop() {
+        return this.crop;
     }
 
 /*  // Come back to these methods if I decide that I want biome requirements for crops.

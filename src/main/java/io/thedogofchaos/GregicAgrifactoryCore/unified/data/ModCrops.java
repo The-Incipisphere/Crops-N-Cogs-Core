@@ -7,7 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 
 import static io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore.id;
 
-public class ModPlants {
+public class ModCrops {
     public static final Crop GOLD = new Crop.Builder(id("gold"))
             .setTextures(CropTextures.DEBUG)
             .setFlowerColor(0xfdf55f)

@@ -1,6 +1,7 @@
 package io.thedogofchaos.GregicAgrifactoryCore.organic;
 
 import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
@@ -15,9 +16,9 @@ public class Crop {
 
     @NotNull @Getter private final CropInfo cropInfo;
 
-    private Supplier<? extends CropBlock> cropBlock;
-    private Supplier<? extends Item> harvestedItem;
-    private Supplier<? extends ItemNameBlockItem> seedItem;
+    @Setter private Supplier<? extends CropBlock> cropBlock;
+    @Setter private Supplier<? extends Item> harvestedItem;
+    @Setter private Supplier<? extends ItemNameBlockItem> seedItem;
 
     protected Crop(ResourceLocation id) {
         cropInfo = new CropInfo(id);
@@ -31,6 +32,9 @@ public class Crop {
     }
     public String getCropName(){
         return this.cropInfo.id.getPath();
+    }
+    public String getCropNameWithSuffix(String suffix) {
+        return String.format("%s_%s", this.getCropName(), suffix);
     }
 
     // can't lombok my way out of these three methods
