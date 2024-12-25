@@ -56,7 +56,7 @@ public class Crop {
     public ItemNameBlockItem getSeedItem() {
         return this.seedItem == null ? null : this.seedItem.get();
     }
-    public Crop setSeedItem( Supplier<? extends Item> seedItem) {
+    public Crop setSeedItem( Supplier<? extends ItemNameBlockItem> seedItem) {
         this.seedItem = seedItem;
         return this;
     }
