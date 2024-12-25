@@ -16,11 +16,7 @@ import java.util.*;
 import java.util.function.Supplier;
 
 /*
- * All my credit for this registry system’s concept goes to BlakeBr0.
- * BlakeBr0, if you ever read this,
- * I’m sorry this is almost an ad-verbatim copy of
- * Mystical Agriculture’s crop registry system,
- * but your shit just… works.
+ * Based on BlakeBr0's crop registry system for Mystical Agriculture
  */
 public class CropRegistry implements ICropRegistry {
     private static final CropRegistry INSTANCE = new CropRegistry();
