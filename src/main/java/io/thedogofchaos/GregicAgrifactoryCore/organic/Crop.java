@@ -19,9 +19,9 @@ public class Crop {
 
     @NotNull @Getter private final CropInfo cropInfo;
 
-    @Setter private Supplier<? extends CropBlock> cropBlock;
-    @Setter private Supplier<? extends Item> harvestedItem;
-    @Setter private Supplier<? extends ItemNameBlockItem> seedItem;
+    private Supplier<? extends CropBlock> cropBlock;
+    private Supplier<? extends Item> harvestedItem;
+    private Supplier<? extends ItemNameBlockItem> seedItem;
 
     protected Crop(ResourceLocation id) {
         cropInfo = new CropInfo(id);
@@ -37,20 +37,35 @@ public class Crop {
         return String.format("%s_%s", this.getCropName(), suffix);
     }
 
+
     // can't lombok my way out of these three methods
     public CropBlock getCropBlock() {
         return this.cropBlock == null ? null : this.cropBlock.get();
     }
+    public Crop setCropBlock(Supplier<? extends CropBlock> cropBlock) {
+        this.cropBlock = cropBlock;
+        return this;
+    }
     public Item getHarvestedItem() {
         return this.harvestedItem == null ? null : this.harvestedItem.get();
     }
+    public Crop setHarvestedItem(Supplier<? extends Item> harvestedItem) {
+        this.harvestedItem = harvestedItem;
+        return this;
+    }
     public ItemNameBlockItem getSeedItem() {
         return this.seedItem == null ? null : this.seedItem.get();
+    }
+    public Crop setSeedItem( Supplier<? extends Item> seedItem) {
+        this.seedItem = seedItem;
+        return this;
     }
 
     protected void registerCrop() {
         CropRegistry.getInstance().register(this);
     }
+
+
 
     public static class Builder {
         private final CropInfo cropInfo;

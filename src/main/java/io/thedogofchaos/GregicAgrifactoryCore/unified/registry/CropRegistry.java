@@ -66,20 +66,17 @@ public class CropRegistry implements ICropRegistry {
         var crops = this.crops.values();
         crops.forEach(c -> {
             if (c.getCropBlock() == null) {
-                Supplier<OreCropBlock> cropBlockSupplier = () -> new OreCropBlock(c);
-                preCreatedCrops.put(c.getCropNameWithSuffix("crop"), cropBlockSupplier);
-                c.setCropBlock(cropBlockSupplier);
+                preCreatedCrops.put(c.getCropNameWithSuffix("crop"), () -> new OreCropBlock(c));
+                c.setCropBlock(() -> new OreCropBlock(c));
             }
             if (c.getHarvestedItem() == null) {
-                Supplier<OreHarvestedItem> harvestedItemSupplier = () -> new OreHarvestedItem(c);
-                preCreatedHarvestedItems.put(c.getCropNameWithSuffix("harvested"), harvestedItemSupplier);
-                c.setHarvestedItem(harvestedItemSupplier);
+                preCreatedHarvestedItems.put(c.getCropNameWithSuffix("harvested"), () -> new OreHarvestedItem(c));
+                c.setHarvestedItem(() -> new OreHarvestedItem(c));
             }
 
             if (c.getSeedItem() == null) {
-                Supplier<OreSeedItem> seedItemSupplier = () -> new OreSeedItem(c);
-                preCreatedSeedItems.put(c.getCropNameWithSuffix("seed"), seedItemSupplier);
-                c.setSeedItem(seedItemSupplier);
+                preCreatedSeedItems.put(c.getCropNameWithSuffix("seed"), () -> new OreSeedItem(c));
+                c.setSeedItem(() -> new OreSeedItem(c));
             }
         });
     }
@@ -89,7 +86,6 @@ public class CropRegistry implements ICropRegistry {
 
     public void onRegisterItems(DeferredRegister<Item> registry) {
         preCreatedHarvestedItems.forEach(registry::register);
-
         preCreatedSeedItems.forEach(registry::register);
     }
 }

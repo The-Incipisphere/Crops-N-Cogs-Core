@@ -7,6 +7,7 @@ import io.thedogofchaos.GregicAgrifactoryCore.unified.data.plants.MiscCrops;
 
 public class ModPlants {
     public static Crop Gold;
+    public static Crop Magnetite;
 
     public static void init() {
         MetalCrops.init();

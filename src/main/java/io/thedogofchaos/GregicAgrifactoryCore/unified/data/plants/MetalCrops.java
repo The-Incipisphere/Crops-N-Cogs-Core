@@ -19,5 +19,13 @@ public class MetalCrops {
                         new ResourceLocation("minecraft", "plains")
                 )
                 .buildAndRegister();
+        Magnetite = new Crop.Builder(id("magnetite"))
+                .setTextures(CropTextures.NONE)
+                .setFlowerColor(0x9d9d9d)
+                .setPistilColor(0x06070e)
+                .setRequiredBiomes(
+                        new ResourceLocation("minecraft", "plains")
+                )
+                .buildAndRegister();
     }
 }
