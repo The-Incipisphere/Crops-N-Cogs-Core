@@ -8,11 +8,14 @@ import net.minecraftforge.eventbus.api.IEventBus;
 
 public class UnifiedRegistry {
     public static void init(IEventBus modBus) {
-        CropRegistry.getInstance().setAllowRegistration(true);
+        CropRegistry cropRegistry = CropRegistry.getInstance();
+
+        cropRegistry.setAllowRegistration(true);
         ModPlants.init();
-        ModBlocks.init(modBus);
-        ModItems.init(modBus);
-        CropRegistry.getInstance().setAllowRegistration(false);
+        cropRegistry.initializeCrops();
+        ModBlocks.init(modBus, cropRegistry);
+        ModItems.init(modBus, cropRegistry);
+        cropRegistry.setAllowRegistration(false);
         // Add other registries here as required.
     }
 }

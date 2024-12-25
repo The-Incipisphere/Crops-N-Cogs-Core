@@ -23,8 +23,8 @@ public class ModItems {
     public static final RegistryObject<ArmorItem> ANTI_TRAMPLE_BOOTS = ITEMS.register("anti_trample_boots",
             () -> new ArmorItem(ArmorMaterials.LEATHER, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant()));
 
-    public static void init(IEventBus modBus){
+    public static void init(IEventBus modBus, CropRegistry cropRegistry){
+        cropRegistry.onRegisterItems(ITEMS);
         ITEMS.register(modBus);
-        CropRegistry.getInstance().onRegisterItems(ITEMS);
     }
 }

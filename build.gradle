@@ -195,6 +195,16 @@ java {
     withSourcesJar()
 }
 
+tasks.withType(JavaExec).configureEach {
+    doFirst {
+        if (project.hasProperty('debug') && project.debug.toString() == 'true') {
+            jvmArgs '-Dlog4j2.level=TRACE' // For when you done fucked up.
+        } else {
+            jvmArgs '-Dlog4j2.level=DEBUG'
+        }
+    }
+}
+
 jar {
     // add some additional metadata to the jar manifest
     manifest {

@@ -2,6 +2,7 @@ package io.thedogofchaos.GregicAgrifactoryCore.unified.data;
 
 import io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore;
 
+import io.thedogofchaos.GregicAgrifactoryCore.organic.Crop;
 import io.thedogofchaos.GregicAgrifactoryCore.unified.registry.CropRegistry;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -35,12 +36,22 @@ public class ModBlocks {
         return toReturn;
     }
 
+    /**
+     * Registers a Block without a BlockItem.
+     * @param name A string with the name of the block to register.
+     * @param block A supplier of the block to register.
+     * @return The block, to be assigned to a {@link RegistryObject} field.
+     */
+    private static <T extends Block> RegistryObject<T> registerBlockNoItem(String name, Supplier<T> block) {
+        return BLOCKS.register(name, block);
+    }
+
     private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block) {
         return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
-    public static void init(IEventBus modBus) {
+    public static void init(IEventBus modBus, CropRegistry cropRegistry) {
+        cropRegistry.onRegisterBlocks(BLOCKS);
         BLOCKS.register(modBus);
-        CropRegistry.getInstance().onRegisterBlocks(BLOCKS);
     }
 }

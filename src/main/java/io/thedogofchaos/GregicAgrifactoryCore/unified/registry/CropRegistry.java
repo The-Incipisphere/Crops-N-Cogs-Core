@@ -13,6 +13,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.DeferredRegister;
 
 import java.util.*;
+import java.util.function.Supplier;
 
 /*
  * All my credit for this registry system’s concept goes to BlakeBr0.
@@ -25,6 +26,9 @@ public class CropRegistry implements ICropRegistry {
     private static final CropRegistry INSTANCE = new CropRegistry();
 
     private Map<ResourceLocation, Crop> crops = new LinkedHashMap<>();
+    @Getter private final Map<String, Supplier<OreCropBlock>> preCreatedCrops = new HashMap<>();
+    @Getter private final Map<String, Supplier<OreHarvestedItem>> preCreatedHarvestedItems = new HashMap<>();
+    @Getter private final Map<String, Supplier<OreSeedItem>> preCreatedSeedItems = new HashMap<>();
     @Getter @Setter private boolean allowRegistration = false;
 
     public void register(Crop crop) {
@@ -58,48 +62,35 @@ public class CropRegistry implements ICropRegistry {
         return INSTANCE;
     }
 
-    public void onRegisterBlocks(DeferredRegister<Block> registry){
+    public void initializeCrops() {
         var crops = this.crops.values();
-
         crops.forEach(c -> {
-            var crop = c.getCropBlock();
-            if (crop == null) {
-                var defaultCrop = new OreCropBlock(c);
-                c.setCropBlock(() -> defaultCrop);
-                registry.register(new ResourceLocation(GregicAgrifactoryCore.MOD_ID, c.getCropNameWithSuffix("crop")).getPath(), () -> defaultCrop);
-            } else {
-                var id = new ResourceLocation(GregicAgrifactoryCore.MOD_ID, c.getCropNameWithSuffix("crop"));
-                registry.register(id.getPath(), () -> crop);
+            if (c.getCropBlock() == null) {
+                Supplier<OreCropBlock> cropBlockSupplier = () -> new OreCropBlock(c);
+                preCreatedCrops.put(c.getCropNameWithSuffix("crop"), cropBlockSupplier);
+                c.setCropBlock(cropBlockSupplier);
+            }
+            if (c.getHarvestedItem() == null) {
+                Supplier<OreHarvestedItem> harvestedItemSupplier = () -> new OreHarvestedItem(c);
+                preCreatedHarvestedItems.put(c.getCropNameWithSuffix("harvested"), harvestedItemSupplier);
+                c.setHarvestedItem(harvestedItemSupplier);
+            }
+
+            if (c.getSeedItem() == null) {
+                Supplier<OreSeedItem> seedItemSupplier = () -> new OreSeedItem(c);
+                preCreatedSeedItems.put(c.getCropNameWithSuffix("seed"), seedItemSupplier);
+                c.setSeedItem(seedItemSupplier);
             }
         });
     }
+    public void onRegisterBlocks(DeferredRegister<Block> registry){
+        preCreatedCrops.forEach(registry::register);
+    }
 
     public void onRegisterItems(DeferredRegister<Item> registry) {
-        var crops = this.crops.values();
+        preCreatedHarvestedItems.forEach(registry::register);
 
-        crops.forEach(c -> {
-            var crop = c.getHarvestedItem();
-            if (crop == null) {
-                var defaultHarvested = new OreHarvestedItem(c);
-                c.setHarvestedItem(() -> defaultHarvested);
-                registry.register(new ResourceLocation(GregicAgrifactoryCore.MOD_ID, c.getCropNameWithSuffix("harvested")).getPath(), () -> defaultHarvested);
-            } else {
-                var id = new ResourceLocation(GregicAgrifactoryCore.MOD_ID, c.getCropNameWithSuffix("harvested"));
-                registry.register(id.getPath(), () -> crop);
-            }
-        });
-
-        crops.forEach(c -> {
-            var crop = c.getSeedItem();
-            if (crop == null) {
-                var defaultSeed = new OreSeedItem(c);
-                c.setSeedItem(() -> defaultSeed);
-                registry.register(new ResourceLocation(GregicAgrifactoryCore.MOD_ID, c.getCropNameWithSuffix("seed")).getPath(), () -> defaultSeed);
-            } else {
-                var id = new ResourceLocation(GregicAgrifactoryCore.MOD_ID, c.getCropNameWithSuffix("seed"));
-                registry.register(id.getPath(), () -> crop);
-            }
-        });
+        preCreatedSeedItems.forEach(registry::register);
     }
 }
 

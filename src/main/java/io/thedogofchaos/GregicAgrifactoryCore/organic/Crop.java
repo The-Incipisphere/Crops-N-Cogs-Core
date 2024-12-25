@@ -11,6 +11,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.function.Supplier;
 import java.util.Set;
 
@@ -80,10 +81,7 @@ public class Crop {
         }
 
         public Builder setRequiredBiomes(ResourceLocation... biomeIds) {
-            Arrays.asList(biomeIds).forEach(biomeToAdd -> {
-                if(ForgeRegistries.BIOMES.getValue(biomeToAdd) == null) throw new IllegalArgumentException("Tried to add non-biome ResourceLocation '"+biomeToAdd.toString()+"' as a required biome of crop '"+cropInfo.id+"'!");
-                cropInfo.requiredBiomes.add(biomeToAdd);
-            });
+            cropInfo.requiredBiomes.addAll(Arrays.asList(biomeIds)); // hnnngh, i wish i could validate this but biomes are datapacks
             return this;
         }
 
@@ -104,6 +102,7 @@ public class Crop {
 
         private CropInfo(ResourceLocation id) {
             this.id = id;
+            requiredBiomes = new HashSet<>();
         }
     }
 }
