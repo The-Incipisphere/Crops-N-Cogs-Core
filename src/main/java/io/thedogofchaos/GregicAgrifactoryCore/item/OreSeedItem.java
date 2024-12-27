@@ -3,6 +3,7 @@ package io.thedogofchaos.GregicAgrifactoryCore.item;
 import io.thedogofchaos.GregicAgrifactoryCore.block.ICropProvider;
 import io.thedogofchaos.GregicAgrifactoryCore.organic.Crop;
 import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraftforge.api.distmarker.Dist;
@@ -30,4 +31,6 @@ public class OreSeedItem extends ItemNameBlockItem implements ICropProvider {
             return -1;
         };
     }
+
+    public static void onRegister(BlockItem blockItem) {}
 }

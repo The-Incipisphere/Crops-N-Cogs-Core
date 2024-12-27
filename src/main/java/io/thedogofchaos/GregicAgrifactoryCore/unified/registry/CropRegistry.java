@@ -3,6 +3,7 @@ package io.thedogofchaos.GregicAgrifactoryCore.unified.registry;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import com.tterrag.registrate.util.nullness.NonNullBiFunction;
 import io.thedogofchaos.GregicAgrifactoryCore.block.OreCropBlock;
 import io.thedogofchaos.GregicAgrifactoryCore.item.OreHarvestedItem;
 import io.thedogofchaos.GregicAgrifactoryCore.item.OreSeedItem;
@@ -15,6 +16,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static io.thedogofchaos.GregicAgrifactoryCore.unified.UnifiedRegistry.REGISTRATE;
 
@@ -24,7 +26,7 @@ import static io.thedogofchaos.GregicAgrifactoryCore.unified.UnifiedRegistry.REG
 public class CropRegistry implements ICropRegistry {
     private static final CropRegistry INSTANCE = new CropRegistry();
 
-    private Map<ResourceLocation, Crop> crops = new LinkedHashMap<>();
+    private Map<ResourceLocation, Crop> CROPS = new LinkedHashMap<>();
     private final Map<String, RegistryEntry<OreCropBlock>> CROP_BLOCKS = new HashMap<>();
     private final Map<String, RegistryEntry<OreHarvestedItem>> CROP_HARVESTED_ITEMS = new HashMap<>();
     private final Map<String, RegistryEntry<OreSeedItem>> CROP_SEED_ITEMS = new HashMap<>();
@@ -32,25 +34,57 @@ public class CropRegistry implements ICropRegistry {
 
     public void register(Crop crop) {
         if (this.allowRegistration) {
-            if (this.crops.values().stream().noneMatch(c -> c.getCropName().equals(crop.getCropName()))) {
-                this.crops.put(crop.getCropInfo().getId(), crop);
+            if (this.CROPS.values().stream().noneMatch(c -> c.getCropName().equals(crop.getCropName()))) {
+                this.CROPS.put(crop.getCropInfo().getId(), crop);
             }
         }
     }
 
-    @Override
-    public List<Crop> getCrops() {
-        return List.copyOf(this.crops.values());
+    public Map<ResourceLocation, Crop> getCrops() {
+        return this.CROPS;
+    }
+
+    public Map<String, ?> getCropBlocks(boolean asRegistryEntries) {
+        if(!asRegistryEntries){
+            var list = new HashMap<String, OreCropBlock>();
+            this.CROP_BLOCKS.forEach((str,crop)->{
+                list.put(str, crop.get());
+            });
+            return list;
+        }
+        return CROP_BLOCKS;
+    }
+
+    public Map<String, ?> getHarvestedItems(boolean asRegistryEntries) {
+        if(!asRegistryEntries){
+            var list = new HashMap<String, OreHarvestedItem>();
+            this.CROP_HARVESTED_ITEMS.forEach((str,crop)->{
+                list.put(str, crop.get());
+            });
+            return list;
+        }
+        return CROP_HARVESTED_ITEMS;
+    }
+
+    public Map<String, ?> getSeedItems(boolean asRegistryEntries) {
+        if(!asRegistryEntries){
+            var list = new HashMap<String, OreSeedItem>();
+            this.CROP_SEED_ITEMS.forEach((str,crop)->{
+                list.put(str, crop.get());
+            });
+            return list;
+        }
+        return CROP_SEED_ITEMS;
     }
 
     @Override
     public Crop getCropById(ResourceLocation id) {
-        return this.crops.get(id);
+        return this.CROPS.get(id);
     }
 
     @Override
     public Crop getCropByName(String name) {
-        return this.crops.values().stream().filter(
+        return this.CROPS.values().stream().filter(
                 c -> name.equals(
                         c.getCropName()
                 )
@@ -62,7 +96,7 @@ public class CropRegistry implements ICropRegistry {
     }
 
     public void generateCrops() {
-        var crops = this.crops.values();
+        var crops = this.CROPS.values();
         crops.forEach(c -> {
             if (c.getCropBlock() == null) {
                 BlockEntry<OreCropBlock> cropBlockEntry = REGISTRATE.block(c.getCropNameWithSuffix("crop"), properties -> new OreCropBlock(c))
@@ -83,7 +117,12 @@ public class CropRegistry implements ICropRegistry {
                 c.setHarvestedItem(harvestedItemEntry);
             }
             if (c.getSeedItem() == null) {
-                // TODO: FIND A WAY TO REGISTER A SEED FOR THE GIVEN CROP (and have it functional as the seed for the given crop)
+                ItemEntry<OreSeedItem> seedItemEntry = REGISTRATE.item(c.getCropNameWithSuffix("seed"), properties -> new OreSeedItem(c))
+                        .initialProperties(Item.Properties::new)
+                        .color(() -> OreSeedItem::tintColor)
+                        .register();
+                CROP_SEED_ITEMS.put(c.getCropName(), seedItemEntry);
+                c.setSeedItem(seedItemEntry);
             }
         });
     }

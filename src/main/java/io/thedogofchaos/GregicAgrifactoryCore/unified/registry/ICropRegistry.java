@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface ICropRegistry {
     void register(Crop crop);
-    List<Crop> getCrops();
     Crop getCropById(ResourceLocation id);
     Crop getCropByName(String name);
 }

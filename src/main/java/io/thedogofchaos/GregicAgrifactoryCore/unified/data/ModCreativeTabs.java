@@ -9,15 +9,11 @@ import net.minecraft.world.level.ItemLike;
 import static io.thedogofchaos.GregicAgrifactoryCore.unified.UnifiedRegistry.REGISTRATE;
 
 public class ModCreativeTabs {
-    private static CropRegistry cropRegistry;
-
-    public static RegistryEntry<CreativeModeTab> CROP_HARVESTED = REGISTRATE.defaultCreativeTab("crop_harvested",
-                    builder -> builder.icon(() -> new ItemStack(cropRegistry.getCROP_HARVESTED_ITEMS().get("gold_harvested").get().asItem()))
-                            .build())
-            .register();
-
     public static void init(CropRegistry cropRegistry) {
-        cropRegistry = cropRegistry;
+        RegistryEntry<CreativeModeTab> CROP_HARVESTED = REGISTRATE.defaultCreativeTab("crop_harvested",
+                        builder -> builder.icon(() -> new ItemStack((ItemLike) cropRegistry.getHarvestedItems(false).get("gold_harvested")))
+                                .build())
+                .register();
     }
 
     private static class DisplayItemsGenerator implements CreativeModeTab.DisplayItemsGenerator {
