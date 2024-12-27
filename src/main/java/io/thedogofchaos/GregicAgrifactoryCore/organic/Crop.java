@@ -113,9 +113,13 @@ public class Crop {
         }
 
         public Crop buildAndRegister() {
-            Crop crop = new Crop(cropInfo);
+            var crop = new Crop(cropInfo);
             crop.registerCrop();
             return crop;
+        }
+
+        public Crop buildButDontRegister(){
+            return new Crop(cropInfo);
         }
     }
 

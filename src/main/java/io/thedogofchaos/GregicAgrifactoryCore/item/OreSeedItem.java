@@ -12,8 +12,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class OreSeedItem extends ItemNameBlockItem implements ICropProvider {
     private final Crop crop;
 
-    public OreSeedItem(Crop crop) {
-        super(crop.getCropBlock(), new Item.Properties());
+    public OreSeedItem(Crop crop, Properties properties) {
+        super(crop.getCropBlock(), properties);
         this.crop = crop;
     }
 

@@ -1,29 +1,37 @@
 package io.thedogofchaos.GregicAgrifactoryCore.unified.data;
 
+import com.tterrag.registrate.util.entry.ItemEntry;
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore;
 
-import io.thedogofchaos.GregicAgrifactoryCore.unified.registry.CropRegistry;
+import io.thedogofchaos.GregicAgrifactoryCore.item.OreHarvestedItem;
+import io.thedogofchaos.GregicAgrifactoryCore.item.OreSeedItem;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.Item;
 
-import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import static io.thedogofchaos.GregicAgrifactoryCore.unified.UnifiedRegistry.REGISTRATE;
+
 public class ModItems {
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, GregicAgrifactoryCore.MOD_ID);
 
-    // insert RegistryObject<T> here
+    public static final RegistryEntry<OreHarvestedItem> BECQUERELLIUM_HARVESTED = REGISTRATE.item("becquerellium_harvested", properties -> new OreHarvestedItem(ModPlants.Becquerellium, properties))
+            .initialProperties(Item.Properties::new)
+            .color(() -> OreHarvestedItem::tintColor)
+            .register();
 
-    /*////////////////////*/
-    /*/ ***** MISC ***** /*/
-    /*////////////////////*/
-    public static final RegistryObject<ArmorItem> ANTI_TRAMPLE_BOOTS = ITEMS.register("anti_trample_boots",
-            () -> new ArmorItem(ArmorMaterials.LEATHER, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant()));
+    public static final RegistryEntry<OreSeedItem> BECQUERELLIUM_SEEDS = REGISTRATE.item("becquerellium_seed", properties -> new OreSeedItem(ModPlants.Becquerellium, properties))
+            .initialProperties(Item.Properties::new)
+            .color(() -> OreSeedItem::tintColor)
+            .register();
 
-    public static void init(IEventBus modBus){
-        ITEMS.register(modBus);
+    public static final RegistryEntry<ArmorItem> ANTI_TRAMPLE_BOOTS = REGISTRATE.item("anti_trample_boots",
+            properties -> new ArmorItem(ArmorMaterials.LEATHER, ArmorItem.Type.BOOTS, properties))
+            .register();
+
+    public static void init(){
     }
 }

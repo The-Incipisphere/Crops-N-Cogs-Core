@@ -10,8 +10,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class OreHarvestedItem extends Item implements ICropProvider {
     private final Crop crop;
 
-    public OreHarvestedItem(Crop crop) {
-        super(new Item.Properties());
+    public OreHarvestedItem(Crop crop, Properties properties) {
+        super(properties);
         this.crop = crop;
     }
 

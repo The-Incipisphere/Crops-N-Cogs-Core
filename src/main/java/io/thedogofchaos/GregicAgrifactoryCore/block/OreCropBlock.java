@@ -12,20 +12,31 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.state.BlockState;
-
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
-/** The common class for ALL OreCrops. */
+/**
+ * The common class for ALL OreCrops.
+ */
 public class OreCropBlock extends CropBlock implements ICropProvider {
     private final Crop crop;
 
-    public OreCropBlock(Crop crop) {
-        super(Properties.copy(Blocks.WHEAT));
+    public OreCropBlock(Crop crop, Properties properties) {
+        super(properties);
         this.crop = crop;
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public static BlockColor tintColor() {
+        return (state, reader, pos, tintIndex) -> {
+            if (state.getBlock() instanceof OreCropBlock block) {
+                return block.crop.getLayerARGB(tintIndex);
+            }
+            return -1;
+        };
     }
 
     @Override
@@ -67,16 +78,6 @@ public class OreCropBlock extends CropBlock implements ICropProvider {
             return biomes.contains(biomeId);
         }
         return true;
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public static BlockColor tintColor() {
-        return (state, reader, pos, tintIndex) -> {
-            if (state.getBlock() instanceof OreCropBlock block) {
-                return block.crop.getLayerARGB(tintIndex);
-            }
-            return -1;
-        };
     }
 
 }
