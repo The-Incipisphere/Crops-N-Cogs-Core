@@ -1,6 +1,8 @@
 package io.thedogofchaos.GregicAgrifactoryCore.organic;
 
 import io.thedogofchaos.GregicAgrifactoryCore.unified.registry.CropRegistry;
+import it.unimi.dsi.fastutil.ints.IntArrayList;
+import it.unimi.dsi.fastutil.ints.IntList;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.resources.ResourceLocation;
@@ -12,6 +14,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.function.Supplier;
 import java.util.Set;
 
@@ -37,6 +40,15 @@ public class Crop {
         return String.format("%s_%s", this.getCropName(), suffix);
     }
 
+    public int getLayerARGB(int layerIndex) {
+        if (layerIndex < -100) {
+            layerIndex = (Math.abs(layerIndex) % 100) / 10;
+        }
+        if (layerIndex > cropInfo.colors.size() - 1 || layerIndex < 0) return -1;
+        int layerColor = cropInfo.colors.getInt(layerIndex);
+        if (layerColor != -1 || layerIndex == 0) return layerColor;
+        else return cropInfo.colors.getInt(0);
+    }
 
     // can't lombok my way out of these three methods
     public CropBlock getCropBlock() {
@@ -81,22 +93,22 @@ public class Crop {
         }
 
         public Builder setFlowerColor(int flowerColor){
-            cropInfo.flowerColor = flowerColor;
+            this.cropInfo.colors.set(0, flowerColor);
             return this;
         }
 
         public Builder setPistilColor(int pistilColor){
-            cropInfo.pistilColor = pistilColor;
+            this.cropInfo.colors.set(1, pistilColor);
             return this;
         }
 
         public Builder setStemColor(int stemColor){
-            cropInfo.stemColor = stemColor;
+            this.cropInfo.colors.set(2, stemColor);
             return this;
         }
 
         public Builder setRequiredBiomes(ResourceLocation... biomeIds) {
-            cropInfo.requiredBiomes.addAll(Arrays.asList(biomeIds)); // hnnngh, i wish i could validate this but biomes are datapacks
+            cropInfo.requiredBiomes.addAll(Arrays.asList(biomeIds)); // I wish I could validate this, but biomes are datapacks.
             return this;
         }
 
@@ -109,15 +121,17 @@ public class Crop {
 
     public static class CropInfo {
         @Getter private final ResourceLocation id;
-        @Getter private int flowerColor = 0x808080;
-        @Getter private int pistilColor = 0xc0c0c0;
-        @Getter private int stemColor = 0x177b04;
+
+        @Getter @Setter private IntList colors = new IntArrayList(List.of(-1, -1));
         @Getter private CropTextures textures;
-        @Getter private Set<ResourceLocation> requiredBiomes;
+        @Getter private final Set<ResourceLocation> requiredBiomes;
 
         private CropInfo(ResourceLocation id) {
             this.id = id;
             requiredBiomes = new HashSet<>();
+            colors.set(0, 0x808080); // DEFAULT FLOWER COLOR
+            colors.set(0, 0xc0c0c0); // DEFAULT PISTIL COLOR
+            colors.set(0, 0x177b04); // DEFAULT SEED COLOR
         }
     }
 }

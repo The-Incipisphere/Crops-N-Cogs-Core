@@ -1,8 +1,8 @@
 package io.thedogofchaos.GregicAgrifactoryCore.block;
 
 import io.thedogofchaos.GregicAgrifactoryCore.organic.Crop;
+import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
@@ -14,10 +14,10 @@ import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.function.Supplier;
 
 /** The common class for ALL OreCrops. */
 public class OreCropBlock extends CropBlock implements ICropProvider {
@@ -68,4 +68,15 @@ public class OreCropBlock extends CropBlock implements ICropProvider {
         }
         return true;
     }
+
+    @OnlyIn(Dist.CLIENT)
+    public static BlockColor tintColor() {
+        return (state, reader, pos, tintIndex) -> {
+            if (state.getBlock() instanceof OreCropBlock block) {
+                return block.crop.getLayerARGB(tintIndex);
+            }
+            return -1;
+        };
+    }
+
 }

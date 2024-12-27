@@ -1,5 +1,6 @@
 package io.thedogofchaos.GregicAgrifactoryCore.unified;
 
+import io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModCreativeTabs;
 import io.thedogofchaos.GregicAgrifactoryCore.unified.network.Network;
 import io.thedogofchaos.GregicAgrifactoryCore.Config;
 import net.minecraftforge.eventbus.api.IEventBus;

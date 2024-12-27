@@ -1,6 +1,8 @@
 package io.thedogofchaos.GregicAgrifactoryCore.unified.registry;
 
-import io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore;
+import com.tterrag.registrate.util.entry.BlockEntry;
+import com.tterrag.registrate.util.entry.ItemEntry;
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import io.thedogofchaos.GregicAgrifactoryCore.block.OreCropBlock;
 import io.thedogofchaos.GregicAgrifactoryCore.item.OreHarvestedItem;
 import io.thedogofchaos.GregicAgrifactoryCore.item.OreSeedItem;
@@ -9,11 +11,12 @@ import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraftforge.registries.DeferredRegister;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import java.util.*;
-import java.util.function.Supplier;
+
+import static io.thedogofchaos.GregicAgrifactoryCore.unified.UnifiedRegistry.REGISTRATE;
 
 /*
  * Based on BlakeBr0's crop registry system for Mystical Agriculture
@@ -22,9 +25,9 @@ public class CropRegistry implements ICropRegistry {
     private static final CropRegistry INSTANCE = new CropRegistry();
 
     private Map<ResourceLocation, Crop> crops = new LinkedHashMap<>();
-    @Getter private final Map<String, Supplier<OreCropBlock>> preCreatedCrops = new HashMap<>();
-    @Getter private final Map<String, Supplier<OreHarvestedItem>> preCreatedHarvestedItems = new HashMap<>();
-    @Getter private final Map<String, Supplier<OreSeedItem>> preCreatedSeedItems = new HashMap<>();
+    private final Map<String, RegistryEntry<OreCropBlock>> CROP_BLOCKS = new HashMap<>();
+    private final Map<String, RegistryEntry<OreHarvestedItem>> CROP_HARVESTED_ITEMS = new HashMap<>();
+    private final Map<String, RegistryEntry<OreSeedItem>> CROP_SEED_ITEMS = new HashMap<>();
     @Getter @Setter private boolean allowRegistration = false;
 
     public void register(Crop crop) {
@@ -58,31 +61,32 @@ public class CropRegistry implements ICropRegistry {
         return INSTANCE;
     }
 
-    public void initializeCrops() {
+    public void generateCrops() {
         var crops = this.crops.values();
         crops.forEach(c -> {
             if (c.getCropBlock() == null) {
-                preCreatedCrops.put(c.getCropNameWithSuffix("crop"), () -> new OreCropBlock(c));
-                c.setCropBlock(() -> new OreCropBlock(c));
+                BlockEntry<OreCropBlock> cropBlockEntry = REGISTRATE.block(c.getCropNameWithSuffix("crop"), properties -> new OreCropBlock(c))
+                        .initialProperties(() -> Blocks.WHEAT)
+                        .properties(BlockBehaviour.Properties::noLootTable)
+                        .color(() -> OreCropBlock::tintColor)
+                        .register();
+                CROP_BLOCKS.put(c.getCropName(), cropBlockEntry);
+                c.setCropBlock(cropBlockEntry);
             }
             if (c.getHarvestedItem() == null) {
-                preCreatedHarvestedItems.put(c.getCropNameWithSuffix("harvested"), () -> new OreHarvestedItem(c));
-                c.setHarvestedItem(() -> new OreHarvestedItem(c));
-            }
+                ItemEntry<OreHarvestedItem> harvestedItemEntry = REGISTRATE.item(c.getCropNameWithSuffix("harvested"), properties -> new OreHarvestedItem(c))
+                        .initialProperties(Item.Properties::new)
+                        .color(() -> OreHarvestedItem::tintColor)
+                        .register();
 
+                CROP_HARVESTED_ITEMS.put(c.getCropName(), harvestedItemEntry);
+                c.setHarvestedItem(harvestedItemEntry);
+            }
             if (c.getSeedItem() == null) {
-                preCreatedSeedItems.put(c.getCropNameWithSuffix("seed"), () -> new OreSeedItem(c));
-                c.setSeedItem(() -> new OreSeedItem(c));
+                // TODO: FIND A WAY TO REGISTER A SEED FOR THE GIVEN CROP (and have it functional as the seed for the given crop)
             }
         });
     }
-    public void onRegisterBlocks(DeferredRegister<Block> registry){
-        preCreatedCrops.forEach(registry::register);
-    }
 
-    public void onRegisterItems(DeferredRegister<Item> registry) {
-        preCreatedHarvestedItems.forEach(registry::register);
-        preCreatedSeedItems.forEach(registry::register);
-    }
 }
 

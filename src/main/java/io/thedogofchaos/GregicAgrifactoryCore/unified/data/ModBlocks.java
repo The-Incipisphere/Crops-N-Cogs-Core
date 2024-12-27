@@ -50,8 +50,7 @@ public class ModBlocks {
         return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
-    public static void init(IEventBus modBus, CropRegistry cropRegistry) {
-        cropRegistry.onRegisterBlocks(BLOCKS);
+    public static void init(IEventBus modBus) {
         BLOCKS.register(modBus);
     }
 }
