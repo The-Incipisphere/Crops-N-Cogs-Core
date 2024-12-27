@@ -6,5 +6,3 @@ The coremod for [Gregic Agrifactory](https://github.com/TheDogOfChaos/Gregic-Agr
 Contains everything that just wasn‘t possible (or otherwise feasable & efficient) to do with pure KubeJS.
 
 Made by an amature modder.
-
-Plans and stuff are here: [TheDogOfChaos/Gregic-Agrifactory-Pack-Dev](https://github.com/TheDogOfChaos/Gregic-Agrifactory-Pack-Dev/)
