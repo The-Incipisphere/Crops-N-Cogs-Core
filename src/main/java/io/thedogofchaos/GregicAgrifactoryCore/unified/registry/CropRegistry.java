@@ -19,7 +19,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static io.thedogofchaos.GregicAgrifactoryCore.unified.UnifiedRegistry.REGISTRATE;
-import static io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModCreativeTabs.CROP_BLOCKS_TAB;
+import static io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModCreativeTabs.*;
 
 /*
  * Based on BlakeBr0's crop registry system for Mystical Agriculture
@@ -111,6 +111,7 @@ public class CropRegistry implements ICropRegistry {
                 c.setCropBlock(cropBlockEntry);
             }
             if (c.getHarvestedItem() == null) {
+                REGISTRATE.creativeModeTab(() -> CROP_HARVESTED_TAB);
                 ItemEntry<OreHarvestedItem> harvestedItemEntry = REGISTRATE.item(c.getCropNameWithSuffix("harvested"), properties -> new OreHarvestedItem(c, properties))
                         .initialProperties(Item.Properties::new)
                         .color(() -> OreHarvestedItem::tintColor)
@@ -120,6 +121,7 @@ public class CropRegistry implements ICropRegistry {
                 c.setHarvestedItem(harvestedItemEntry);
             }
             if (c.getSeedItem() == null) {
+                REGISTRATE.creativeModeTab(() -> CROP_SEEDS_TAB);
                 ItemEntry<OreSeedItem> seedItemEntry = REGISTRATE.item(c.getCropNameWithSuffix("seed"), properties -> new OreSeedItem(c, properties))
                         .initialProperties(Item.Properties::new)
                         .color(() -> OreSeedItem::tintColor)
