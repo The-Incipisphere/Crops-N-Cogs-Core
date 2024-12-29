@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import static io.thedogofchaos.GregicAgrifactoryCore.unified.UnifiedRegistry.REGISTRATE;
 
 public class ModBlocks {
-    public static final Crop becquerelliumCrop = ModPlants.Becquerellium; // shitty hack because of my own code
+    public static final Crop becquerelliumCrop = ModPlants.Becquerellium; // shitty hack because of my own code.
     public static final RegistryEntry<OreCropBlock> BECQUERELLIUM_CROP = REGISTRATE.block("becquerellium_crop", properties -> new OreCropBlock(becquerelliumCrop, properties))
             .initialProperties(() -> Blocks.WHEAT)
             .properties(BlockBehaviour.Properties::noLootTable)

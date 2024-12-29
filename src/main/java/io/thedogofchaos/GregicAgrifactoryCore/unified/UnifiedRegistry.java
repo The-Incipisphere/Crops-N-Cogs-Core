@@ -15,14 +15,14 @@ public class UnifiedRegistry {
     public static void init(IEventBus modBus) {
         CropRegistry cropRegistry = CropRegistry.getInstance();
 
+        ModCreativeTabs.init(modBus);
         cropRegistry.setAllowRegistration(true); // allow crop registration past this point
         ModPlants.init();
         cropRegistry.generateCrops();
-
         ModBlocks.init();
         ModItems.init();
         cropRegistry.setAllowRegistration(false); // disallow crop registration past this point
-        ModCreativeTabs.init();
+
         // Add other registries here as required.
     }
 }

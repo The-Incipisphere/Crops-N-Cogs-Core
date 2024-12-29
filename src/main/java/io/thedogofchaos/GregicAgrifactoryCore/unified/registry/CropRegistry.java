@@ -7,6 +7,7 @@ import io.thedogofchaos.GregicAgrifactoryCore.block.OreCropBlock;
 import io.thedogofchaos.GregicAgrifactoryCore.item.OreHarvestedItem;
 import io.thedogofchaos.GregicAgrifactoryCore.item.OreSeedItem;
 import io.thedogofchaos.GregicAgrifactoryCore.organic.Crop;
+import io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModCreativeTabs;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.resources.ResourceLocation;
@@ -17,6 +18,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import static io.thedogofchaos.GregicAgrifactoryCore.unified.UnifiedRegistry.REGISTRATE;
 import static io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModCreativeTabs.*;
@@ -113,8 +115,8 @@ public class CropRegistry implements ICropRegistry {
                 ItemEntry<OreHarvestedItem> harvestedItemEntry = REGISTRATE.item(c.getCropNameWithSuffix("harvested"), properties -> new OreHarvestedItem(c, properties))
                         .initialProperties(Item.Properties::new)
                         .color(() -> OreHarvestedItem::tintColor)
+                        .tab(Objects.requireNonNull(CROP_HARVESTED_TAB.getKey()))
                         .register();
-
                 CROP_HARVESTED_ITEMS.put(c.getCropName(), harvestedItemEntry);
                 c.setHarvestedItem(harvestedItemEntry);
             }
@@ -122,6 +124,7 @@ public class CropRegistry implements ICropRegistry {
                 ItemEntry<OreSeedItem> seedItemEntry = REGISTRATE.item(c.getCropNameWithSuffix("seed"), properties -> new OreSeedItem(c, properties))
                         .initialProperties(Item.Properties::new)
                         .color(() -> OreSeedItem::tintColor)
+                        .tab(Objects.requireNonNull(CROP_SEEDS_TAB.getKey()))
                         .register();
                 CROP_SEED_ITEMS.put(c.getCropName(), seedItemEntry);
                 c.setSeedItem(seedItemEntry);
