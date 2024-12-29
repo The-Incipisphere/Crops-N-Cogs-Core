@@ -3,11 +3,14 @@ package io.thedogofchaos.GregicAgrifactoryCore.block;
 import io.thedogofchaos.GregicAgrifactoryCore.organic.Crop;
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -16,6 +19,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Set;
 
 /**
  * The common class for ALL OreCrops.
@@ -70,13 +75,11 @@ public class OreCropBlock extends CropBlock implements ICropProvider {
     }
 
     private boolean canGrow(Level level, BlockPos pos) {
-        var biomes = this.crop.getCropInfo().getRequiredBiomes();
+        Set<ResourceLocation> biomes = this.crop.getCropInfo().getRequiredBiomes();
         if (!biomes.isEmpty()) {
-            var biome = level.getBiome(pos);
-            var biomeId = ForgeRegistries.BIOMES.getKey(biome.value());
-            return biomes.contains(biomeId);
+            Holder<Biome> biome = level.getBiome(pos);
+            return biomes.stream().anyMatch(biome::is);
         }
         return true;
     }
-
 }

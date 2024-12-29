@@ -17,6 +17,7 @@ public class FarmlandTrampleEvent {
         if (trampler instanceof LivingEntity) {
             ItemStack footwear = ((LivingEntity) trampler).getItemBySlot(EquipmentSlot.FEET);
             if (footwear.is(ModItems.ANTI_TRAMPLE_BOOTS.get())) {
+                // no trample if wearing anti-trample boots
                 farmlandTrampleEvent.setCanceled(true);
             }
         }

@@ -11,7 +11,7 @@ import static io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore.*;
 import static io.thedogofchaos.GregicAgrifactoryCore.unified.UnifiedRegistry.REGISTRATE;
 
 public class ModCreativeTabs {
-    // Doing this as just a normal DeferredRegister because Registrate’s tab registration is strange as fuck.
+    // Doing this as just a normal DeferredRegister because Registrate’s creative tab registration is strange as fuck.
     public static final DeferredRegister<CreativeModeTab> CREATIVE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MOD_ID);
 
     public static final RegistryObject<CreativeModeTab> CROP_HARVESTED_TAB = CREATIVE_TABS.register("crop_harvested_items_tab", () -> CreativeModeTab.builder()
