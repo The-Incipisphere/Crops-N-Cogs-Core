@@ -9,9 +9,9 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber
 public class DifficultyChangeEvent {
     @SubscribeEvent
-    public static void difficultyChangeEvent(net.minecraftforge.event.DifficultyChangeEvent event){
-        if(Config.disablePeaceful && event.getDifficulty() == Difficulty.PEACEFUL){
-            GregicAgrifactoryCore.LOGGER.warn("Tried to set difficulty to peaceful from "+event.getOldDifficulty().toString()+", but peaceful mode is disabled!");
+    public static void difficultyChangeEvent(net.minecraftforge.event.DifficultyChangeEvent event) {
+        if (Config.disablePeaceful && event.getDifficulty() == Difficulty.PEACEFUL) {
+            GregicAgrifactoryCore.LOGGER.warn("Tried to set difficulty to peaceful from " + event.getOldDifficulty().toString() + ", but peaceful mode is disabled!");
             event.setCanceled(true);
         }
     }

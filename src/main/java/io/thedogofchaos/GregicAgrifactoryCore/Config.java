@@ -8,13 +8,10 @@ import net.minecraftforge.fml.event.config.ModConfigEvent;
 @Mod.EventBusSubscriber
 public class Config {
     private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
-
+    public static final ForgeConfigSpec SPEC = BUILDER.build();
     private static final ForgeConfigSpec.BooleanValue DISABLE_PEACEFUL = BUILDER
             .comment("Whether to disable Peaceful mode. Defaults to true, as this pack is not built to be played on Peaceful.")
             .define("disablePeaceful", true);
-
-    public static final ForgeConfigSpec SPEC = BUILDER.build();
-
     public static boolean disablePeaceful;
 
     @SubscribeEvent

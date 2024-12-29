@@ -2,9 +2,11 @@ package io.thedogofchaos.GregicAgrifactoryCore.client;
 
 import io.thedogofchaos.GregicAgrifactoryCore.unified.UnifiedProxy;
 
-/** Explicitly Client-side stuff gets executed through here (like rendering & stuff) */
+/**
+ * Explicitly Client-side stuff gets executed through here (like rendering & stuff)
+ */
 public class ClientProxy extends UnifiedProxy {
-    public ClientProxy(){
+    public ClientProxy() {
         super();
         init();
     }

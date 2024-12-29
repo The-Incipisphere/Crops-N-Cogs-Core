@@ -1,35 +1,35 @@
 modLoader = "javafml"
 loaderVersion = "[47,)"
 license = "${mod_license}"
-issueTrackerURL="https://github.com/TheDogOfChaos/Gregic-Agrifactory-Core/issues"
+issueTrackerURL = "https://github.com/TheDogOfChaos/Gregic-Agrifactory-Core/issues"
 
 [[mods]]
-    modId = "${mod_id}"
-    version = "${version}"
-    displayName = "${mod_name}"
-    displayURL = "${mod_url}"
-    # This will be displayed as your mod's logo in the Mods panel.
-    # logoFile="icon.png" #optional
+modId = "${mod_id}"
+version = "${version}"
+displayName = "${mod_name}"
+displayURL = "${mod_url}"
+# This will be displayed as your mod's logo in the Mods panel.
+# logoFile="icon.png" #optional
 
-    credits="Thanks to screret for the original template, and JuiceyBeans for the updated version."
-    authors="${mod_author}"
-    description ="The Coremod for Gregic Agrifactory. Because just KubeJS wasn't enough."
+credits = "Thanks to screret for the original template, and JuiceyBeans for the updated version."
+authors = "${mod_author}"
+description = "The Coremod for Gregic Agrifactory. Because just KubeJS wasn't enough."
 
-    [[dependencies.${mod_id}]]
-        modId = "forge"
-        mandatory = true
-        versionRange = "[${forge_version},)"
-        ordering = "NONE"
-        side = "BOTH"
-    [[dependencies.${mod_id}]]
-        modId = "minecraft"
-        mandatory = true
-        versionRange = "[${minecraft_version},)"
-        ordering = "NONE"
-        side = "BOTH"
-    [[dependencies.${mod_id}]]
-        modId = "gtceu"
-        mandatory = true
-        versionRange = "[${gtceu_version},)"
-        ordering = "AFTER"
-        side = "BOTH"
+[[dependencies.${ mod_id }]]
+modId = "forge"
+mandatory = true
+versionRange = "[${forge_version},)"
+ordering = "NONE"
+side = "BOTH"
+[[dependencies.${ mod_id }]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[${minecraft_version},)"
+ordering = "NONE"
+side = "BOTH"
+[[dependencies.${ mod_id }]]
+modId = "gtceu"
+mandatory = true
+versionRange = "[${gtceu_version},)"
+ordering = "AFTER"
+side = "BOTH"

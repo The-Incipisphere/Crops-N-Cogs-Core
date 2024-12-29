@@ -1,8 +1,6 @@
 package io.thedogofchaos.GregicAgrifactoryCore.datagen.generators;
 
 import io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore;
-import io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModBlocks;
-import io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.LanguageProvider;
 

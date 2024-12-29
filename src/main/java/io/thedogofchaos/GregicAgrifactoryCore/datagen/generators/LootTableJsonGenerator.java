@@ -1,10 +1,6 @@
 package io.thedogofchaos.GregicAgrifactoryCore.datagen.generators;
 
 import io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore;
-import io.thedogofchaos.GregicAgrifactoryCore.block.OreCropBlock;
-import io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModBlocks;
-import io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModItems;
-
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
@@ -15,7 +11,6 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
-
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Map;
@@ -28,7 +23,7 @@ public class LootTableJsonGenerator extends BlockLootSubProvider {
     }
 
     @Override
-    protected void generate(){
+    protected void generate() {
 
     }
 
@@ -41,12 +36,14 @@ public class LootTableJsonGenerator extends BlockLootSubProvider {
     }
 
 
-    /** Guarantees a single seed item to always drop from a crop when the crop is broken.
+    /**
+     * Guarantees a single seed item to always drop from a crop when the crop is broken.
      * <br>Also drops the crop’s harvested item if the crop is fully grown.
-     * @param cropBlock The crop block to generate a loot table for.
+     *
+     * @param cropBlock     The crop block to generate a loot table for.
      * @param harvestedItem The harvested item to drop when the {@code cropBlock} is broken, if the crop is fully grown.
-     * @param seedItem The seed to always drop 1 of when the cropBlock is broken.
-     * @param ageProperty An {@link IntegerProperty} of the crop’s AGE field.
+     * @param seedItem      The seed to always drop 1 of when the cropBlock is broken.
+     * @param ageProperty   An {@link IntegerProperty} of the crop’s AGE field.
      * @return The LootTable Builder, to continue building loot tables if need be.
      */
     public LootTable.Builder alwaysSingleSeedDrop(Block cropBlock, Item harvestedItem, Item seedItem, IntegerProperty ageProperty) {

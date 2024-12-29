@@ -35,8 +35,8 @@ public final class ColorHelper {
     /**
      * Interpolates between two float values based on the given proportion.
      *
-     * @param a The starting value.
-     * @param b The ending value.
+     * @param a          The starting value.
+     * @param b          The ending value.
      * @param proportion The proportion to interpolate (0.0f to 1.0f).
      * @return The interpolated value.
      */
@@ -48,8 +48,8 @@ public final class ColorHelper {
      * Interpolates between two colors in RGB format based on the given proportion.
      * This method interpolates colors in the HSB color model.
      *
-     * @param a The first color in RGB (0xRRGGBB).
-     * @param b The second color in RGB (0xRRGGBB).
+     * @param a          The first color in RGB (0xRRGGBB).
+     * @param b          The second color in RGB (0xRRGGBB).
      * @param proportion The proportion to interpolate (0.0f to 1.0f).
      * @return The interpolated color in RGB format (0xRRGGBB).
      */
@@ -71,7 +71,7 @@ public final class ColorHelper {
     /**
      * Adjusts the saturation of a color.
      *
-     * @param color The color in RGB (0xRRGGBB).
+     * @param color      The color in RGB (0xRRGGBB).
      * @param saturation The saturation factor (0.0 to 1.0, where 0.0 is no saturation).
      * @return The color with adjusted saturation in RGB format (0xRRGGBB).
      */
@@ -85,7 +85,7 @@ public final class ColorHelper {
     /**
      * Converts a hexadecimal color with an alpha value to an integer representation.
      *
-     * @param hex The hexadecimal color (0xRRGGBB).
+     * @param hex   The hexadecimal color (0xRRGGBB).
      * @param alpha The alpha value (0-255).
      * @return The color with alpha in ARGB format (0xAARRGGBB).
      */
@@ -97,7 +97,7 @@ public final class ColorHelper {
      * Calculates the alpha value based on the current and maximum values.
      *
      * @param current The current value.
-     * @param max The maximum value.
+     * @param max     The maximum value.
      * @return The calculated alpha value (0-255).
      */
     public static int calcAlpha(double current, double max) {
@@ -107,7 +107,7 @@ public final class ColorHelper {
     /**
      * Converts HSB values to RGB format.
      *
-     * @param hue The hue value (0.0f to 1.0f).
+     * @param hue        The hue value (0.0f to 1.0f).
      * @param saturation The saturation value (0.0f to 1.0f).
      * @param brightness The brightness value (0.0f to 1.0f).
      * @return The color in RGB format (0xRRGGBB).
@@ -117,8 +117,8 @@ public final class ColorHelper {
         if (saturation == 0) {
             r = g = b = (int) (brightness * 255.0f + 0.5f);
         } else {
-            float h = (hue - (float)Math.floor(hue)) * 6.0f;
-            float f = h - (float)java.lang.Math.floor(h);
+            float h = (hue - (float) Math.floor(hue)) * 6.0f;
+            float f = h - (float) java.lang.Math.floor(h);
             float p = brightness * (1.0f - saturation);
             float q = brightness * (1.0f - saturation * f);
             float t = brightness * (1.0f - (saturation * (1.0f - f)));
@@ -161,9 +161,9 @@ public final class ColorHelper {
     /**
      * Converts RGB values to HSB (Hue, Saturation, Brightness).
      *
-     * @param r The red component (0-255).
-     * @param g The green component (0-255).
-     * @param b The blue component (0-255).
+     * @param r       The red component (0-255).
+     * @param g       The green component (0-255).
+     * @param b       The blue component (0-255).
      * @param hsbvals An array to hold the HSB values. If null, a new array will be created.
      * @return An array containing the HSB values: [hue, saturation, brightness].
      */

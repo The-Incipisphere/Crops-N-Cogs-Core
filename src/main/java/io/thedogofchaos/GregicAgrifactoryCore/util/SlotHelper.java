@@ -19,7 +19,7 @@ public class SlotHelper {
     }
 
     public static int addSlotBox(Consumer<Slot> slotConsumer, Container playerInventory, int index, int x, int y, int horAmount, int dx, int verAmount, int dy) {
-        for (int j = 0 ; j < verAmount ; j++) {
+        for (int j = 0; j < verAmount; j++) {
             index = addSlotRange(slotConsumer, playerInventory, index, x, y, horAmount, dx);
             y += dy;
         }

@@ -1,15 +1,10 @@
 package io.thedogofchaos.GregicAgrifactoryCore.unified.data;
 
-import com.tterrag.registrate.util.entry.RegistryEntry;
-import dev.latvian.mods.kubejs.item.creativetab.CreativeTabBuilder;
-import io.thedogofchaos.GregicAgrifactoryCore.unified.registry.CropRegistry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import static io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore.*;

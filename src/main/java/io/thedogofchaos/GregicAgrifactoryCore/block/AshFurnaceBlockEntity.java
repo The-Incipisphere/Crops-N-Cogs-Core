@@ -34,11 +34,13 @@ public class AshFurnaceBlockEntity extends AbstractFurnaceBlockEntity {
         return new AshFurnaceContainer(containerId, inventory, this, this.dataAccess);
     }
 
-    /** @return AbstractFurnaceBlockEntity#litTime */
+    /**
+     * @return AbstractFurnaceBlockEntity#litTime
+     */
     @Override
-    public boolean isLit(){
+    public boolean isLit() {
         return dataAccess.get(0) > 0;
-    };
+    }
 
     public void load(CompoundTag tag) {
         super.load(tag);

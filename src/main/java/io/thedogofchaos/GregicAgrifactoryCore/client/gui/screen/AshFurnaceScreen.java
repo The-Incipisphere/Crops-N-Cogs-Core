@@ -13,6 +13,7 @@ import net.minecraft.world.entity.player.Inventory;
  */
 public class AshFurnaceScreen extends AbstractContainerScreen<AshFurnaceContainer> {
     private final ResourceLocation GUI = new ResourceLocation(GregicAgrifactoryCore.MOD_ID, "textures/gui/furnace.png");
+
     public AshFurnaceScreen(AshFurnaceContainer containerMenu, Inventory playerInventory, Component title) {
         super(containerMenu, playerInventory, title);
         this.inventoryLabelY = this.imageHeight - 110;

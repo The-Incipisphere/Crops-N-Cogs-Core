@@ -10,13 +10,13 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber
-public class FarmlandTrampleEvent{
+public class FarmlandTrampleEvent {
     @SubscribeEvent
     public static void farmlandTrampleEvent(BlockEvent.FarmlandTrampleEvent farmlandTrampleEvent) {
         Entity trampler = farmlandTrampleEvent.getEntity();
-        if(trampler instanceof LivingEntity){
+        if (trampler instanceof LivingEntity) {
             ItemStack footwear = ((LivingEntity) trampler).getItemBySlot(EquipmentSlot.FEET);
-            if(footwear.is(ModItems.ANTI_TRAMPLE_BOOTS.get())){
+            if (footwear.is(ModItems.ANTI_TRAMPLE_BOOTS.get())) {
                 farmlandTrampleEvent.setCanceled(true);
             }
         }

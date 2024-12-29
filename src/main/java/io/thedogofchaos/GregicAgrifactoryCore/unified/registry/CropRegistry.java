@@ -7,7 +7,6 @@ import io.thedogofchaos.GregicAgrifactoryCore.block.OreCropBlock;
 import io.thedogofchaos.GregicAgrifactoryCore.item.OreHarvestedItem;
 import io.thedogofchaos.GregicAgrifactoryCore.item.OreSeedItem;
 import io.thedogofchaos.GregicAgrifactoryCore.organic.Crop;
-import io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModCreativeTabs;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.resources.ResourceLocation;
@@ -21,7 +20,8 @@ import java.util.Map;
 import java.util.Objects;
 
 import static io.thedogofchaos.GregicAgrifactoryCore.unified.UnifiedRegistry.REGISTRATE;
-import static io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModCreativeTabs.*;
+import static io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModCreativeTabs.CROP_HARVESTED_TAB;
+import static io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModCreativeTabs.CROP_SEEDS_TAB;
 
 /*
  * Based on BlakeBr0's crop registry system for Mystical Agriculture

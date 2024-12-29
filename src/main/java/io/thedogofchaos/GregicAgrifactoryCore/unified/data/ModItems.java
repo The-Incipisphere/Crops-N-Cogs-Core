@@ -1,19 +1,11 @@
 package io.thedogofchaos.GregicAgrifactoryCore.unified.data;
 
-import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore;
-
 import io.thedogofchaos.GregicAgrifactoryCore.item.OreHarvestedItem;
 import io.thedogofchaos.GregicAgrifactoryCore.item.OreSeedItem;
-import io.thedogofchaos.GregicAgrifactoryCore.organic.Crop;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.Item;
-
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Objects;
 
@@ -34,11 +26,11 @@ public class ModItems {
             .register();
 
     public static final RegistryEntry<ArmorItem> ANTI_TRAMPLE_BOOTS = REGISTRATE.item("anti_trample_boots",
-            properties -> new ArmorItem(ArmorMaterials.LEATHER, ArmorItem.Type.BOOTS, properties))
+                    properties -> new ArmorItem(ArmorMaterials.LEATHER, ArmorItem.Type.BOOTS, properties))
             .tab(Objects.requireNonNull(MAIN_TAB.getKey()))
             .register();
 
-    public static void init(){
+    public static void init() {
         ModBlocks.becquerelliumCrop.setHarvestedItem(BECQUERELLIUM_HARVESTED);
         ModBlocks.becquerelliumCrop.setSeedItem(BECQUERELLIUM_SEEDS);
     }
