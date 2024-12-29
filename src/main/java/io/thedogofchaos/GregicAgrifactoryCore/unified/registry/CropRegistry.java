@@ -110,7 +110,6 @@ public class CropRegistry implements ICropRegistry {
                 c.setCropBlock(cropBlockEntry);
             }
             if (c.getHarvestedItem() == null) {
-                REGISTRATE.creativeModeTab(() -> CROP_HARVESTED_TAB);
                 ItemEntry<OreHarvestedItem> harvestedItemEntry = REGISTRATE.item(c.getCropNameWithSuffix("harvested"), properties -> new OreHarvestedItem(c, properties))
                         .initialProperties(Item.Properties::new)
                         .color(() -> OreHarvestedItem::tintColor)
@@ -120,7 +119,6 @@ public class CropRegistry implements ICropRegistry {
                 c.setHarvestedItem(harvestedItemEntry);
             }
             if (c.getSeedItem() == null) {
-                REGISTRATE.creativeModeTab(() -> CROP_SEEDS_TAB);
                 ItemEntry<OreSeedItem> seedItemEntry = REGISTRATE.item(c.getCropNameWithSuffix("seed"), properties -> new OreSeedItem(c, properties))
                         .initialProperties(Item.Properties::new)
                         .color(() -> OreSeedItem::tintColor)
