@@ -6,6 +6,7 @@ import io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore;
 
 import io.thedogofchaos.GregicAgrifactoryCore.item.OreHarvestedItem;
 import io.thedogofchaos.GregicAgrifactoryCore.item.OreSeedItem;
+import io.thedogofchaos.GregicAgrifactoryCore.organic.Crop;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.Item;
@@ -17,13 +18,12 @@ import net.minecraftforge.registries.RegistryObject;
 import static io.thedogofchaos.GregicAgrifactoryCore.unified.UnifiedRegistry.REGISTRATE;
 
 public class ModItems {
-
-    public static final RegistryEntry<OreHarvestedItem> BECQUERELLIUM_HARVESTED = REGISTRATE.item("becquerellium_harvested", properties -> new OreHarvestedItem(ModPlants.Becquerellium, properties))
+    public static final RegistryEntry<OreHarvestedItem> BECQUERELLIUM_HARVESTED = REGISTRATE.item("becquerellium_harvested", properties -> new OreHarvestedItem(ModBlocks.becquerelliumCrop, properties))
             .initialProperties(Item.Properties::new)
             .color(() -> OreHarvestedItem::tintColor)
             .register();
 
-    public static final RegistryEntry<OreSeedItem> BECQUERELLIUM_SEEDS = REGISTRATE.item("becquerellium_seed", properties -> new OreSeedItem(ModPlants.Becquerellium, properties))
+    public static final RegistryEntry<OreSeedItem> BECQUERELLIUM_SEEDS = REGISTRATE.item("becquerellium_seed", properties -> new OreSeedItem(ModBlocks.becquerelliumCrop, properties))
             .initialProperties(Item.Properties::new)
             .color(() -> OreSeedItem::tintColor)
             .register();
@@ -33,5 +33,7 @@ public class ModItems {
             .register();
 
     public static void init(){
+        ModBlocks.becquerelliumCrop.setHarvestedItem(BECQUERELLIUM_HARVESTED);
+        ModBlocks.becquerelliumCrop.setSeedItem(BECQUERELLIUM_SEEDS);
     }
 }

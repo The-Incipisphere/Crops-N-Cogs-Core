@@ -18,6 +18,7 @@ public class UnifiedRegistry {
         cropRegistry.setAllowRegistration(true); // allow crop registration past this point
         ModPlants.init();
         cropRegistry.generateCrops();
+
         ModBlocks.init();
         ModItems.init();
         cropRegistry.setAllowRegistration(false); // disallow crop registration past this point
