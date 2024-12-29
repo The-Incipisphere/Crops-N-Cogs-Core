@@ -1,16 +1,16 @@
 package io.thedogofchaos.GregicAgrifactoryCore.unified;
 
+import com.tterrag.registrate.Registrate;
 import io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore;
 import io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModBlocks;
 import io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModCreativeTabs;
 import io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModItems;
 import io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModPlants;
 import io.thedogofchaos.GregicAgrifactoryCore.unified.registry.CropRegistry;
-import io.thedogofchaos.GregicAgrifactoryCore.unified.registry.registrate.GACRegistrate;
 import net.minecraftforge.eventbus.api.IEventBus;
 
 public class UnifiedRegistry {
-    public static final GACRegistrate REGISTRATE = GACRegistrate.create(GregicAgrifactoryCore.MOD_ID);
+    public static final Registrate REGISTRATE = Registrate.create(GregicAgrifactoryCore.MOD_ID);
 
     public static void init(IEventBus modBus) {
         CropRegistry cropRegistry = CropRegistry.getInstance();

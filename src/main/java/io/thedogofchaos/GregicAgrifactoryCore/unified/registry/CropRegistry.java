@@ -101,7 +101,6 @@ public class CropRegistry implements ICropRegistry {
         var crops = this.CROPS.values();
         crops.forEach(c -> {
             if (c.getCropBlock() == null) {
-                REGISTRATE.creativeModeTab(() -> CROP_BLOCKS_TAB);
                 BlockEntry<OreCropBlock> cropBlockEntry = REGISTRATE.block(c.getCropNameWithSuffix("crop"), properties -> new OreCropBlock(c, properties))
                         .initialProperties(() -> Blocks.WHEAT)
                         .properties(BlockBehaviour.Properties::noLootTable)
