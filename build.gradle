@@ -148,7 +148,7 @@ dependencies {
     modImplementation("dev.latvian.mods:kubejs-forge:$project.kubejs_version")
 
     // Configuration (by Toma1O6)
-    modRuntimeOnly("dev.toma.configuration:configuration-forge-$project.minecraft_version:$project.configuration_version")
+    modImplementation("dev.toma.configuration:configuration-forge-$project.minecraft_version:$project.configuration_version")
 
     // Jade
     modRuntimeOnly("curse.maven:jade-324717:5390389") // Version 11.9.3

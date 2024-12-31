@@ -1,20 +1,23 @@
 package io.thedogofchaos.GregicAgrifactoryCore.unified;
 
-import io.thedogofchaos.GregicAgrifactoryCore.Config;
+import dev.toma.configuration.Configuration;
+import dev.toma.configuration.config.format.ConfigFormats;
+import io.thedogofchaos.GregicAgrifactoryCore.GACConfig;
 import io.thedogofchaos.GregicAgrifactoryCore.unified.network.Network;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLConstructModEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
+@SuppressWarnings("deprecated")
 public class UnifiedProxy {
     public FMLJavaModLoadingContext modLoadingContext = FMLJavaModLoadingContext.get();
     public IEventBus modBus = modLoadingContext.getModEventBus();
+    public static GACConfig config;
 
     public UnifiedProxy() {
         init(modBus);
-        modLoadingContext.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        config = Configuration.registerConfig(GACConfig.class, ConfigFormats.yaml()).getConfigInstance();
         modBus.register(this);
     }
 
