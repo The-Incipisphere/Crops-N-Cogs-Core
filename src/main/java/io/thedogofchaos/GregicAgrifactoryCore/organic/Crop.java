@@ -23,6 +23,7 @@ public class Crop {
     @Getter
     private final CropInfo cropInfo;
 
+    // do not lombok these three fields
     private Supplier<? extends CropBlock> cropBlock;
     private Supplier<? extends Item> harvestedItem;
     private Supplier<? extends ItemNameBlockItem> seedItem;
@@ -43,6 +44,24 @@ public class Crop {
         return String.format("%s_%s", this.getCropName(), suffix);
     }
 
+    /**
+     * Retrieves the ARGB color value for a specified layer index from the crop's color data.
+     *
+     * <p>This method calculates the appropriate layer index if the provided index is below -100.
+     * If the calculated or provided index is out of bounds, it returns -1 as an invalid color value.
+     * For valid indices, the method attempts to fetch the ARGB color value from the {@code colors} {@link IntList}.
+     * If the color at the specified index is invalid (-1) and the index is not 0, it falls back
+     * to the color of the first layer (index 0).
+     * <p><b>In simpler terms:</b> This method gives you the color of a specific layer. If the
+     * index is too low, it fixes it. If the index is out of range or the layer doesn't have a
+     * valid color, it either uses the first layer's color or says there's no valid color (-1).
+     *
+     * @param layerIndex the index of the layer whose color value is to be retrieved. If the index is
+     *                   less than -100, it is normalized to a valid index by using
+     *                   {@code (Math.abs(layerIndex) % 100) / 10}.
+     * @return the ARGB color value of the specified layer. If the index is out of bounds or the
+     *         specified color is invalid, returns -1.
+     */
     public int getLayerARGB(int layerIndex) {
         if (layerIndex < -100) {
             layerIndex = (Math.abs(layerIndex) % 100) / 10;
@@ -53,29 +72,55 @@ public class Crop {
         else return cropInfo.colors.getInt(0);
     }
 
-    // can't lombok my way out of these three methods
+    /**
+     * Directly gets the crop block of the given crop (NOT the supplier containing it)
+     * @return The crop block (of type {@link CropBlock}) assigned to this crop, or <b>{@link null}</b> if it is not present.
+     */
     public CropBlock getCropBlock() {
         return this.cropBlock == null ? null : this.cropBlock.get();
     }
 
+    /**
+     * Sets the crop block of the {@link Crop} object that this method was called on.
+     * @param cropBlock Anything extending from {@link CropBlock} that you wish to set as the crop block of this crop.
+     * @return The {@link Crop} object that this method was called on.
+     */
     public Crop setCropBlock(Supplier<? extends CropBlock> cropBlock) {
         this.cropBlock = cropBlock;
         return this;
     }
 
+    /**
+     * Directly gets the harvested item of the given crop (NOT the supplier containing it)
+     * @return The harvested item (of type {@link Item}) assigned to this crop, or <b>{@link null}</b> if it is not present.
+     */
     public Item getHarvestedItem() {
         return this.harvestedItem == null ? null : this.harvestedItem.get();
     }
 
+    /**
+     * Sets the harvested item of the {@link Crop} object that this method was called on.
+     * @param harvestedItem Anything extending from {@link Item} that you wish to set as the harvested item of this crop.
+     * @return The {@link Crop} object that this method was called on.
+     */
     public Crop setHarvestedItem(Supplier<? extends Item> harvestedItem) {
         this.harvestedItem = harvestedItem;
         return this;
     }
 
+    /**
+     * Directly gets the seed item of the given crop (NOT the supplier containing it)
+     * @return The seed item (of type {@link ItemNameBlockItem}) assigned to this crop, or <b>{@link null}</b> if it is not present.
+     */
     public ItemNameBlockItem getSeedItem() {
         return this.seedItem == null ? null : this.seedItem.get();
     }
 
+    /**
+     * Sets the seed item of the {@link Crop} object that this method was called on.
+     * @param seedItem Anything extending from {@link ItemNameBlockItem} that you wish to set as the seed item of this crop.
+     * @return The {@link Crop} object that this method was called on.
+     */
     public Crop setSeedItem(Supplier<? extends ItemNameBlockItem> seedItem) {
         this.seedItem = seedItem;
         return this;
@@ -112,6 +157,11 @@ public class Crop {
 
         public Builder setStemColor(int stemColor) {
             this.cropInfo.colors.set(2, stemColor);
+            return this;
+        }
+
+        public Builder setSeedColor(int stemColor) {
+            this.cropInfo.colors.set(3, stemColor);
             return this;
         }
 

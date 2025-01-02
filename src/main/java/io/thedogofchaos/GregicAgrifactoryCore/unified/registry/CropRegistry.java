@@ -108,8 +108,8 @@ public class CropRegistry implements ICropRegistry {
                         .properties(BlockBehaviour.Properties::noLootTable)
                         .color(() -> OreCropBlock::tintColor)
                         .register();
-                CROP_BLOCKS.put(c.getCropName(), cropBlockEntry);
                 c.setCropBlock(cropBlockEntry);
+                CROP_BLOCKS.put(c.getCropName(), cropBlockEntry);
             }
             if (c.getHarvestedItem() == null) {
                 ItemEntry<OreHarvestedItem> harvestedItemEntry = REGISTRATE.item(c.getCropNameWithSuffix("harvested"), properties -> new OreHarvestedItem(c, properties))
@@ -117,8 +117,8 @@ public class CropRegistry implements ICropRegistry {
                         .color(() -> OreHarvestedItem::tintColor)
                         .tab(Objects.requireNonNull(CROP_HARVESTED_TAB.getKey()))
                         .register();
-                CROP_HARVESTED_ITEMS.put(c.getCropName(), harvestedItemEntry);
                 c.setHarvestedItem(harvestedItemEntry);
+                CROP_HARVESTED_ITEMS.put(c.getCropName(), harvestedItemEntry);
             }
             if (c.getSeedItem() == null) {
                 ItemEntry<OreSeedItem> seedItemEntry = REGISTRATE.item(c.getCropNameWithSuffix("seed"), properties -> new OreSeedItem(c, properties))
@@ -126,8 +126,8 @@ public class CropRegistry implements ICropRegistry {
                         .color(() -> OreSeedItem::tintColor)
                         .tab(Objects.requireNonNull(CROP_SEEDS_TAB.getKey()))
                         .register();
-                CROP_SEED_ITEMS.put(c.getCropName(), seedItemEntry);
                 c.setSeedItem(seedItemEntry);
+                CROP_SEED_ITEMS.put(c.getCropName(), seedItemEntry);
             }
         });
     }

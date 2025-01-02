@@ -14,7 +14,7 @@ public class CropTextures {
 
     public static final CropTextures NONE = new CropTextures(null, null, null);
     public static final CropTextures NULLZONE = new CropTextures(id("nulled"), id("nulled"), id("nulled"));
-    public static final CropTextures DEBUG = new CropTextures(id("debug"), id("debyg"), id("debug"));
+    public static final CropTextures DEBUG = new CropTextures(id("debug"), id("debug"), id("debug"));
 
     @Getter
     @Setter
