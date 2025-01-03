@@ -36,31 +36,44 @@ public class Crop {
         this.cropInfo = cropInfo;
     }
 
+    /** Gets the name of the {@link Crop} object that this method is called on.
+     * @return The all-lowercase assigned id/name of this crop, of type {@link String}.
+     */
     public String getCropName() {
         return this.cropInfo.id.getPath();
     }
 
+    /** Gets the name of the {@link Crop} object that this method is called on,
+     * appended with an underscore-separated suffix of one’s own choice.
+     *
+     * @param suffix The suffix, of type {@link String}, to append to the end of the crop’s name.
+     * @return The all-lowercase assigned name of this crop, with an underscore-separated suffix applied, of type {@link String}.
+     * */
     public String getCropNameWithSuffix(String suffix) {
         return String.format("%s_%s", this.getCropName(), suffix);
     }
 
     /**
-     * Retrieves the ARGB color value for a specified layer index from the crop's color data.
+     * Retrieves the ARGB colour value for a specified layer index from the crop’s colour data.
      *
      * <p>This method calculates the appropriate layer index if the provided index is below -100.
-     * If the calculated or provided index is out of bounds, it returns -1 as an invalid color value.
-     * For valid indices, the method attempts to fetch the ARGB color value from the {@code colors} {@link IntList}.
-     * If the color at the specified index is invalid (-1) and the index is not 0, it falls back
-     * to the color of the first layer (index 0).
-     * <p><b>In simpler terms:</b> This method gives you the color of a specific layer. If the
-     * index is too low, it fixes it. If the index is out of range or the layer doesn't have a
-     * valid color, it either uses the first layer's color or says there's no valid color (-1).
+     * If the calculated or provided index is out of bounds, it returns -1 as an invalid colour value.
+     * For valid indices, the method attempts to fetch the ARGB colour value from the {@code colors} {@link IntList}.
+     * If the colour at the specified index is invalid (-1), and the index is not 0, it falls back
+     * to the colour of the first layer (index 0).
      *
-     * @param layerIndex the index of the layer whose color value is to be retrieved. If the index is
-     *                   less than -100, it is normalized to a valid index by using
+     * <p><b>In simpler terms:</b> This method gives you the colour of a specific layer.
+     * If the index is too low, it fixes it.
+     * If the index is out of range, or the layer doesn’t have a
+     * valid colour, it either uses the first layer’s colour or says there’s no valid colour (-1).
+     *
+     * @param layerIndex the index of the layer whose colour value is to be retrieved.
+     *                   If the index is less than -100, it is normalised to a valid index by using
      *                   {@code (Math.abs(layerIndex) % 100) / 10}.
-     * @return the ARGB color value of the specified layer. If the index is out of bounds or the
-     *         specified color is invalid, returns -1.
+     *
+     * @return the ARGB colour value of the specified layer.
+     *         If the index is out of bounds, or the
+     *         specified colour is invalid, returns -1.
      */
     public int getLayerARGB(int layerIndex) {
         if (layerIndex < -100) {
@@ -126,11 +139,15 @@ public class Crop {
         return this;
     }
 
-    protected void registerCrop() {
+    /** Registers this crop object with the {@link CropRegistry}.<br>
+     *  This method should <b>ONLY</b> ever be called by {@code buildAndRegister()} in the Builder class of this class.
+     *  @see Builder#buildAndRegister()
+     */
+    private void registerCrop() {
         CropRegistry.getInstance().register(this);
     }
 
-
+    /** The main builder class for crops. New crops can <b>ONLY</b> be created through this builder.*/
     public static class Builder {
         private final CropInfo cropInfo;
 
@@ -166,7 +183,8 @@ public class Crop {
         }
 
         public Builder setRequiredBiomes(ResourceLocation... biomeIds) {
-            cropInfo.requiredBiomes.addAll(Arrays.asList(biomeIds)); // I wish I could validate this, but biomes are datapacks.
+            // I wish it was possible to validate the biomes to be assigned at load-time, but biomes are datapacks.
+            cropInfo.requiredBiomes.addAll(Arrays.asList(biomeIds));
             return this;
         }
 
@@ -181,8 +199,13 @@ public class Crop {
         }
     }
 
+    /** This class holds key information about any given crop, such as its name,
+     * its required biomes, its colours, and its assigned set of textures.
+     * */
     public static class CropInfo {
+        /** The internal name of the crop being registered. <b>CANNOT BE NULL.</b>*/
         @Getter
+        @NotNull
         private final ResourceLocation id;
         @Getter
         private final Set<ResourceLocation> requiredBiomes;
@@ -192,7 +215,7 @@ public class Crop {
         @Getter
         private CropTextures textures;
 
-        private CropInfo(ResourceLocation id) {
+        private CropInfo(@NotNull ResourceLocation id) {
             this.id = id;
             requiredBiomes = new HashSet<>();
             colors.set(0, 0x808080); // DEFAULT FLOWER COLOR
