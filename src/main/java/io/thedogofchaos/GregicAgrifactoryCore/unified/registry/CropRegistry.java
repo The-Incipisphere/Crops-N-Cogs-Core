@@ -3,6 +3,7 @@ package io.thedogofchaos.GregicAgrifactoryCore.unified.registry;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import dev.latvian.mods.kubejs.recipe.component.OrRecipeComponent;
 import io.thedogofchaos.GregicAgrifactoryCore.block.OreCropBlock;
 import io.thedogofchaos.GregicAgrifactoryCore.item.OreHarvestedItem;
 import io.thedogofchaos.GregicAgrifactoryCore.item.OreSeedItem;
@@ -52,37 +53,41 @@ public class CropRegistry implements ICropRegistry {
         return this.CROPS;
     }
 
-    public Map<String, ?> getCropBlocks(boolean asRegistryEntries) {
-        if (!asRegistryEntries) {
-            var list = new HashMap<String, OreCropBlock>();
-            this.CROP_BLOCKS.forEach((str, crop) -> {
-                list.put(str, crop.get());
-            });
-            return list;
-        }
+    public Map<String, ?> getCropBlocksAsRegistryEntries() {
         return CROP_BLOCKS;
     }
 
-    public Map<String, ?> getHarvestedItems(boolean asRegistryEntries) {
-        if (!asRegistryEntries) {
-            var list = new HashMap<String, OreHarvestedItem>();
-            this.CROP_HARVESTED_ITEMS.forEach((str, crop) -> {
-                list.put(str, crop.get());
-            });
-            return list;
-        }
+    public Map<String, OreCropBlock> getCropBlocksAsOreCropBlock() {
+        var list = new HashMap<String, OreCropBlock>();
+        this.CROP_BLOCKS.forEach((str, crop) -> {
+            list.put(str, crop.get());
+        });
+        return list;
+    }
+
+    public Map<String, ?> getHarvestedItemsAsRegistryEntries() {
         return CROP_HARVESTED_ITEMS;
     }
 
-    public Map<String, ?> getSeedItems(boolean asRegistryEntries) {
-        if (!asRegistryEntries) {
-            var list = new HashMap<String, OreSeedItem>();
-            this.CROP_SEED_ITEMS.forEach((str, crop) -> {
-                list.put(str, crop.get());
-            });
-            return list;
-        }
+    public Map<String, OreHarvestedItem> getHarvestedItemsAsOreHarvestedItem() {
+        var list = new HashMap<String, OreHarvestedItem>();
+        this.CROP_HARVESTED_ITEMS.forEach((str, crop) -> {
+            list.put(str, crop.get());
+        });
+        return list;
+
+    }
+
+    public Map<String, ?> getSeedItemsAsRegistryEntries() {
         return CROP_SEED_ITEMS;
+    }
+
+    public Map<String, OreSeedItem> getSeedItemsAsOreSeedItem() {
+        var list = new HashMap<String, OreSeedItem>();
+        this.CROP_SEED_ITEMS.forEach((str, crop) -> {
+            list.put(str, crop.get());
+        });
+        return list;
     }
 
     @Override

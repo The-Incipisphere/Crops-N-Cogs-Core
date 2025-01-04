@@ -35,5 +35,4 @@ public class GregicAgrifactoryCore {
     public static ResourceLocation id(String path) {
         return new ResourceLocation(GregicAgrifactoryCore.MOD_ID, CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, path));
     }
-
 }

@@ -10,7 +10,5 @@ import static io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore.MOD_I
 
 @Config(id = MOD_ID)
 public class GACConfig {
-    @Configurable
-    @Configurable.Comment(value = "Whether to disable Peaceful mode. Defaults to true, as this pack cannot be progressed past a certain point on Peaceful.")
-    public boolean disablePeaceful = true;
+
 }
