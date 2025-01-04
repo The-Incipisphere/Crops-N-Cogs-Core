@@ -24,7 +24,7 @@ public class BlockStatesAndModelsJsonGenerator extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         CropRegistry.getInstance().getCropBlocksAsOreCropBlock().forEach((cropName, blockEntry) -> {
-            GregicAgrifactoryCore.LOGGER.info("");
+            GregicAgrifactoryCore.LOGGER.info("CropBlock {} has the assigned CropBlock of {}",cropName,blockEntry.getCrop().getCropBlock());
         });
     }
 
