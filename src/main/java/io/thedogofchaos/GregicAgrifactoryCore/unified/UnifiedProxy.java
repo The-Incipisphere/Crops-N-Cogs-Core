@@ -3,7 +3,6 @@ package io.thedogofchaos.GregicAgrifactoryCore.unified;
 import dev.toma.configuration.Configuration;
 import dev.toma.configuration.config.format.ConfigFormats;
 import io.thedogofchaos.GregicAgrifactoryCore.GACConfig;
-import io.thedogofchaos.GregicAgrifactoryCore.datagen.DataGen;
 import io.thedogofchaos.GregicAgrifactoryCore.unified.network.Network;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -20,7 +19,6 @@ public class UnifiedProxy {
         config = Configuration.registerConfig(GACConfig.class, ConfigFormats.yaml()).getConfigInstance();
         init(modBus);
 
-        modBus.register(DataGen.class); // me when i have to do datagen at runtime
         modBus.register(this);
     }
 

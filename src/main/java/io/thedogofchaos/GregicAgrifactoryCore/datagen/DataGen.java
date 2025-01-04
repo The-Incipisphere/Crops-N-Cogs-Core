@@ -15,8 +15,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-public class DataGen {
-    @SubscribeEvent
+public class DataGen { // orphaned for now
     public static void generate(GatherDataEvent event) {
         DataGenerator generator = event.getGenerator();
         PackOutput packOutput = generator.getPackOutput();
