@@ -108,7 +108,8 @@ public class CropRegistry implements ICropRegistry {
         var crops = this.CROPS.values();
         crops.forEach(c -> {
             if (c.getCropBlock() == null) {
-                BlockEntry<OreCropBlock> cropBlockEntry = REGISTRATE.block(c.getCropNameWithSuffix("crop"), properties -> new OreCropBlock(c, properties))
+                BlockEntry<OreCropBlock> cropBlockEntry = REGISTRATE
+                        .block(c.getCropNameWithSuffix("crop"), properties -> new OreCropBlock(c, properties))
                         .initialProperties(() -> Blocks.WHEAT)
                         .properties(BlockBehaviour.Properties::noLootTable)
                         .color(() -> OreCropBlock::tintColor)
@@ -117,7 +118,8 @@ public class CropRegistry implements ICropRegistry {
                 CROP_BLOCKS.put(c.getCropName(), cropBlockEntry);
             }
             if (c.getHarvestedItem() == null) {
-                ItemEntry<OreHarvestedItem> harvestedItemEntry = REGISTRATE.item(c.getCropNameWithSuffix("harvested"), properties -> new OreHarvestedItem(c, properties))
+                ItemEntry<OreHarvestedItem> harvestedItemEntry = REGISTRATE
+                        .item(c.getCropNameWithSuffix("harvested"), properties -> new OreHarvestedItem(c, properties))
                         .initialProperties(Item.Properties::new)
                         .color(() -> OreHarvestedItem::tintColor)
                         .tab(Objects.requireNonNull(CROP_HARVESTED_TAB.getKey()))
@@ -126,7 +128,8 @@ public class CropRegistry implements ICropRegistry {
                 CROP_HARVESTED_ITEMS.put(c.getCropName(), harvestedItemEntry);
             }
             if (c.getSeedItem() == null) {
-                ItemEntry<OreSeedItem> seedItemEntry = REGISTRATE.item(c.getCropNameWithSuffix("seed"), properties -> new OreSeedItem(c, properties))
+                ItemEntry<OreSeedItem> seedItemEntry = REGISTRATE
+                        .item(c.getCropNameWithSuffix("seed"), properties -> new OreSeedItem(c, properties))
                         .initialProperties(Item.Properties::new)
                         .color(() -> OreSeedItem::tintColor)
                         .tab(Objects.requireNonNull(CROP_SEEDS_TAB.getKey()))
