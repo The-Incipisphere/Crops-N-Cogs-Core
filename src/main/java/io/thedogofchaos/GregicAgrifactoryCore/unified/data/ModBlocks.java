@@ -1,17 +1,14 @@
 package io.thedogofchaos.GregicAgrifactoryCore.unified.data;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore;
 import io.thedogofchaos.GregicAgrifactoryCore.block.OreCropBlock;
-import io.thedogofchaos.GregicAgrifactoryCore.datagen.GACBlockModelProvider;
 import io.thedogofchaos.GregicAgrifactoryCore.organic.Crop;
-import net.minecraft.data.PackOutput;
-import net.minecraft.data.models.blockstates.BlockStateGenerator;
-import net.minecraft.resources.ResourceLocation;
+import io.thedogofchaos.GregicAgrifactoryCore.util.BlockStateUtils;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraftforge.client.model.generators.BlockStateProvider;
 
+
+import static io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore.MOD_ID;
 import static io.thedogofchaos.GregicAgrifactoryCore.unified.UnifiedRegistry.REGISTRATE;
 
 public class ModBlocks {
@@ -21,21 +18,12 @@ public class ModBlocks {
             .initialProperties(() -> Blocks.WHEAT)
             .properties(BlockBehaviour.Properties::noLootTable)
             .color(() -> OreCropBlock::tintColor)
-            .blockstate((context, provider) ->
-                    provider.simpleBlock(
-                            context,
+            .blockstate((context,provider) ->
+                    BlockStateUtils.flowerCropCross(
+                            provider.getVariantBuilder(context.get()),
                             provider,
-                            /*TODO: figure out blockStates here
-                             * must point to the model gregicagrifactory/models/block/plant_assets/flower_crop_cross
-                             * must point to the relevant textures within gregicagrifactory/textures/block/plant_assets/crop/<cropHeight>/<textureSet>/<cropAge>/
-                             * where cropHeight is the height of the given crop,
-                             * textureSet is the assigned texture set of the crop,
-                             * and cropAge is the textures for each crop age.
-                             */
-                            blockState -> provider.models().withExistingParent(
-                                    becquerelliumCrop.getCropInfo().getTextures().getPlantBlockTextures().getPath(),
-                                    provider.modLoc("block")
-                            )
+                            context.get(), // may or may not have to get the block from the Crop instance (if possible)
+                            becquerelliumCrop
                     )
             )
             .register();
@@ -43,4 +31,5 @@ public class ModBlocks {
     public static void init() {
         becquerelliumCrop.setCropBlock(BECQUERELLIUM_CROP);
     }
+
 }

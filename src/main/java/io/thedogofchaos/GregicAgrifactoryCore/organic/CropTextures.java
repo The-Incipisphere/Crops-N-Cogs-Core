@@ -8,8 +8,6 @@ import static io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore.MOD_I
 import static io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore.id;
 
 public class CropTextures {
-    // TODO: Now that I've gotten crops working, I gotta get at least uncolored textures working next.
-
     public static final ResourceLocation SEED_BLANK = new ResourceLocation(MOD_ID, "");
 
     public static final CropTextures NONE = new CropTextures(null, null, null);
