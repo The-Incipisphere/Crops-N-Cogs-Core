@@ -7,8 +7,6 @@ import io.thedogofchaos.GregicAgrifactoryCore.util.BlockStateUtils;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
-
-import static io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore.MOD_ID;
 import static io.thedogofchaos.GregicAgrifactoryCore.unified.UnifiedRegistry.REGISTRATE;
 
 public class ModBlocks {
@@ -18,7 +16,7 @@ public class ModBlocks {
             .initialProperties(() -> Blocks.WHEAT)
             .properties(BlockBehaviour.Properties::noLootTable)
             .color(() -> OreCropBlock::tintColor)
-            .blockstate((context,provider) ->
+            .blockstate((context, provider) ->
                     BlockStateUtils.flowerCropCross(
                             provider.getVariantBuilder(context.get()),
                             provider,

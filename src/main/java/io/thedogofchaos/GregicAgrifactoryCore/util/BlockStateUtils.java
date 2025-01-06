@@ -3,14 +3,10 @@ package io.thedogofchaos.GregicAgrifactoryCore.util;
 import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
 import io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore;
 import io.thedogofchaos.GregicAgrifactoryCore.organic.Crop;
-import io.thedogofchaos.GregicAgrifactoryCore.organic.CropTextures;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.VariantBlockStateBuilder;
-
-import java.util.function.Function;
 
 public class BlockStateUtils {
 

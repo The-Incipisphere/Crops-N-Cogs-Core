@@ -11,9 +11,9 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @SuppressWarnings("deprecated")
 public class UnifiedProxy {
+    public static GACConfig config;
     public FMLJavaModLoadingContext modLoadingContext = FMLJavaModLoadingContext.get();
     public IEventBus modBus = modLoadingContext.getModEventBus();
-    public static GACConfig config;
 
     public UnifiedProxy() {
         config = Configuration.registerConfig(GACConfig.class, ConfigFormats.yaml()).getConfigInstance();

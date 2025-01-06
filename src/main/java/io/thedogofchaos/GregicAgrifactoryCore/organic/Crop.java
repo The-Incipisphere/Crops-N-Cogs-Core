@@ -36,19 +36,22 @@ public class Crop {
         this.cropInfo = cropInfo;
     }
 
-    /** Gets the name of the {@link Crop} object that this method is called on.
+    /**
+     * Gets the name of the {@link Crop} object that this method is called on.
+     *
      * @return The all-lowercase assigned id/name of this crop, of type {@link String}.
      */
     public String getCropName() {
         return this.cropInfo.id.getPath();
     }
 
-    /** Gets the name of the {@link Crop} object that this method is called on,
+    /**
+     * Gets the name of the {@link Crop} object that this method is called on,
      * appended with an underscore-separated suffix of one’s own choice.
      *
      * @param suffix The suffix, of type {@link String}, to append to the end of the crop’s name.
      * @return The all-lowercase assigned name of this crop, with an underscore-separated suffix applied, of type {@link String}.
-     * */
+     */
     public String getCropNameWithSuffix(String suffix) {
         return String.format("%s_%s", this.getCropName(), suffix);
     }
@@ -70,10 +73,9 @@ public class Crop {
      * @param layerIndex the index of the layer whose colour value is to be retrieved.
      *                   If the index is less than -100, it is normalised to a valid index by using
      *                   {@code (Math.abs(layerIndex) % 100) / 10}.
-     *
      * @return the ARGB colour value of the specified layer.
-     *         If the index is out of bounds, or the
-     *         specified colour is invalid, returns -1.
+     * If the index is out of bounds, or the
+     * specified colour is invalid, returns -1.
      */
     public int getLayerARGB(int layerIndex) {
         if (layerIndex < -100) {
@@ -87,6 +89,7 @@ public class Crop {
 
     /**
      * Directly gets the crop block of the given crop (NOT the supplier containing it)
+     *
      * @return The crop block (of type {@link CropBlock}) assigned to this crop, or <b>{@link null}</b> if it is not present.
      */
     public CropBlock getCropBlock() {
@@ -95,6 +98,7 @@ public class Crop {
 
     /**
      * Sets the crop block of the {@link Crop} object that this method was called on.
+     *
      * @param cropBlock Anything extending from {@link CropBlock} that you wish to set as the crop block of this crop.
      * @return The {@link Crop} object that this method was called on.
      */
@@ -105,6 +109,7 @@ public class Crop {
 
     /**
      * Directly gets the harvested item of the given crop (NOT the supplier containing it)
+     *
      * @return The harvested item (of type {@link Item}) assigned to this crop, or <b>{@link null}</b> if it is not present.
      */
     public Item getHarvestedItem() {
@@ -113,6 +118,7 @@ public class Crop {
 
     /**
      * Sets the harvested item of the {@link Crop} object that this method was called on.
+     *
      * @param harvestedItem Anything extending from {@link Item} that you wish to set as the harvested item of this crop.
      * @return The {@link Crop} object that this method was called on.
      */
@@ -123,6 +129,7 @@ public class Crop {
 
     /**
      * Directly gets the seed item of the given crop (NOT the supplier containing it)
+     *
      * @return The seed item (of type {@link ItemNameBlockItem}) assigned to this crop, or <b>{@link null}</b> if it is not present.
      */
     public ItemNameBlockItem getSeedItem() {
@@ -131,6 +138,7 @@ public class Crop {
 
     /**
      * Sets the seed item of the {@link Crop} object that this method was called on.
+     *
      * @param seedItem Anything extending from {@link ItemNameBlockItem} that you wish to set as the seed item of this crop.
      * @return The {@link Crop} object that this method was called on.
      */
@@ -139,15 +147,19 @@ public class Crop {
         return this;
     }
 
-    /** Registers this crop object with the {@link CropRegistry}.<br>
-     *  This method should <b>ONLY</b> ever be called by {@code buildAndRegister()} in the Builder class of this class.
-     *  @see Builder#buildAndRegister()
+    /**
+     * Registers this crop object with the {@link CropRegistry}.<br>
+     * This method should <b>ONLY</b> ever be called by {@code buildAndRegister()} in the Builder class of this class.
+     *
+     * @see Builder#buildAndRegister()
      */
     private void registerCrop() {
         CropRegistry.getInstance().register(this);
     }
 
-    /** The main builder class for crops. New crops can <b>ONLY</b> be created through this builder.*/
+    /**
+     * The main builder class for crops. New crops can <b>ONLY</b> be created through this builder.
+     */
     public static class Builder {
         private final CropInfo cropInfo;
 
@@ -199,11 +211,14 @@ public class Crop {
         }
     }
 
-    /** This class holds key information about any given crop, such as its name,
+    /**
+     * This class holds key information about any given crop, such as its name,
      * its required biomes, its colours, and its assigned set of textures.
-     * */
+     */
     public static class CropInfo {
-        /** The internal name of the crop being registered. <b>CANNOT BE NULL.</b>*/
+        /**
+         * The internal name of the crop being registered. <b>CANNOT BE NULL.</b>
+         */
         @Getter
         @NotNull
         private final ResourceLocation id;

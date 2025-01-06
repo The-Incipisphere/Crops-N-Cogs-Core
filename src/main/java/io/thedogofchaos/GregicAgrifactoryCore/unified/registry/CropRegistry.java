@@ -3,7 +3,6 @@ package io.thedogofchaos.GregicAgrifactoryCore.unified.registry;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import dev.latvian.mods.kubejs.recipe.component.OrRecipeComponent;
 import io.thedogofchaos.GregicAgrifactoryCore.block.OreCropBlock;
 import io.thedogofchaos.GregicAgrifactoryCore.item.OreHarvestedItem;
 import io.thedogofchaos.GregicAgrifactoryCore.item.OreSeedItem;

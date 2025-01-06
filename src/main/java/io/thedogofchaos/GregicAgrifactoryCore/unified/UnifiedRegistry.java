@@ -7,9 +7,6 @@ import io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModCreativeTabs;
 import io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModItems;
 import io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModPlants;
 import io.thedogofchaos.GregicAgrifactoryCore.unified.registry.CropRegistry;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.PackOutput;
-import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 
 public class UnifiedRegistry {
