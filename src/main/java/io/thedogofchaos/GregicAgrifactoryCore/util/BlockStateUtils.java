@@ -1,8 +1,10 @@
 package io.thedogofchaos.GregicAgrifactoryCore.util;
 
 import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
+import io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore;
 import io.thedogofchaos.GregicAgrifactoryCore.organic.Crop;
 import io.thedogofchaos.GregicAgrifactoryCore.organic.CropTextures;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
@@ -20,15 +22,14 @@ public class BlockStateUtils {
      * and cropAge is the textures for each crop age.
      */
 
-    public static void flowerCropCross(VariantBlockStateBuilder variantBuilder, RegistrateBlockstateProvider provider, CropBlock cropBlock, Crop crop) {
-        Function<BlockState, ConfiguredModel[]> function = state -> cropStates(state, provider, cropBlock, crop);
-        variantBuilder.forAllStates(function);
+    public static void flowerCropCross(VariantBlockStateBuilder variantBuilder, RegistrateBlockstateProvider provider, Crop crop) {
+        variantBuilder.forAllStates(state -> cropStates(state, provider, crop));
     }
 
-    private static ConfiguredModel[] cropStates(BlockState state, RegistrateBlockstateProvider provider, CropBlock cropBlock, Crop crop) {
+    private static ConfiguredModel[] cropStates(BlockState state, RegistrateBlockstateProvider provider, Crop crop) {
         ConfiguredModel[] models = new ConfiguredModel[1];
         models[0] = new ConfiguredModel(
-                provider.models().withExistingParent(REPLACEMEWITHCROPNAME, REPLACEMEWITHMODELFILE)
+                provider.models().withExistingParent(crop.getCropName(), new ResourceLocation(GregicAgrifactoryCore.MOD_ID, "block/plant_assets/flower_crop_cross"))
                         .texture("flower", FLOWERTEXTUREHERE)
                         .texture("pistil", PISTILTEXTUREHERE)
                         .texture("stem", STEMTEXTUREHERE)

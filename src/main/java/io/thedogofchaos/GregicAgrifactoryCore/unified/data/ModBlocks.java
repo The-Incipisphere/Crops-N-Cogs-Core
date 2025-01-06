@@ -22,7 +22,6 @@ public class ModBlocks {
                     BlockStateUtils.flowerCropCross(
                             provider.getVariantBuilder(context.get()),
                             provider,
-                            context.get(), // may or may not have to get the block from the Crop instance (if possible)
                             becquerelliumCrop
                     )
             )
