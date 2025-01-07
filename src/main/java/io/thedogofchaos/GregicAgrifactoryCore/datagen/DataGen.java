@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 /** Shouldn't need this class any more.
- * @deprecated as of 6th January 2025. Use Registrate’s built-in datagen where possible.
+ * @deprecated as of 6th January 2025. Try and use Registrate’s built-in datagen where possible.
  */
 @Deprecated
 public class DataGen {

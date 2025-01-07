@@ -9,6 +9,10 @@ import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 
+/** Shouldn't need this class any more.
+ * @deprecated as of 7th January 2025. Try and use Registrate’s built-in datagen where possible.
+ */
+@Deprecated
 public class ItemModelJsonGenerator extends ItemModelProvider {
     public ItemModelJsonGenerator(PackOutput packOutput, ExistingFileHelper existingFileHelper) {
         super(packOutput, GregicAgrifactoryCore.MOD_ID, existingFileHelper);

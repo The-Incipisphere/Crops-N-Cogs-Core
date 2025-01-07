@@ -17,6 +17,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/** Shouldn't need this class any more.
+ * @deprecated as of 7th January 2025. Try and use Registrate’s built-in datagen where possible.
+ */
+@Deprecated
 public class LootTableJsonGenerator extends BlockLootSubProvider {
     public LootTableJsonGenerator() {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags());
