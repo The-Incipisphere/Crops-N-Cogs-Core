@@ -54,23 +54,7 @@ public class LootTableJsonGenerator extends BlockLootSubProvider {
         return applyExplosionDecay(
                 cropBlock,
                 LootTable.lootTable()
-                        .withPool(LootPool.lootPool()
-                                .add(LootItem.lootTableItem(harvestedItem)
-                                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(cropBlock)
-                                                .setProperties(StatePropertiesPredicate.Builder.properties()
-                                                        .hasProperty(ageProperty, 7)
-                                                )
-                                        ).otherwise(LootItem.lootTableItem(seedItem))
-                                )
-                        )
-                        .withPool(LootPool.lootPool()
-                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(cropBlock)
-                                        .setProperties(StatePropertiesPredicate.Builder.properties()
-                                                .hasProperty(ageProperty, 7)
-                                        )
-                                )
-                                .add(LootItem.lootTableItem(seedItem))
-                        )
+
 
         );
     }

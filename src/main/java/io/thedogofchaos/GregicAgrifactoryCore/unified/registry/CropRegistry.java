@@ -1,5 +1,6 @@
 package io.thedogofchaos.GregicAgrifactoryCore.unified.registry;
 
+import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
@@ -10,9 +11,14 @@ import io.thedogofchaos.GregicAgrifactoryCore.organic.Crop;
 import io.thedogofchaos.GregicAgrifactoryCore.util.BlockStateUtils;
 import lombok.Getter;
 import lombok.Setter;
+import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
@@ -131,17 +137,40 @@ public class CropRegistry implements ICropRegistry {
         return REGISTRATE
                 .block(crop.getCropNameWithSuffix("crop"), properties -> new OreCropBlock(crop, properties))
                 .initialProperties(() -> Blocks.WHEAT)
-                .loot((lootTable, block) -> {/* insert loot table logic here*/})
+                .loot((lootTable, block) ->
+                        // this may or may not work
+                        lootTable.add(block, new LootTable.Builder()
+                                .withPool(LootPool.lootPool()
+                                        .add(LootItem.lootTableItem(crop.getHarvestedItem())
+                                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                                                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                                .hasProperty(block.getAgeProperty(), 7)
+                                                        )
+                                                ).otherwise(LootItem.lootTableItem(crop.getSeedItem()))
+                                        )
+                                )
+                                .withPool(LootPool.lootPool()
+                                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                                                .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                        .hasProperty(block.getAgeProperty(), 7)
+                                                )
+                                        )
+                                        .add(LootItem.lootTableItem(crop.getSeedItem()))
+                                )
+                        )
+                )
                 .blockstate((context, provider) ->
                         BlockStateUtils.flowerCropCross(
                                 provider.getVariantBuilder(context.get()),
                                 provider,
                                 crop,
-                                context.get())
+                                context.get()
+                        )
                 )
                 .color(() -> OreCropBlock::tintColor)
                 .register();
     }
+
     public static @NotNull ItemEntry<OreHarvestedItem> makeHarvestedItem(Crop crop, String textureSetName){
         return REGISTRATE
                 .item(crop.getCropNameWithSuffix("harvested"), properties -> new OreHarvestedItem(crop, properties))
