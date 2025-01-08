@@ -20,8 +20,8 @@ public class ModBlocks {
                     BlockStateUtils.flowerCropCross(
                             provider.getVariantBuilder(context.get()),
                             provider,
-                            becquerelliumCrop
-                    )
+                            becquerelliumCrop,
+                            context.get())
             )
             .register();
 

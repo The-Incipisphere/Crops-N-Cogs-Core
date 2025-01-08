@@ -7,6 +7,7 @@ import io.thedogofchaos.GregicAgrifactoryCore.block.OreCropBlock;
 import io.thedogofchaos.GregicAgrifactoryCore.item.OreHarvestedItem;
 import io.thedogofchaos.GregicAgrifactoryCore.item.OreSeedItem;
 import io.thedogofchaos.GregicAgrifactoryCore.organic.Crop;
+import io.thedogofchaos.GregicAgrifactoryCore.util.BlockStateUtils;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.resources.ResourceLocation;
@@ -19,6 +20,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import static io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore.MOD_ID;
 import static io.thedogofchaos.GregicAgrifactoryCore.unified.UnifiedRegistry.REGISTRATE;
 import static io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModCreativeTabs.CROP_HARVESTED_TAB;
 import static io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModCreativeTabs.CROP_SEEDS_TAB;
@@ -111,6 +113,13 @@ public class CropRegistry implements ICropRegistry {
                         .block(c.getCropNameWithSuffix("crop"), properties -> new OreCropBlock(c, properties))
                         .initialProperties(() -> Blocks.WHEAT)
                         .properties(BlockBehaviour.Properties::noLootTable)
+                        .blockstate((context, provider) ->
+                                BlockStateUtils.flowerCropCross(
+                                        provider.getVariantBuilder(context.get()),
+                                        provider,
+                                        c,
+                                        context.get())
+                        )
                         .color(() -> OreCropBlock::tintColor)
                         .register();
                 c.setCropBlock(cropBlockEntry);
@@ -120,6 +129,8 @@ public class CropRegistry implements ICropRegistry {
                 ItemEntry<OreHarvestedItem> harvestedItemEntry = REGISTRATE
                         .item(c.getCropNameWithSuffix("harvested"), properties -> new OreHarvestedItem(c, properties))
                         .initialProperties(Item.Properties::new)
+
+                        .model((context,provider) -> {/* TODO: make multi-layer item model here */})
                         .color(() -> OreHarvestedItem::tintColor)
                         .tab(Objects.requireNonNull(CROP_HARVESTED_TAB.getKey()))
                         .register();
@@ -130,6 +141,7 @@ public class CropRegistry implements ICropRegistry {
                 ItemEntry<OreSeedItem> seedItemEntry = REGISTRATE
                         .item(c.getCropNameWithSuffix("seed"), properties -> new OreSeedItem(c, properties))
                         .initialProperties(Item.Properties::new)
+                        .model((context,provider) -> provider.basicItem(new ResourceLocation(MOD_ID,String.format("item/plant_assets/crop/%s/seed", c.getCropInfo().getTextures().getTextureSetName()))))
                         .color(() -> OreSeedItem::tintColor)
                         .tab(Objects.requireNonNull(CROP_SEEDS_TAB.getKey()))
                         .register();

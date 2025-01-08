@@ -11,7 +11,7 @@ import static io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModPlants.Magn
 public class MetalCrops {
     public static void init() {
         Gold = new Crop.Builder(id("gold"))
-                .setTextures(CropTextures.NONE)
+                .setTextures(CropTextures.DEBUG)
                 .setFlowerColor(0xfdf55f)
                 .setPistilColor(0xf25833)
                 .setRequiredBiomes(
@@ -19,7 +19,7 @@ public class MetalCrops {
                 )
                 .buildAndRegister();
         Magnetite = new Crop.Builder(id("magnetite"))
-                .setTextures(CropTextures.NONE)
+                .setTextures(CropTextures.DEBUG)
                 .setFlowerColor(0x9d9d9d)
                 .setPistilColor(0x06070e)
                 .setRequiredBiomes(

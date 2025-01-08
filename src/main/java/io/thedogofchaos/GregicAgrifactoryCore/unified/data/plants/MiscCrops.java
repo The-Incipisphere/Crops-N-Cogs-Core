@@ -11,8 +11,8 @@ public class MiscCrops {
         Becquerellium = new Crop.Builder(id("becquerellium"))
                 .setFlowerColor(0xc0ffc0)
                 .setPistilColor(0x00ff00)
-                .setTextures(CropTextures.NULLZONE)
-                .setRequiredBiomes(id("nullzone"))
+                .setTextures(CropTextures.DEBUG)
+                .setRequiredBiomes(id("nullzone")) // NOTE: BIOME IS NOT IN THE PACK YET
                 .buildButDontRegister();
     }
 }

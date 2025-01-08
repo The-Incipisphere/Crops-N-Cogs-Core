@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "gregicagrifactory:block/gold0"
+    },
+    "age=1": {
+      "model": "gregicagrifactory:block/gold1"
+    },
+    "age=2": {
+      "model": "gregicagrifactory:block/gold2"
+    },
+    "age=3": {
+      "model": "gregicagrifactory:block/gold3"
+    },
+    "age=4": {
+      "model": "gregicagrifactory:block/gold4"
+    },
+    "age=5": {
+      "model": "gregicagrifactory:block/gold5"
+    },
+    "age=6": {
+      "model": "gregicagrifactory:block/gold6"
+    },
+    "age=7": {
+      "model": "gregicagrifactory:block/gold7"
+    }
+  }
+}

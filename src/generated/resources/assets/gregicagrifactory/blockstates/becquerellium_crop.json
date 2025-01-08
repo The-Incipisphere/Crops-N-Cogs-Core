@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "gregicagrifactory:block/becquerellium0"
+    },
+    "age=1": {
+      "model": "gregicagrifactory:block/becquerellium1"
+    },
+    "age=2": {
+      "model": "gregicagrifactory:block/becquerellium2"
+    },
+    "age=3": {
+      "model": "gregicagrifactory:block/becquerellium3"
+    },
+    "age=4": {
+      "model": "gregicagrifactory:block/becquerellium4"
+    },
+    "age=5": {
+      "model": "gregicagrifactory:block/becquerellium5"
+    },
+    "age=6": {
+      "model": "gregicagrifactory:block/becquerellium6"
+    },
+    "age=7": {
+      "model": "gregicagrifactory:block/becquerellium7"
+    }
+  }
+}
