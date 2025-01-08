@@ -1,4 +1,4 @@
-// 1.20.1	2025-01-08T19:47:30.8536461	Registrate Provider for gregicagrifactory [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
+// 1.20.1	2025-01-08T21:10:12.2459198	Registrate Provider for gregicagrifactory [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
 8406496d1c419a11a688cdc29e8e730d873363e7 assets/gregicagrifactory/blockstates/becquerellium_crop.json
 eabda5c0c17eaa3f4d8c4d47902f590ccaaba062 assets/gregicagrifactory/blockstates/gold_crop.json
 225d4eab9ae68a35ddc9da6893cd2ecf27b7dd59 assets/gregicagrifactory/blockstates/magnetite_crop.json
@@ -30,9 +30,11 @@ a7df76d2d4b448ce9c78c5b737e6ed94f036b1b3 assets/gregicagrifactory/models/block/m
 4d030e1f05dba923b29ccd5f6d31c75cd9b32f0d assets/gregicagrifactory/models/block/magnetite_crop_age7.json
 594dafa79322a9818278ec85e67f19db728f577f assets/gregicagrifactory/models/item/anti_trample_boots.json
 3ee29586fa1c9bc8e0c2286ec7cc2940edcf4d55 assets/gregicagrifactory/models/item/becquerellium_harvested.json
+5eaf03deee54ad7816e0f87ceccef3c6b4c02cb4 assets/gregicagrifactory/models/item/becquerellium_seed.json
 3ee29586fa1c9bc8e0c2286ec7cc2940edcf4d55 assets/gregicagrifactory/models/item/gold_harvested.json
+5eaf03deee54ad7816e0f87ceccef3c6b4c02cb4 assets/gregicagrifactory/models/item/gold_seed.json
 3ee29586fa1c9bc8e0c2286ec7cc2940edcf4d55 assets/gregicagrifactory/models/item/magnetite_harvested.json
-5eaf03deee54ad7816e0f87ceccef3c6b4c02cb4 assets/gregicagrifactory/models/plant_assets/crop/debug/seed.json
+5eaf03deee54ad7816e0f87ceccef3c6b4c02cb4 assets/gregicagrifactory/models/item/magnetite_seed.json
 b7033243abd296968df7186978aafe42609cae18 data/gregicagrifactory/loot_tables/blocks/becquerellium_crop.json
 25d18b4787cf1ed1fdc16571421fa606899cad93 data/gregicagrifactory/loot_tables/blocks/gold_crop.json
 d2ae7b2ca75ac985e1d4cf0f3155d95be29d5518 data/gregicagrifactory/loot_tables/blocks/magnetite_crop.json

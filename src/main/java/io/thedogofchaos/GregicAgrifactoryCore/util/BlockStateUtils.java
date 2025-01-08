@@ -7,7 +7,6 @@ import io.thedogofchaos.GregicAgrifactoryCore.organic.Crop;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.VariantBlockStateBuilder;
 
@@ -19,11 +18,9 @@ public class BlockStateUtils {
      * where cropHeight is the height of the given crop,
      * textureSet is the assigned texture set of the crop,
      * and cropAge is the textures for each crop age.
-     * -
-     * UPDATE: SMOKE TEST TIME!
      */
 
-    public static void flowerCropCross(VariantBlockStateBuilder variantBuilder, RegistrateBlockstateProvider provider, Crop crop, CropBlock cropBlock) {
+    public static void threeTextureCropCross(VariantBlockStateBuilder variantBuilder, RegistrateBlockstateProvider provider, Crop crop, CropBlock cropBlock) {
         variantBuilder.forAllStates(state -> cropStates(state, provider, crop, cropBlock));
     }
 
