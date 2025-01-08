@@ -7,6 +7,7 @@ import io.thedogofchaos.GregicAgrifactoryCore.organic.Crop;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.VariantBlockStateBuilder;
 
@@ -27,13 +28,14 @@ public class BlockStateUtils {
     }
 
     private static ConfiguredModel[] cropStates(BlockState state, RegistrateBlockstateProvider provider, Crop crop, CropBlock cropBlock) {
+        int cropAge = state.getValue(((OreCropBlock) cropBlock).getAgeProperty());
         String textureSetName = crop.getCropInfo().getTextures().getTextureSetName();
         ConfiguredModel[] models = new ConfiguredModel[1];
         models[0] = new ConfiguredModel(
-                provider.models().withExistingParent(crop.getCropName().concat(state.getValue(((OreCropBlock) cropBlock).getAgeProperty()).toString()), new ResourceLocation(GregicAgrifactoryCore.MOD_ID, "block/plant_assets/flower_crop_cross"))
-                        .texture("flower", String.format("block/plant_assets/crop/1_tall/%s/age%d/flower", textureSetName, state.getValue(((OreCropBlock) cropBlock).getAgeProperty())))
-                        .texture("pistil", String.format("block/plant_assets/crop/1_tall/%s/age%d/pistil", textureSetName, state.getValue(((OreCropBlock) cropBlock).getAgeProperty())))
-                        .texture("stem", String.format("block/plant_assets/crop/1_tall/%s/age%d/stem", textureSetName, state.getValue(((OreCropBlock) cropBlock).getAgeProperty())))
+                provider.models().withExistingParent(crop.getCropNameWithSuffix("crop_age")+cropAge, new ResourceLocation(GregicAgrifactoryCore.MOD_ID, "block/plant_assets/flower_crop_cross"))
+                        .texture("flower", "block/plant_assets/crop/1_tall/"+textureSetName+"/age"+cropAge+"/flower")
+                        .texture("pistil", "block/plant_assets/crop/1_tall/"+textureSetName+"/age"+cropAge+"/pistil")
+                        .texture("stem", "block/plant_assets/crop/1_tall/"+textureSetName+"/age"+cropAge+"/stem")
         );
         return models;
     }

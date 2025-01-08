@@ -1,7 +1,8 @@
 {
-  "parent": "minecraft:block/cross",
-  "render_type": "minecraft:cutout",
+  "parent": "gregicagrifactory:block/plant_assets/flower_crop_cross",
   "textures": {
-    "cross": "gregicagrifactory:block/crop/magnetite/magnetite_crop_age2"
+    "flower": "gregicagrifactory:block/plant_assets/crop/1_tall/debug/age2/flower",
+    "pistil": "gregicagrifactory:block/plant_assets/crop/1_tall/debug/age2/pistil",
+    "stem": "gregicagrifactory:block/plant_assets/crop/1_tall/debug/age2/stem"
   }
 }

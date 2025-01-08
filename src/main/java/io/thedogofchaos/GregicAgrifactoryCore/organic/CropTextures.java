@@ -2,15 +2,22 @@ package io.thedogofchaos.GregicAgrifactoryCore.organic;
 
 import lombok.Getter;
 import lombok.NonNull;
+import net.minecraft.client.Minecraft;
+import net.minecraft.resources.ResourceLocation;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 @Getter // 08-01-2025: i was today years old when i found out that lombok annotations can be applied at the class level.
 public class CropTextures {
     private final String textureSetName;
 
     public static final CropTextures DEBUG = new CropTextures("debug");
+    public static final CropTextures FOO = new CropTextures("foo");
+    public static final CropTextures BAR = new CropTextures("bar");
 
     private CropTextures(@NonNull String textureSetName){
-        // sanity check, make sure we're not trying to define invalid shit to be passed into a ResourceLocation
+        // validation, make sure we’re not trying to define invalid shit to be passed into a ResourceLocation
         if (textureSetName.trim().isEmpty()) {
             throw new IllegalArgumentException("The texture set's name cannot be empty. Check your constants.");
         } else if (textureSetName.startsWith("_") || textureSetName.endsWith("_")) {
