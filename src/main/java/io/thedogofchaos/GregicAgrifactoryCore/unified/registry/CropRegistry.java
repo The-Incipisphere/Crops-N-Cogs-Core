@@ -13,7 +13,7 @@ import lombok.Setter;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockBehaviour;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -110,52 +110,62 @@ public class CropRegistry implements ICropRegistry {
         crops.forEach(c -> {
             String textureSetName = c.getCropInfo().getTextures().getTextureSetName();
             if (c.getCropBlock() == null) {
-                BlockEntry<OreCropBlock> cropBlockEntry = REGISTRATE
-                        .block(c.getCropNameWithSuffix("crop"), properties -> new OreCropBlock(c, properties))
-                        .initialProperties(() -> Blocks.WHEAT)
-                        .loot((lootTable, block ) -> {/* insert loot table logic here*/})
-                        .blockstate((context, provider) ->
-                                BlockStateUtils.flowerCropCross(
-                                        provider.getVariantBuilder(context.get()),
-                                        provider,
-                                        c,
-                                        context.get())
-                        )
-                        .color(() -> OreCropBlock::tintColor)
-                        .register();
+                BlockEntry<OreCropBlock> cropBlockEntry = makeCropBlock(c);
                 c.setCropBlock(cropBlockEntry);
                 CROP_BLOCKS.put(c.getCropName(), cropBlockEntry);
             }
             if (c.getHarvestedItem() == null) {
-                ItemEntry<OreHarvestedItem> harvestedItemEntry = REGISTRATE
-                        .item(c.getCropNameWithSuffix("harvested"), properties -> new OreHarvestedItem(c, properties))
-                        .initialProperties(Item.Properties::new)
-                        .model((context,provider) -> provider.generated(
-                                context,
-                                new ResourceLocation(MOD_ID, "block/plant_assets/crop/1_tall/"+textureSetName+"/age7/flower"),
-                                new ResourceLocation(MOD_ID, "block/plant_assets/crop/1_tall/"+textureSetName+"/age7/pistil"),
-                                new ResourceLocation(MOD_ID, "block/plant_assets/crop/1_tall/"+textureSetName+"/age7/stem")
-                                )
-                        )
-                        .color(() -> OreHarvestedItem::tintColor)
-                        .tab(Objects.requireNonNull(CROP_HARVESTED_TAB.getKey()))
-                        .register();
+                ItemEntry<OreHarvestedItem> harvestedItemEntry = makeHarvestedItem(c, textureSetName);
                 c.setHarvestedItem(harvestedItemEntry);
                 CROP_HARVESTED_ITEMS.put(c.getCropName(), harvestedItemEntry);
             }
             if (c.getSeedItem() == null) {
-                ItemEntry<OreSeedItem> seedItemEntry = REGISTRATE
-                        .item(c.getCropNameWithSuffix("seed"), properties -> new OreSeedItem(c, properties))
-                        .initialProperties(Item.Properties::new)
-                        .model((context,provider) -> provider.basicItem(new ResourceLocation(MOD_ID,"plant_assets/crop/"+c.getCropInfo().getTextures().getTextureSetName()+"/seed")))
-                        .color(() -> OreSeedItem::tintColor)
-                        .tab(Objects.requireNonNull(CROP_SEEDS_TAB.getKey()))
-                        .register();
+                ItemEntry<OreSeedItem> seedItemEntry = makeSeedItem(c);
                 c.setSeedItem(seedItemEntry);
                 CROP_SEED_ITEMS.put(c.getCropName(), seedItemEntry);
             }
         });
     }
 
+    public static @NotNull BlockEntry<OreCropBlock> makeCropBlock(Crop crop) {
+        return REGISTRATE
+                .block(crop.getCropNameWithSuffix("crop"), properties -> new OreCropBlock(crop, properties))
+                .initialProperties(() -> Blocks.WHEAT)
+                .loot((lootTable, block) -> {/* insert loot table logic here*/})
+                .blockstate((context, provider) ->
+                        BlockStateUtils.flowerCropCross(
+                                provider.getVariantBuilder(context.get()),
+                                provider,
+                                crop,
+                                context.get())
+                )
+                .color(() -> OreCropBlock::tintColor)
+                .register();
+    }
+    public static @NotNull ItemEntry<OreHarvestedItem> makeHarvestedItem(Crop crop, String textureSetName){
+        return REGISTRATE
+                .item(crop.getCropNameWithSuffix("harvested"), properties -> new OreHarvestedItem(crop, properties))
+                .initialProperties(Item.Properties::new)
+                .model((context,provider) -> provider.generated(
+                                context,
+                                new ResourceLocation(MOD_ID, "block/plant_assets/crop/1_tall/"+textureSetName+"/age7/flower"),
+                                new ResourceLocation(MOD_ID, "block/plant_assets/crop/1_tall/"+textureSetName+"/age7/pistil"),
+                                new ResourceLocation(MOD_ID, "block/plant_assets/crop/1_tall/"+textureSetName+"/age7/stem")
+                        )
+                )
+                .color(() -> OreHarvestedItem::tintColor)
+                .tab(Objects.requireNonNull(CROP_HARVESTED_TAB.getKey()))
+                .register();
+    }
+
+    public static @NotNull ItemEntry<OreSeedItem> makeSeedItem(Crop crop) {
+        return REGISTRATE
+                .item(crop.getCropNameWithSuffix("seed"), properties -> new OreSeedItem(crop, properties))
+                .initialProperties(Item.Properties::new)
+                .model((context, provider) -> provider.basicItem(new ResourceLocation(MOD_ID, "plant_assets/crop/" + crop.getCropInfo().getTextures().getTextureSetName() + "/seed")))
+                .color(() -> OreSeedItem::tintColor)
+                .tab(Objects.requireNonNull(CROP_SEEDS_TAB.getKey()))
+                .register();
+    }
 }
 

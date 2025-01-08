@@ -3,6 +3,7 @@ package io.thedogofchaos.GregicAgrifactoryCore.unified.data;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import io.thedogofchaos.GregicAgrifactoryCore.item.OreHarvestedItem;
 import io.thedogofchaos.GregicAgrifactoryCore.item.OreSeedItem;
+import io.thedogofchaos.GregicAgrifactoryCore.unified.registry.CropRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterials;
@@ -15,30 +16,9 @@ import static io.thedogofchaos.GregicAgrifactoryCore.unified.UnifiedRegistry.REG
 import static io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModCreativeTabs.*;
 
 public class ModItems {
-    public static final RegistryEntry<OreHarvestedItem> BECQUERELLIUM_HARVESTED = REGISTRATE
-            .item("becquerellium_harvested", properties -> new OreHarvestedItem(ModBlocks.becquerelliumCrop, properties))
-            .initialProperties(Item.Properties::new)
-            .model((context,provider) -> {
-                String textureSetName = ModBlocks.becquerelliumCrop.getCropInfo().getTextures().getTextureSetName();
-                provider.generated(
-                                context,
-                                new ResourceLocation(MOD_ID, "block/plant_assets/crop/1_tall/"+textureSetName+"/age7/flower"),
-                                new ResourceLocation(MOD_ID, "block/plant_assets/crop/1_tall/"+textureSetName+"/age7/pistil"),
-                                new ResourceLocation(MOD_ID, "block/plant_assets/crop/1_tall/"+textureSetName+"/age7/stem")
-                        );
-                    }
-            )
-            .color(() -> OreHarvestedItem::tintColor)
-            .tab(Objects.requireNonNull(CROP_HARVESTED_TAB.getKey()))
-            .register();
+    public static final RegistryEntry<OreHarvestedItem> BECQUERELLIUM_HARVESTED = CropRegistry.makeHarvestedItem(ModBlocks.becquerelliumCrop, ModBlocks.becquerelliumCrop.getCropInfo().getTextures().getTextureSetName());
 
-    public static final RegistryEntry<OreSeedItem> BECQUERELLIUM_SEEDS = REGISTRATE
-            .item("becquerellium_seed", properties -> new OreSeedItem(ModBlocks.becquerelliumCrop, properties))
-            .initialProperties(Item.Properties::new)
-            .model((context,provider) -> provider.basicItem(new ResourceLocation(MOD_ID,"plant_assets/crop/"+ModBlocks.becquerelliumCrop.getCropInfo().getTextures().getTextureSetName()+"/seed")))
-            .color(() -> OreSeedItem::tintColor)
-            .tab(Objects.requireNonNull(CROP_SEEDS_TAB.getKey()))
-            .register();
+    public static final RegistryEntry<OreSeedItem> BECQUERELLIUM_SEEDS = CropRegistry.makeSeedItem(ModBlocks.becquerelliumCrop);
 
     public static final RegistryEntry<ArmorItem> ANTI_TRAMPLE_BOOTS = REGISTRATE
             .item("anti_trample_boots", properties -> new ArmorItem(ArmorMaterials.LEATHER, ArmorItem.Type.BOOTS, properties))
