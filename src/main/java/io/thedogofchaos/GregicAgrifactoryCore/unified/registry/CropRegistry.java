@@ -1,5 +1,8 @@
 package io.thedogofchaos.GregicAgrifactoryCore.unified.registry;
 
+import com.google.common.base.CaseFormat;
+import com.gregtechceu.gtceu.data.lang.LangHandler;
+import com.tterrag.registrate.providers.RegistrateLangProvider;
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.entry.ItemEntry;
@@ -168,6 +171,7 @@ public class CropRegistry implements ICropRegistry {
                         )
                 )
                 .color(() -> OreCropBlock::tintColor)
+                .lang(RegistrateLangProvider.toEnglishName(crop.getCropNameWithSuffix("crop")))
                 .register();
     }
 
@@ -183,6 +187,7 @@ public class CropRegistry implements ICropRegistry {
                         )
                 )
                 .color(() -> OreHarvestedItem::tintColor)
+                .lang(RegistrateLangProvider.toEnglishName(crop.getCropNameWithSuffix("harvested")))
                 .tab(Objects.requireNonNull(CROP_HARVESTED_TAB.getKey()))
                 .register();
     }
@@ -193,6 +198,7 @@ public class CropRegistry implements ICropRegistry {
                 .initialProperties(Item.Properties::new)
                 .model((context, provider) -> provider.basicItem(new ResourceLocation(MOD_ID, "plant_assets/crop/" + crop.getCropInfo().getTextures().getTextureSetName() + "/seed")))
                 .color(() -> OreSeedItem::tintColor)
+                .lang(RegistrateLangProvider.toEnglishName(crop.getCropNameWithSuffix("seed")))
                 .tab(Objects.requireNonNull(CROP_SEEDS_TAB.getKey()))
                 .register();
     }
