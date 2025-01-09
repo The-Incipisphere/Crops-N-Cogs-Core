@@ -9,7 +9,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
 
-/** Shouldn't need this class any more.
+/**
+ * Shouldn't need this class any more.
+ *
  * @deprecated as of 7th January 2025. Try and use Registrate’s built-in datagen where possible.
  */
 @Deprecated

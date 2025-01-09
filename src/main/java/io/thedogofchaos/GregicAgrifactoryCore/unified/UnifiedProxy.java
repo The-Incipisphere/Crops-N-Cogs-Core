@@ -13,10 +13,10 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @SuppressWarnings("deprecated")
 public class UnifiedProxy {
+    public static final Registrate REGISTRATE = Registrate.create(GregicAgrifactoryCore.MOD_ID);
     public static GACConfig config;
     public FMLJavaModLoadingContext modLoadingContext = FMLJavaModLoadingContext.get();
     public IEventBus modBus = modLoadingContext.getModEventBus();
-    public static final Registrate REGISTRATE = Registrate.create(GregicAgrifactoryCore.MOD_ID);
 
     public UnifiedProxy() {
         config = Configuration.registerConfig(GACConfig.class, ConfigFormats.yaml()).getConfigInstance();

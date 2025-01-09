@@ -29,10 +29,10 @@ public class BlockStateUtils {
         String textureSetName = crop.getCropInfo().getTextures().getTextureSetName();
         ConfiguredModel[] models = new ConfiguredModel[1];
         models[0] = new ConfiguredModel(
-                provider.models().withExistingParent(crop.getCropNameWithSuffix("crop_age")+cropAge, new ResourceLocation(GregicAgrifactoryCore.MOD_ID, "block/plant_assets/flower_crop_cross"))
-                        .texture("flower", "block/plant_assets/crop/1_tall/"+textureSetName+"/age"+cropAge+"/flower")
-                        .texture("pistil", "block/plant_assets/crop/1_tall/"+textureSetName+"/age"+cropAge+"/pistil")
-                        .texture("stem", "block/plant_assets/crop/1_tall/"+textureSetName+"/age"+cropAge+"/stem")
+                provider.models().withExistingParent(crop.getCropNameWithSuffix("crop_age") + cropAge, new ResourceLocation(GregicAgrifactoryCore.MOD_ID, "block/plant_assets/flower_crop_cross"))
+                        .texture("flower", "block/plant_assets/crop/1_tall/" + textureSetName + "/age" + cropAge + "/flower")
+                        .texture("pistil", "block/plant_assets/crop/1_tall/" + textureSetName + "/age" + cropAge + "/pistil")
+                        .texture("stem", "block/plant_assets/crop/1_tall/" + textureSetName + "/age" + cropAge + "/stem")
         );
         return models;
     }

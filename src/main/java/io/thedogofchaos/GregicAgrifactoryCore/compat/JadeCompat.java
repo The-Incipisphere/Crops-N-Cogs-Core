@@ -3,13 +3,11 @@ package io.thedogofchaos.GregicAgrifactoryCore.compat;
 import io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore;
 import io.thedogofchaos.GregicAgrifactoryCore.block.ICropProvider;
 import io.thedogofchaos.GregicAgrifactoryCore.block.OreCropBlock;
-import io.thedogofchaos.GregicAgrifactoryCore.lib.ModTooltips;
 import io.thedogofchaos.GregicAgrifactoryCore.organic.Crop;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -35,7 +33,7 @@ public class JadeCompat implements IWailaPlugin {
 
     }
 
-    private static class CropComponentProvider implements IBlockComponentProvider, IServerDataProvider<BlockAccessor>{
+    private static class CropComponentProvider implements IBlockComponentProvider, IServerDataProvider<BlockAccessor> {
 
         @Override
         public void appendTooltip(ITooltip iTooltip, BlockAccessor blockAccessor, IPluginConfig iPluginConfig) {
@@ -48,7 +46,7 @@ public class JadeCompat implements IWailaPlugin {
                 var biome = level.getBiome(pos);
                 if (biomes.stream().noneMatch(biome::is)) {
                     iTooltip.remove(Identifiers.MC_CROP_PROGRESS);
-                    iTooltip.add(Component.translatable("tooltip."+GregicAgrifactoryCore.MOD_ID+".invalid_biome").withStyle(ChatFormatting.RED));
+                    iTooltip.add(Component.translatable("tooltip." + GregicAgrifactoryCore.MOD_ID + ".invalid_biome").withStyle(ChatFormatting.RED));
                 }
             }
         }

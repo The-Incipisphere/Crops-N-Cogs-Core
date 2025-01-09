@@ -4,15 +4,13 @@ import com.tterrag.registrate.util.entry.RegistryEntry;
 import io.thedogofchaos.GregicAgrifactoryCore.item.OreHarvestedItem;
 import io.thedogofchaos.GregicAgrifactoryCore.item.OreSeedItem;
 import io.thedogofchaos.GregicAgrifactoryCore.unified.registry.CropRegistry;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterials;
-import net.minecraft.world.item.Item;
 
 import java.util.Objects;
 
 import static io.thedogofchaos.GregicAgrifactoryCore.unified.UnifiedProxy.REGISTRATE;
-import static io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModCreativeTabs.*;
+import static io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModCreativeTabs.MAIN_TAB;
 
 public class ModItems {
     public static final RegistryEntry<OreHarvestedItem> BECQUERELLIUM_HARVESTED = CropRegistry.makeHarvestedItem(ModBlocks.becquerelliumCrop, ModBlocks.becquerelliumCrop.getCropInfo().getTextures().getTextureSetName());

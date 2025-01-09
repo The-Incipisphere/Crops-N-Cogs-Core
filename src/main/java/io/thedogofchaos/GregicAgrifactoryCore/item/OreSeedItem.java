@@ -2,11 +2,8 @@ package io.thedogofchaos.GregicAgrifactoryCore.item;
 
 import io.thedogofchaos.GregicAgrifactoryCore.block.ICropProvider;
 import io.thedogofchaos.GregicAgrifactoryCore.organic.Crop;
-import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemNameBlockItem;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class OreSeedItem extends ItemNameBlockItem implements ICropProvider {
     private final Crop crop;

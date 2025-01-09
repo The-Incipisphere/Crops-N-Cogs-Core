@@ -201,7 +201,7 @@ public class Crop {
         }
 
         public Crop buildAndRegister() {
-            if (cropInfo.colors.getInt(3) == -1){ //?: Sets the color of seeds to the flower color, if not set.
+            if (cropInfo.colors.getInt(3) == -1) { //?: Sets the color of seeds to the flower color, if not set.
                 cropInfo.colors.set(3, cropInfo.colors.getInt(0));
             }
             var crop = new Crop(cropInfo);

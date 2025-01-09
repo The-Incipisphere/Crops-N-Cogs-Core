@@ -2,10 +2,7 @@ package io.thedogofchaos.GregicAgrifactoryCore.item;
 
 import io.thedogofchaos.GregicAgrifactoryCore.block.ICropProvider;
 import io.thedogofchaos.GregicAgrifactoryCore.organic.Crop;
-import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class OreHarvestedItem extends Item implements ICropProvider {
     private final Crop crop;

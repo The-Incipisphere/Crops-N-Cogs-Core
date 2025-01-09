@@ -4,9 +4,6 @@ import com.tterrag.registrate.util.entry.RegistryEntry;
 import io.thedogofchaos.GregicAgrifactoryCore.block.OreCropBlock;
 import io.thedogofchaos.GregicAgrifactoryCore.organic.Crop;
 import io.thedogofchaos.GregicAgrifactoryCore.unified.registry.CropRegistry;
-import io.thedogofchaos.GregicAgrifactoryCore.util.BlockStateUtils;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 
 
 public class ModBlocks {

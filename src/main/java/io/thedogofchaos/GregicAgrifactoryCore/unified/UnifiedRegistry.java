@@ -1,7 +1,5 @@
 package io.thedogofchaos.GregicAgrifactoryCore.unified;
 
-import com.tterrag.registrate.Registrate;
-import io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore;
 import io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModBlocks;
 import io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModCreativeTabs;
 import io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModItems;

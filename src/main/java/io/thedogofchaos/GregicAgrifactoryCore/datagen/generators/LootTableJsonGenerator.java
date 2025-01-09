@@ -1,23 +1,21 @@
 package io.thedogofchaos.GregicAgrifactoryCore.datagen.generators;
 
 import io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore;
-import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/** Shouldn't need this class any more.
+/**
+ * Shouldn't need this class any more.
+ *
  * @deprecated as of 7th January 2025. Try and use Registrate’s built-in datagen where possible.
  */
 @Deprecated

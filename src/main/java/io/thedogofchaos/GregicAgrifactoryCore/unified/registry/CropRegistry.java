@@ -48,6 +48,73 @@ public class CropRegistry implements ICropRegistry {
         return INSTANCE;
     }
 
+    public static @NotNull BlockEntry<OreCropBlock> makeCropBlock(Crop crop) {
+        return REGISTRATE
+                .block(crop.getCropNameWithSuffix("crop"), properties -> new OreCropBlock(crop, properties))
+                .initialProperties(() -> Blocks.WHEAT)
+                .loot((lootTable, block) ->
+                        // this may or may not work
+                        lootTable.add(block, new LootTable.Builder()
+                                .withPool(LootPool.lootPool()
+                                        .add(LootItem.lootTableItem(crop.getHarvestedItem())
+                                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                                                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                                .hasProperty(block.getAgeProperty(), 7)
+                                                        )
+                                                ).otherwise(LootItem.lootTableItem(crop.getSeedItem()))
+                                        )
+                                )
+                                .withPool(LootPool.lootPool()
+                                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                                                .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                        .hasProperty(block.getAgeProperty(), 7)
+                                                )
+                                        )
+                                        .add(LootItem.lootTableItem(crop.getSeedItem()))
+                                )
+                        )
+                )
+                .blockstate((context, provider) ->
+                        BlockStateUtils.threeTextureCropCross(
+                                provider.getVariantBuilder(context.get()),
+                                provider,
+                                crop,
+                                context.get()
+                        )
+                )
+                .color(() -> () -> (state, reader, pos, index) -> crop.getLayerARGB(index))
+                .lang(RegistrateLangProvider.toEnglishName(crop.getCropNameWithSuffix("crop")))
+                .register();
+    }
+
+    public static @NotNull ItemEntry<OreHarvestedItem> makeHarvestedItem(Crop crop, String textureSetName) {
+        return REGISTRATE
+                .item(crop.getCropNameWithSuffix("harvested"), properties -> new OreHarvestedItem(crop, properties))
+                .initialProperties(Item.Properties::new)
+                .model((context, provider) -> provider.generated(
+                                context,
+                                new ResourceLocation(MOD_ID, "block/plant_assets/crop/1_tall/" + textureSetName + "/age7/flower"),
+                                new ResourceLocation(MOD_ID, "block/plant_assets/crop/1_tall/" + textureSetName + "/age7/pistil"),
+                                new ResourceLocation(MOD_ID, "block/plant_assets/crop/1_tall/" + textureSetName + "/age7/stem")
+                        )
+                )
+                .color(() -> () -> (itemStack, index) -> crop.getLayerARGB(index))
+                .lang(RegistrateLangProvider.toEnglishName(crop.getCropNameWithSuffix("harvested")))
+                .tab(Objects.requireNonNull(CROP_HARVESTED_TAB.getKey()))
+                .register();
+    }
+
+    public static @NotNull ItemEntry<OreSeedItem> makeSeedItem(Crop crop) {
+        return REGISTRATE
+                .item(crop.getCropNameWithSuffix("seed"), properties -> new OreSeedItem(crop, properties))
+                .initialProperties(Item.Properties::new)
+                .model((context, provider) -> provider.generated(context, new ResourceLocation(MOD_ID, "item/plant_assets/crop/" + crop.getCropInfo().getTextures().getTextureSetName() + "/seed")))
+                .color(() -> () -> (itemStack, index) -> crop.getLayerARGB(index))
+                .lang(RegistrateLangProvider.toEnglishName(crop.getCropNameWithSuffix("seed")))
+                .tab(Objects.requireNonNull(CROP_SEEDS_TAB.getKey()))
+                .register();
+    }
+
     public void register(Crop crop) {
         if (this.allowRegistration) {
             if (this.CROPS.values().stream().noneMatch(c -> c.getCropName().equals(crop.getCropName()))) {
@@ -131,73 +198,6 @@ public class CropRegistry implements ICropRegistry {
                 CROP_SEED_ITEMS.put(c.getCropName(), seedItemEntry);
             }
         });
-    }
-
-    public static @NotNull BlockEntry<OreCropBlock> makeCropBlock(Crop crop) {
-        return REGISTRATE
-                .block(crop.getCropNameWithSuffix("crop"), properties -> new OreCropBlock(crop, properties))
-                .initialProperties(() -> Blocks.WHEAT)
-                .loot((lootTable, block) ->
-                        // this may or may not work
-                        lootTable.add(block, new LootTable.Builder()
-                                .withPool(LootPool.lootPool()
-                                        .add(LootItem.lootTableItem(crop.getHarvestedItem())
-                                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
-                                                        .setProperties(StatePropertiesPredicate.Builder.properties()
-                                                                .hasProperty(block.getAgeProperty(), 7)
-                                                        )
-                                                ).otherwise(LootItem.lootTableItem(crop.getSeedItem()))
-                                        )
-                                )
-                                .withPool(LootPool.lootPool()
-                                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
-                                                .setProperties(StatePropertiesPredicate.Builder.properties()
-                                                        .hasProperty(block.getAgeProperty(), 7)
-                                                )
-                                        )
-                                        .add(LootItem.lootTableItem(crop.getSeedItem()))
-                                )
-                        )
-                )
-                .blockstate((context, provider) ->
-                        BlockStateUtils.threeTextureCropCross(
-                                provider.getVariantBuilder(context.get()),
-                                provider,
-                                crop,
-                                context.get()
-                        )
-                )
-                .color(() -> () -> (state, reader, pos, index) -> crop.getLayerARGB(index))
-                .lang(RegistrateLangProvider.toEnglishName(crop.getCropNameWithSuffix("crop")))
-                .register();
-    }
-
-    public static @NotNull ItemEntry<OreHarvestedItem> makeHarvestedItem(Crop crop, String textureSetName){
-        return REGISTRATE
-                .item(crop.getCropNameWithSuffix("harvested"), properties -> new OreHarvestedItem(crop, properties))
-                .initialProperties(Item.Properties::new)
-                .model((context,provider) -> provider.generated(
-                                context,
-                                new ResourceLocation(MOD_ID, "block/plant_assets/crop/1_tall/"+textureSetName+"/age7/flower"),
-                                new ResourceLocation(MOD_ID, "block/plant_assets/crop/1_tall/"+textureSetName+"/age7/pistil"),
-                                new ResourceLocation(MOD_ID, "block/plant_assets/crop/1_tall/"+textureSetName+"/age7/stem")
-                        )
-                )
-                .color(() -> () -> (itemStack, index) -> crop.getLayerARGB(index))
-                .lang(RegistrateLangProvider.toEnglishName(crop.getCropNameWithSuffix("harvested")))
-                .tab(Objects.requireNonNull(CROP_HARVESTED_TAB.getKey()))
-                .register();
-    }
-
-    public static @NotNull ItemEntry<OreSeedItem> makeSeedItem(Crop crop) {
-        return REGISTRATE
-                .item(crop.getCropNameWithSuffix("seed"), properties -> new OreSeedItem(crop, properties))
-                .initialProperties(Item.Properties::new)
-                .model((context, provider) -> provider.generated( context, new ResourceLocation(MOD_ID, "item/plant_assets/crop/" + crop.getCropInfo().getTextures().getTextureSetName() + "/seed")))
-                .color(() -> () -> (itemStack, index) -> crop.getLayerARGB(index))
-                .lang(RegistrateLangProvider.toEnglishName(crop.getCropNameWithSuffix("seed")))
-                .tab(Objects.requireNonNull(CROP_SEEDS_TAB.getKey()))
-                .register();
     }
 }
 
