@@ -5,10 +5,13 @@ import lombok.NonNull;
 
 @Getter // 08-01-2025: i was today years old when i found out that lombok annotations can be applied at the class level.
 public class CropTextures {
-    public static final CropTextures DEBUG = new CropTextures("debug");
-    public static final CropTextures FOO = new CropTextures("foo");
-    public static final CropTextures BAR = new CropTextures("bar");
     private final String textureSetName;
+
+    // textures start here
+
+    public static final CropTextures DEBUG = new CropTextures("debug");
+
+    // textures end here
 
     private CropTextures(@NonNull String textureSetName) {
         // validation, make sure we’re not trying to define invalid shit to be passed into a ResourceLocation
