@@ -27,7 +27,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import static io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore.MOD_ID;
-import static io.thedogofchaos.GregicAgrifactoryCore.unified.UnifiedRegistry.REGISTRATE;
+import static io.thedogofchaos.GregicAgrifactoryCore.unified.UnifiedProxy.REGISTRATE;
 import static io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModCreativeTabs.CROP_HARVESTED_TAB;
 import static io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModCreativeTabs.CROP_SEEDS_TAB;
 
@@ -60,7 +60,7 @@ public class CropRegistry implements ICropRegistry {
         return this.CROPS;
     }
 
-    public Map<String, ?> getCropBlocksAsRegistryEntries() {
+    public Map<String, RegistryEntry<OreCropBlock>> getCropBlocksAsRegistryEntries() {
         return CROP_BLOCKS;
     }
 
@@ -72,7 +72,7 @@ public class CropRegistry implements ICropRegistry {
         return list;
     }
 
-    public Map<String, ?> getHarvestedItemsAsRegistryEntries() {
+    public Map<String, RegistryEntry<OreHarvestedItem>> getHarvestedItemsAsRegistryEntries() {
         return CROP_HARVESTED_ITEMS;
     }
 
@@ -85,7 +85,7 @@ public class CropRegistry implements ICropRegistry {
 
     }
 
-    public Map<String, ?> getSeedItemsAsRegistryEntries() {
+    public Map<String, RegistryEntry<OreSeedItem>> getSeedItemsAsRegistryEntries() {
         return CROP_SEED_ITEMS;
     }
 
@@ -167,7 +167,7 @@ public class CropRegistry implements ICropRegistry {
                                 context.get()
                         )
                 )
-                .color(() -> OreCropBlock::tintColor)
+                .color(() -> () -> (state, reader, pos, index) -> crop.getLayerARGB(index))
                 .lang(RegistrateLangProvider.toEnglishName(crop.getCropNameWithSuffix("crop")))
                 .register();
     }
@@ -183,7 +183,7 @@ public class CropRegistry implements ICropRegistry {
                                 new ResourceLocation(MOD_ID, "block/plant_assets/crop/1_tall/"+textureSetName+"/age7/stem")
                         )
                 )
-                .color(() -> OreHarvestedItem::tintColor)
+                .color(() -> () -> (itemStack, index) -> crop.getLayerARGB(index))
                 .lang(RegistrateLangProvider.toEnglishName(crop.getCropNameWithSuffix("harvested")))
                 .tab(Objects.requireNonNull(CROP_HARVESTED_TAB.getKey()))
                 .register();
@@ -194,7 +194,7 @@ public class CropRegistry implements ICropRegistry {
                 .item(crop.getCropNameWithSuffix("seed"), properties -> new OreSeedItem(crop, properties))
                 .initialProperties(Item.Properties::new)
                 .model((context, provider) -> provider.generated( context, new ResourceLocation(MOD_ID, "item/plant_assets/crop/" + crop.getCropInfo().getTextures().getTextureSetName() + "/seed")))
-                .color(() -> OreSeedItem::tintColor)
+                .color(() -> () -> (itemStack, index) -> crop.getLayerARGB(index))
                 .lang(RegistrateLangProvider.toEnglishName(crop.getCropNameWithSuffix("seed")))
                 .tab(Objects.requireNonNull(CROP_SEEDS_TAB.getKey()))
                 .register();

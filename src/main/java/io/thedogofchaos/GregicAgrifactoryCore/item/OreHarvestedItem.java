@@ -15,16 +15,6 @@ public class OreHarvestedItem extends Item implements ICropProvider {
         this.crop = crop;
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public static ItemColor tintColor() {
-        return (itemStack, index) -> {
-            if (itemStack.getItem() instanceof OreHarvestedItem oreHarvestedItem) {
-                return oreHarvestedItem.crop.getLayerARGB(index);
-            }
-            return -1;
-        };
-    }
-
     @Override
     public Crop getCrop() {
         return this.crop;

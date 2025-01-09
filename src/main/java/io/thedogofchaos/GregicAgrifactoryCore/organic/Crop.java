@@ -189,8 +189,8 @@ public class Crop {
             return this;
         }
 
-        public Builder setSeedColor(int stemColor) {
-            this.cropInfo.colors.set(3, stemColor);
+        public Builder setSeedColor(int seedColor) {
+            this.cropInfo.colors.set(3, seedColor);
             return this;
         }
 
@@ -201,6 +201,9 @@ public class Crop {
         }
 
         public Crop buildAndRegister() {
+            if (cropInfo.colors.getInt(3) == -1){ //?: Sets the color of seeds to the flower color, if not set.
+                cropInfo.colors.set(3, cropInfo.colors.getInt(0));
+            }
             var crop = new Crop(cropInfo);
             crop.registerCrop();
             return crop;
@@ -226,7 +229,7 @@ public class Crop {
         private final Set<ResourceLocation> requiredBiomes;
         @Getter
         @Setter
-        private IntList colors = new IntArrayList(List.of(-1, -1));
+        private IntList colors = new IntArrayList(List.of(-1, -1, -1, -1));
         @Getter
         private CropTextures textures;
 
@@ -234,8 +237,8 @@ public class Crop {
             this.id = id;
             requiredBiomes = new HashSet<>();
             colors.set(0, 0x808080); // DEFAULT FLOWER COLOR
-            colors.set(0, 0xc0c0c0); // DEFAULT PISTIL COLOR
-            colors.set(0, 0x177b04); // DEFAULT SEED COLOR
+            colors.set(1, 0xc0c0c0); // DEFAULT PISTIL COLOR
+            colors.set(2, 0x177b04); // DEFAULT STEM COLOR
         }
     }
 }

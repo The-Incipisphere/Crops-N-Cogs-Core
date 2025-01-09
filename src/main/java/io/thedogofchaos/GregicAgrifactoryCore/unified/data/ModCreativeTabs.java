@@ -8,7 +8,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
 import static io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore.*;
-import static io.thedogofchaos.GregicAgrifactoryCore.unified.UnifiedRegistry.REGISTRATE;
+import static io.thedogofchaos.GregicAgrifactoryCore.unified.UnifiedProxy.REGISTRATE;
 
 public class ModCreativeTabs {
     // Doing this as just a normal DeferredRegister because Registrate’s creative tab registration is strange as fuck.

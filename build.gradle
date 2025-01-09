@@ -151,7 +151,7 @@ dependencies {
     modImplementation("dev.toma.configuration:configuration-forge-$project.minecraft_version:$project.configuration_version")
 
     // Jade
-    modRuntimeOnly("curse.maven:jade-324717:5390389") // Version 11.9.3
+    modImplementation("curse.maven:jade-324717:5876199") // Version 11.12.2
 
     // Mixin Extras
     implementation(annotationProcessor("io.github.llamalad7:mixinextras-common:$project.mixinextras_version"))

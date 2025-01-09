@@ -8,7 +8,6 @@ import io.thedogofchaos.GregicAgrifactoryCore.util.BlockStateUtils;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
-import static io.thedogofchaos.GregicAgrifactoryCore.unified.UnifiedRegistry.REGISTRATE;
 
 public class ModBlocks {
     public static final Crop becquerelliumCrop = ModPlants.Becquerellium; // shitty hack because of my own code.

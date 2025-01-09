@@ -1,4 +1,4 @@
-package io.thedogofchaos.GregicAgrifactoryCore;
+package io.thedogofchaos.GregicAgrifactoryCore.compat;
 
 import dev.latvian.mods.kubejs.KubeJSPlugin;
 

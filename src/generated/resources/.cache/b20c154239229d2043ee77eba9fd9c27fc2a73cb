@@ -1,9 +1,9 @@
-// 1.20.1	2025-01-08T21:10:12.2459198	Registrate Provider for gregicagrifactory [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
+// 1.20.1	2025-01-09T22:24:48.1319291	Registrate Provider for gregicagrifactory [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
 8406496d1c419a11a688cdc29e8e730d873363e7 assets/gregicagrifactory/blockstates/becquerellium_crop.json
 eabda5c0c17eaa3f4d8c4d47902f590ccaaba062 assets/gregicagrifactory/blockstates/gold_crop.json
 225d4eab9ae68a35ddc9da6893cd2ecf27b7dd59 assets/gregicagrifactory/blockstates/magnetite_crop.json
-7811061af49bf8fba981f0b00daf1c6f05adfaa3 assets/gregicagrifactory/lang/en_ud.json
-645c92e62a059e5a68e9580b44897b6463d167e5 assets/gregicagrifactory/lang/en_us.json
+ed69171e8ca8cfeba5459bfd376d81ac3510ca75 assets/gregicagrifactory/lang/en_ud.json
+8b08290214bab3d2e6e5dd0432c983e60070cdbc assets/gregicagrifactory/lang/en_us.json
 e647070d95cc6df6454fe9d5a805b70ea70f5818 assets/gregicagrifactory/models/block/becquerellium_crop_age0.json
 cafe45d685e198f54e57d12b8020e1c9089e607e assets/gregicagrifactory/models/block/becquerellium_crop_age1.json
 dda5f8e4ba0949ffeccd69d8b935bde16c326fdb assets/gregicagrifactory/models/block/becquerellium_crop_age2.json

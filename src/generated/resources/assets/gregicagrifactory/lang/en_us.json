@@ -2,6 +2,7 @@
   "block.gregicagrifactory.becquerellium_crop": "Becquerellium Crop",
   "block.gregicagrifactory.gold_crop": "Gold Crop",
   "block.gregicagrifactory.magnetite_crop": "Magnetite Crop",
+  "config.jade.plugin_gregicagrifactory.crop": "jade throws an exception if it cant find the translation key for this config thing (relating to crops), I mean DANG, WHY DO YOU NEED THIS KEY SO BAD",
   "item.gregicagrifactory.anti_trample_boots": "Anti Trample Boots",
   "item.gregicagrifactory.becquerellium_harvested": "Becquerellium Harvested",
   "item.gregicagrifactory.becquerellium_seed": "Becquerellium Seed",
@@ -11,5 +12,6 @@
   "item.gregicagrifactory.magnetite_seed": "Magnetite Seed",
   "itemGroup.gregicagrifactory.crop_harvested_items_tab": "Gregic Agrifactory Core Harvested Crops",
   "itemGroup.gregicagrifactory.crop_seed_items_tab": "Gregic Agrifactory Core Crop Seeds",
-  "itemGroup.gregicagrifactory.gregicagrifactory_tab": "Gregic Agrifactory Core Blocks/Items"
+  "itemGroup.gregicagrifactory.gregicagrifactory_tab": "Gregic Agrifactory Core Blocks/Items",
+  "tooltip.gregicagrifactory.invalid_biome": "Can't grow in this biome!"
 }

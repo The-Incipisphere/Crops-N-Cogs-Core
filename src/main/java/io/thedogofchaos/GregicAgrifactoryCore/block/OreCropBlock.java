@@ -32,16 +32,6 @@ public class OreCropBlock extends CropBlock implements ICropProvider {
         this.crop = crop;
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public static BlockColor tintColor() {
-        return (state, reader, pos, tintIndex) -> {
-            if (state.getBlock() instanceof OreCropBlock block) {
-                return block.crop.getLayerARGB(tintIndex);
-            }
-            return -1;
-        };
-    }
-
     @Override
     public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state) {
         return false;

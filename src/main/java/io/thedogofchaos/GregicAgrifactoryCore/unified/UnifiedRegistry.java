@@ -10,7 +10,7 @@ import io.thedogofchaos.GregicAgrifactoryCore.unified.registry.CropRegistry;
 import net.minecraftforge.eventbus.api.IEventBus;
 
 public class UnifiedRegistry {
-    public static final Registrate REGISTRATE = Registrate.create(GregicAgrifactoryCore.MOD_ID);
+
 
     public static void init(IEventBus modBus) {
         CropRegistry cropRegistry = CropRegistry.getInstance();

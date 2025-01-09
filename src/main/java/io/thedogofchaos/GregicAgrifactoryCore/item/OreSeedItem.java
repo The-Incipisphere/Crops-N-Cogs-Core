@@ -16,16 +16,6 @@ public class OreSeedItem extends ItemNameBlockItem implements ICropProvider {
         this.crop = crop;
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public static ItemColor tintColor() {
-        return (itemStack, index) -> {
-            if (itemStack.getItem() instanceof OreSeedItem oreSeedItem) {
-                return oreSeedItem.crop.getLayerARGB(index);
-            }
-            return -1;
-        };
-    }
-
     public static void onRegister(BlockItem blockItem) {
     }
 

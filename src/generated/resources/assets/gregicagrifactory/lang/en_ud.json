@@ -2,6 +2,7 @@
   "block.gregicagrifactory.becquerellium_crop": "doɹƆ ɯnıןןǝɹǝnbɔǝᗺ",
   "block.gregicagrifactory.gold_crop": "doɹƆ pןo⅁",
   "block.gregicagrifactory.magnetite_crop": "doɹƆ ǝʇıʇǝubɐW",
+  "config.jade.plugin_gregicagrifactory.crop": "ᗡⱯᗺ OS ʎƎʞ SIH⟘ ᗡƎƎN ∩Oʎ Oᗡ ʎHM '⅁NⱯᗡ uɐǝɯ I ')sdoɹɔ oʇ buıʇɐןǝɹ( buıɥʇ bıɟuoɔ sıɥʇ ɹoɟ ʎǝʞ uoıʇɐןsuɐɹʇ ǝɥʇ puıɟ ʇuɐɔ ʇı ɟı uoıʇdǝɔxǝ uɐ sʍoɹɥʇ ǝpɐظ",
   "item.gregicagrifactory.anti_trample_boots": "sʇooᗺ ǝןdɯɐɹ⟘ ıʇuⱯ",
   "item.gregicagrifactory.becquerellium_harvested": "pǝʇsǝʌɹɐH ɯnıןןǝɹǝnbɔǝᗺ",
   "item.gregicagrifactory.becquerellium_seed": "pǝǝS ɯnıןןǝɹǝnbɔǝᗺ",
@@ -11,5 +12,6 @@
   "item.gregicagrifactory.magnetite_seed": "pǝǝS ǝʇıʇǝubɐW",
   "itemGroup.gregicagrifactory.crop_harvested_items_tab": "sdoɹƆ pǝʇsǝʌɹɐH ǝɹoƆ ʎɹoʇɔɐɟıɹbⱯ ɔıbǝɹ⅁",
   "itemGroup.gregicagrifactory.crop_seed_items_tab": "spǝǝS doɹƆ ǝɹoƆ ʎɹoʇɔɐɟıɹbⱯ ɔıbǝɹ⅁",
-  "itemGroup.gregicagrifactory.gregicagrifactory_tab": "sɯǝʇI/sʞɔoןᗺ ǝɹoƆ ʎɹoʇɔɐɟıɹbⱯ ɔıbǝɹ⅁"
+  "itemGroup.gregicagrifactory.gregicagrifactory_tab": "sɯǝʇI/sʞɔoןᗺ ǝɹoƆ ʎɹoʇɔɐɟıɹbⱯ ɔıbǝɹ⅁",
+  "tooltip.gregicagrifactory.invalid_biome": "¡ǝɯoıq sıɥʇ uı ʍoɹb ʇ,uɐƆ"
 }

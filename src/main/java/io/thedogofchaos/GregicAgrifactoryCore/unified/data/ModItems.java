@@ -11,8 +11,7 @@ import net.minecraft.world.item.Item;
 
 import java.util.Objects;
 
-import static io.thedogofchaos.GregicAgrifactoryCore.GregicAgrifactoryCore.MOD_ID;
-import static io.thedogofchaos.GregicAgrifactoryCore.unified.UnifiedRegistry.REGISTRATE;
+import static io.thedogofchaos.GregicAgrifactoryCore.unified.UnifiedProxy.REGISTRATE;
 import static io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModCreativeTabs.*;
 
 public class ModItems {
