@@ -3,25 +3,31 @@ package io.thedogofchaos.GregicAgrifactoryCore.organic;
 import lombok.Getter;
 import lombok.NonNull;
 
-@Getter // 08-01-2025: i was today years old when i found out that lombok annotations can be applied at the class level.
-public class CropTextures {
+/**
+ * Enum representing crop texture sets.
+ * Provides predefined, constant values to prevent invalid or inconsistent texture references.
+ */
+public enum CropTextures {
+
+    /**
+     * Debug textures.
+     * Crops generated with this texture set during data generation will display their growth stage numbers
+     * (from 0 through 7) as part of their visible model, useful for debugging and testing purposes.
+     */
+    DEBUG("debug");
+
+    @Getter
     private final String textureSetName;
 
-    // textures start here
-
-    public static final CropTextures DEBUG = new CropTextures("debug");
-
-    // textures end here
-
-    private CropTextures(@NonNull String textureSetName) {
-        // validation, make sure we’re not trying to define invalid shit to be passed into a ResourceLocation
-        if (textureSetName.trim().isEmpty()) {
-            throw new IllegalArgumentException("The texture set's name cannot be empty. Check your constants.");
-        } else if (textureSetName.startsWith("_") || textureSetName.endsWith("_")) {
-            throw new IllegalArgumentException("The texture set '" + textureSetName + "' cannot start or end with an underscore.");
-        } else if (textureSetName.matches("[a-z0-9_.-]")) {
-            throw new IllegalArgumentException("The texture set '" + textureSetName + "' must conform to the regex: [a-z0-9_.-]");
-        }
+    /**
+     * Constructs a crop texture enum value.
+     * The provided texture set name must be valid for use as a part of a {@link net.minecraft.resources.ResourceLocation}.
+     *
+     * @param textureSetName The name of the texture set.
+     *                       This <b>MUST</b> adhere to the constraints for paths in a ResourceLocation.
+     * @see net.minecraft.resources.ResourceLocation#isAllowedInResourceLocation(char)
+     */
+    CropTextures(@NonNull String textureSetName) {
         this.textureSetName = textureSetName;
     }
 }
