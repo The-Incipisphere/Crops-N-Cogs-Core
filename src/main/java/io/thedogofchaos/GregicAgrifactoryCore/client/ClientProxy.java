@@ -15,7 +15,7 @@ public class ClientProxy extends UnifiedProxy {
     }
 
     public static void initLang() { // Because Registrate completely takes over datagen.
-        REGISTRATE.addRawLang("config.jade.plugin_" + MOD_ID + ".crop", "Show biome restriction tooltip (for crops)");
+        REGISTRATE.addRawLang("config.jade.plugin_" + MOD_ID + ".crop_invalid_biome", "Show crop biome restriction tooltip");
         REGISTRATE.addRawLang("tooltip." + MOD_ID + ".invalid_biome", "Can't grow in this biome!");
     }
 
