@@ -1,6 +1,7 @@
 package io.thedogofchaos.GregicAgrifactoryCore.organic;
 
 import io.thedogofchaos.GregicAgrifactoryCore.unified.registry.CropRegistry;
+import io.thedogofchaos.GregicAgrifactoryCore.util.ColorHelper;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import lombok.Getter;
@@ -11,6 +12,7 @@ import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.level.block.CropBlock;
 import org.jetbrains.annotations.NotNull;
 
+import java.awt.*;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -201,6 +203,9 @@ public class Crop {
         }
 
         public Crop buildAndRegister() {
+            if (cropInfo.colors.getInt(1) == -1) { //?: Sets the color of the pistil to a lighter version of the flower color, if not set.
+                cropInfo.colors.set(1, new Color(cropInfo.colors.getInt(0)).brighter().getRGB());
+            }
             if (cropInfo.colors.getInt(3) == -1) { //?: Sets the color of seeds to the flower color, if not set.
                 cropInfo.colors.set(3, cropInfo.colors.getInt(0));
             }
@@ -237,7 +242,6 @@ public class Crop {
             this.id = id;
             requiredBiomes = new HashSet<>();
             colors.set(0, 0x808080); // DEFAULT FLOWER COLOR
-            colors.set(1, 0xc0c0c0); // DEFAULT PISTIL COLOR
             colors.set(2, 0x177b04); // DEFAULT STEM COLOR
         }
     }

@@ -82,7 +82,7 @@ public class CropRegistry implements ICropRegistry {
                                 context.get()
                         )
                 )
-                .color(() -> () -> (state, reader, pos, index) -> crop.getLayerARGB(index))
+                .color(() -> () -> (state, reader, pos, index) -> crop.getLayerARGB(index)) // unholy lambda chain
                 .lang(RegistrateLangProvider.toEnglishName(crop.getCropNameWithSuffix("crop")))
                 .register();
     }
@@ -98,7 +98,7 @@ public class CropRegistry implements ICropRegistry {
                                 new ResourceLocation(MOD_ID, "block/plant_assets/crop/1_tall/" + textureSetName + "/age7/stem")
                         )
                 )
-                .color(() -> () -> (itemStack, index) -> crop.getLayerARGB(index))
+                .color(() -> () -> (itemStack, index) -> crop.getLayerARGB(index)) // unholy lambda chain 2
                 .lang(RegistrateLangProvider.toEnglishName(crop.getCropNameWithSuffix("harvested")))
                 .tab(Objects.requireNonNull(CROP_HARVESTED_TAB.getKey()))
                 .register();
@@ -109,7 +109,7 @@ public class CropRegistry implements ICropRegistry {
                 .item(crop.getCropNameWithSuffix("seed"), properties -> new OreSeedItem(crop, properties))
                 .initialProperties(Item.Properties::new)
                 .model((context, provider) -> provider.generated(context, new ResourceLocation(MOD_ID, "item/plant_assets/crop/" + crop.getCropInfo().getTextures().getTextureSetName() + "/seed")))
-                .color(() -> () -> (itemStack, index) -> crop.getLayerARGB(index))
+                .color(() -> () -> (itemStack, index) -> crop.getLayerARGB(index)) // unholy lambda chain 3
                 .lang(RegistrateLangProvider.toEnglishName(crop.getCropNameWithSuffix("seed")))
                 .tab(Objects.requireNonNull(CROP_SEEDS_TAB.getKey()))
                 .register();
