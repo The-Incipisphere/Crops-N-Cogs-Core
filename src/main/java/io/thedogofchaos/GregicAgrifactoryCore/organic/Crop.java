@@ -59,6 +59,17 @@ public class Crop {
     }
 
     /**
+     * Gets the name of the {@link Crop} object that this method is called on,
+     * prepended with an underscore-separated prefix of one’s own choice.
+     *
+     * @param prefix The prefix, of type {@link String}, to prepend to the beginning of the crop’s name.
+     * @return The all-lowercase assigned name of this crop, with an underscore-separated prefix applied, of type {@link String}.
+     */
+    public String getCropNameWithPrefix(String prefix) {
+        return String.format("%s_%s", prefix, this.getCropName());
+    }
+
+    /**
      * Retrieves the ARGB colour value for a specified layer index from the crop’s colour data.
      *
      * <p>This method calculates the appropriate layer index if the provided index is below -100.

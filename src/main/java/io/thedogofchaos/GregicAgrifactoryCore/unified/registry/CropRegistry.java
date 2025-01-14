@@ -99,7 +99,7 @@ public class CropRegistry implements ICropRegistry {
                         )
                 )
                 .color(() -> () -> (itemStack, index) -> crop.getLayerARGB(index)) // unholy lambda chain 2
-                .lang(RegistrateLangProvider.toEnglishName(crop.getCropNameWithSuffix("harvested")))
+                .lang(RegistrateLangProvider.toEnglishName(crop.getCropNameWithPrefix("harvested")))
                 .tab(Objects.requireNonNull(CROP_HARVESTED_TAB.getKey()))
                 .register();
     }
