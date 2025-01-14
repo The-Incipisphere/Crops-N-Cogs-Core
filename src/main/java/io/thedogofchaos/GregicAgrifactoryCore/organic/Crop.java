@@ -203,12 +203,12 @@ public class Crop {
         }
 
         public Crop buildAndRegister() {
-            if (cropInfo.colors.getInt(1) == -1) { //?: Sets the color of the pistil to a lighter version of the flower color, if not set.
-                cropInfo.colors.set(1, new Color(cropInfo.colors.getInt(0)).brighter().getRGB());
-            }
-            if (cropInfo.colors.getInt(3) == -1) { //?: Sets the color of seeds to the flower color, if not set.
-                cropInfo.colors.set(3, cropInfo.colors.getInt(0));
-            }
+            //?: Sets the color of the pistil to a lighter version of the flower color, if not set.
+            if (cropInfo.colors.getInt(1) == -1) cropInfo.colors.set(1, new Color(cropInfo.colors.getInt(0)).brighter().getRGB());
+            //?: Sets the color of seeds to the flower color, if not set.
+            if (cropInfo.colors.getInt(3) == -1) cropInfo.colors.set(3, cropInfo.colors.getInt(0));
+            //?: Sets the texture set to the debug textures, if not set.
+            if (cropInfo.textures == null) cropInfo.textures = CropTextures.DEBUG;
             var crop = new Crop(cropInfo);
             crop.registerCrop();
             return crop;

@@ -4,6 +4,7 @@ import io.thedogofchaos.GregicAgrifactoryCore.organic.Crop;
 import io.thedogofchaos.GregicAgrifactoryCore.unified.data.plants.GemCrops;
 import io.thedogofchaos.GregicAgrifactoryCore.unified.data.plants.MetalCrops;
 import io.thedogofchaos.GregicAgrifactoryCore.unified.data.plants.MiscCrops;
+import io.thedogofchaos.GregicAgrifactoryCore.unified.data.plants.VanillaCrops;
 
 // todo: assign all the fields in this class
 public class ModPlants {
@@ -45,6 +46,7 @@ public class ModPlants {
     public static Crop Becquerellium;
 
     public static void init() {
+        VanillaCrops.init();
         MetalCrops.init();
         GemCrops.init();
         MiscCrops.init();
