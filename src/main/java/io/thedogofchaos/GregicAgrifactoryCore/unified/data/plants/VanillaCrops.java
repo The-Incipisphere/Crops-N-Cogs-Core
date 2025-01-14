@@ -14,6 +14,16 @@ public class VanillaCrops {
                 .setFlowerColor(0xfdf55f)
                 .setPistilColor(0xf25833)
                 .buildAndRegister();
+        Coal = new Crop.Builder(id("coal"))
+                .setTextures(CropTextures.DEBUG)
+                .setFlowerColor(0x393e41)
+                .setPistilColor(0x101015)
+                .buildAndRegister();
+        Redstone = new Crop.Builder(id("redstone"))
+                .setTextures(CropTextures.DEBUG)
+                .setFlowerColor(0xff0000)
+                .setPistilColor(0x340605)
+                .buildAndRegister();
         Diamond = new Crop.Builder(id("diamond"))
                 .setTextures(CropTextures.DEBUG)
                 .setFlowerColor(0xc8ffff)
@@ -27,16 +37,6 @@ public class VanillaCrops {
                 .setTextures(CropTextures.DEBUG)
                 .setFlowerColor(0xcfa0f3)
                 .setPistilColor(0x734fbc)
-                .buildAndRegister();
-        Coal = new Crop.Builder(id("coal"))
-                .setTextures(CropTextures.DEBUG)
-                .setFlowerColor(0x393e41)
-                .setPistilColor(0x101015)
-                .buildAndRegister();
-        Redstone = new Crop.Builder(id("redstone"))
-                .setTextures(CropTextures.DEBUG)
-                .setFlowerColor(0xff0000)
-                .setPistilColor(0x340605)
                 .buildAndRegister();
         Quartz = new Crop.Builder(id("quartz"))
                 .setTextures(CropTextures.DEBUG)

@@ -9,7 +9,6 @@ import static io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModPlants.*;
 
 public class GemCrops {
     public static void init() {
-        // Vanilla
 
     }
 }

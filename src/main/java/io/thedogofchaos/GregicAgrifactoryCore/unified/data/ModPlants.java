@@ -24,7 +24,7 @@ public class ModPlants {
     public static Crop Nickel;
     public static Crop Silver;
     public static Crop Cobalt;
-    public static Crop Lead;
+    public static Crop Galena;
     public static Crop Sphalerite;
     public static Crop Bauxite;
     // GEMS

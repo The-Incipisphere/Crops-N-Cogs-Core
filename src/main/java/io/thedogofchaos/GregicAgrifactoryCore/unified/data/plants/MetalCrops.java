@@ -19,5 +19,40 @@ public class MetalCrops {
                 .setFlowerColor(0x96c185)
                 .setPistilColor(0xe3af1a)
                 .buildAndRegister();
+        Cassiterite = new Crop.Builder(id("cassiterite"))
+                .setTextures(CropTextures.DEBUG)
+                .setFlowerColor(0x89847e)
+                .setPistilColor(0x3b3b35)
+                .buildAndRegister();
+        Nickel = new Crop.Builder(id("nickel"))
+                .setTextures(CropTextures.DEBUG)
+                .setFlowerColor(0xccdff5)
+                .setPistilColor(0x59563a)
+                .buildAndRegister();
+        Silver = new Crop.Builder(id("silver"))
+                .setTextures(CropTextures.DEBUG)
+                .setFlowerColor(0xdcdcff)
+                .setPistilColor(0x5a4705)
+                .buildAndRegister();
+        Cobalt = new Crop.Builder(id("cobalt"))
+                .setTextures(CropTextures.DEBUG)
+                .setFlowerColor(0x5050fa)
+                .setPistilColor(0x2d2d7a)
+                .buildAndRegister();
+        Galena = new Crop.Builder(id("galena"))
+                .setTextures(CropTextures.DEBUG)
+                .setFlowerColor(0xf3e8fa)
+                .setPistilColor(0x331d42)
+                .buildAndRegister();
+        Sphalerite = new Crop.Builder(id("sphalerite"))
+                .setTextures(CropTextures.DEBUG)
+                .setFlowerColor(0xffdc88)
+                .setPistilColor(0x0f1605)
+                .buildAndRegister();
+        Bauxite = new Crop.Builder(id("bauxite"))
+                .setTextures(CropTextures.DEBUG)
+                .setFlowerColor(0xcfb853)
+                .setPistilColor(0xe6220c)
+                .buildAndRegister();
     }
 }
