@@ -8,12 +8,6 @@ import static io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModPlants.*;
 
 public class MetalCrops {
     public static void init() {
-        // Vanilla
-        Gold = new Crop.Builder(id("gold"))
-                .setTextures(CropTextures.DEBUG)
-                .setFlowerColor(0xfdf55f)
-                .setPistilColor(0xf25833)
-                .buildAndRegister();
         // GregTech
         Magnetite = new Crop.Builder(id("magnetite"))
                 .setTextures(CropTextures.DEBUG)

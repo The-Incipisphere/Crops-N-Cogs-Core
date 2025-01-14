@@ -8,6 +8,12 @@ import static io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModPlants.*;
 
 public class VanillaCrops {
     public static void init() {
+        // Vanilla
+        Gold = new Crop.Builder(id("gold"))
+                .setTextures(CropTextures.DEBUG)
+                .setFlowerColor(0xfdf55f)
+                .setPistilColor(0xf25833)
+                .buildAndRegister();
         Diamond = new Crop.Builder(id("diamond"))
                 .setTextures(CropTextures.DEBUG)
                 .setFlowerColor(0xc8ffff)
