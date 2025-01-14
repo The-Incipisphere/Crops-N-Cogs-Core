@@ -8,9 +8,8 @@ import static io.thedogofchaos.GregicAgrifactoryCore.unified.data.ModPlants.*;
 
 public class MiscCrops {
     public static void init() {
-        // Vanilla
-
         // GregTech
+        /*...*/
         // Other
         Becquerellium = new Crop.Builder(id("becquerellium"))
                 .setTextures(CropTextures.DEBUG)
