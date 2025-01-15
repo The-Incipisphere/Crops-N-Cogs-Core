@@ -1,0 +1,8 @@
+{
+  "parent": "gregicagrifactory:block/plant_assets/flower_crop_cross",
+  "textures": {
+    "flower": "gregicagrifactory:block/plant_assets/crop/1_tall/debug/age1/flower",
+    "pistil": "gregicagrifactory:block/plant_assets/crop/1_tall/debug/age1/pistil",
+    "stem": "gregicagrifactory:block/plant_assets/crop/1_tall/debug/age1/stem"
+  }
+}

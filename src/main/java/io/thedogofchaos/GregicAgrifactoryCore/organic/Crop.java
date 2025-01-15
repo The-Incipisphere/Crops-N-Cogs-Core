@@ -253,7 +253,7 @@ public class Crop {
             this.id = id;
             requiredBiomes = new HashSet<>();
             colors.set(0, 0x808080); // DEFAULT FLOWER COLOR
-            colors.set(2, 0x177b04); // DEFAULT STEM COLOR
+            colors.set(2, 0x177B04); // DEFAULT STEM COLOR
         }
     }
 }
