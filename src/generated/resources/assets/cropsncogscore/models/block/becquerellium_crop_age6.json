@@ -1,0 +1,8 @@
+{
+  "parent": "cropsncogscore:block/plant_assets/flower_crop_cross",
+  "textures": {
+    "flower": "cropsncogscore:block/plant_assets/crop/1_tall/debug/age6/flower",
+    "pistil": "cropsncogscore:block/plant_assets/crop/1_tall/debug/age6/pistil",
+    "stem": "cropsncogscore:block/plant_assets/crop/1_tall/debug/age6/stem"
+  }
+}

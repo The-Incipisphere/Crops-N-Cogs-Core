@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "gregicagrifactory:block/plant_assets/crop/1_tall/debug/age7/flower",
-    "layer1": "gregicagrifactory:block/plant_assets/crop/1_tall/debug/age7/pistil",
-    "layer2": "gregicagrifactory:block/plant_assets/crop/1_tall/debug/age7/stem"
-  }
-}
