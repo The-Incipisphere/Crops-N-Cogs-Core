@@ -1,5 +1,9 @@
-Changelog
+---------------------------------------------------------------------------------------------------
+Version: 1.0.0 (Initial release)
+Date: 17th January 2025
 
-0.0.1
-===
-- Indev.
+Major features:
+    - A fully-fledged dynamic crop generation system, powered by tterrag1098/Registrate
+        - Includes a bunch of crops that I think will serve best for my pack at the moment.
+    - Anti-Trample boots
+        - Any LivingEntities wearing the boots cannot trample ANY farmland (it cancels the FarmlandTrampleEvent)
