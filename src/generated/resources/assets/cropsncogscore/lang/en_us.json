@@ -91,8 +91,8 @@
   "item.cropsncogscore.sulphur_seed": "Sulphur Seed",
   "item.cropsncogscore.topaz_harvested": "Harvested Topaz",
   "item.cropsncogscore.topaz_seed": "Topaz Seed",
-  "itemGroup.cropsncogscore.crop_harvested_items_tab": "Crops 'N Cogs Core Harvested Crops",
-  "itemGroup.cropsncogscore.crop_seed_items_tab": "Crops 'N Cogs Core Crop Seeds",
-  "itemGroup.cropsncogscore.cropsncogscore_tab": "Crops 'N Cogs Core Blocks/Items",
+  "itemGroup.cropsncogscore.crop_harvested_items_tab": "CNCC Harvested Crops",
+  "itemGroup.cropsncogscore.crop_seed_items_tab": "CNCC Crop Seeds",
+  "itemGroup.cropsncogscore.cropsncogscore_tab": "CNCC Blocks/Items",
   "tooltip.cropsncogscore.invalid_biome": "Can't grow in this biome!"
 }

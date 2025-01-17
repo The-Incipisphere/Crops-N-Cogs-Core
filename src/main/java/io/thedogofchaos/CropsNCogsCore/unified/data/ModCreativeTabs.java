@@ -16,17 +16,17 @@ public class ModCreativeTabs {
 
     public static final RegistryObject<CreativeModeTab> CROP_HARVESTED_TAB = CREATIVE_TABS.register("crop_harvested_items_tab", () -> CreativeModeTab.builder()
             .icon(() -> new ItemStack(ModItems.BECQUERELLIUM_HARVESTED.get()))
-            .title(REGISTRATE.addLang("itemGroup", id("crop_harvested_items_tab"), MOD_NAME + " Harvested Crops"))
+            .title(REGISTRATE.addLang("itemGroup", id("crop_harvested_items_tab"), MOD_NAME_SHORT + " Harvested Crops"))
             .build()
     );
     public static final RegistryObject<CreativeModeTab> CROP_SEEDS_TAB = CREATIVE_TABS.register("crop_seed_items_tab", () -> CreativeModeTab.builder()
             .icon(() -> new ItemStack(ModItems.BECQUERELLIUM_SEEDS.get()))
-            .title(REGISTRATE.addLang("itemGroup", id("crop_seed_items_tab"), MOD_NAME + " Crop Seeds"))
+            .title(REGISTRATE.addLang("itemGroup", id("crop_seed_items_tab"), MOD_NAME_SHORT + " Crop Seeds"))
             .build()
     );
     public static final RegistryObject<CreativeModeTab> MAIN_TAB = CREATIVE_TABS.register(MOD_ID + "_tab", () -> CreativeModeTab.builder()
             // .icon(() -> new ItemStack(ModItems.BECQUERELLIUM_SEEDS.get()))
-            .title(REGISTRATE.addLang("itemGroup", id(MOD_ID + "_tab"), MOD_NAME + " Blocks/Items"))
+            .title(REGISTRATE.addLang("itemGroup", id(MOD_ID + "_tab"), MOD_NAME_SHORT + " Blocks/Items"))
             .build()
     );
 

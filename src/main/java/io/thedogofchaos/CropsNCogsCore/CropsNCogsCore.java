@@ -21,6 +21,7 @@ import org.apache.logging.log4j.Logger;
 public class CropsNCogsCore {
     public static final String MOD_ID = "cropsncogscore";
     public static final String MOD_NAME = "Crops 'N Cogs Core";
+    public static final String MOD_NAME_SHORT = "CNCC";
     public static final Logger LOGGER = LogManager.getLogger();
 
     public CropsNCogsCore() {
