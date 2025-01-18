@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.1
+Date: 18th January 2025
+
+Minor features:
+    - Switched out DistExecutor.safeRunForDist for DistExecutor.unsafeRunForDist, now that this is a stable mod for the pack.
+---------------------------------------------------------------------------------------------------
 Version: 1.0.0 (Initial release)
 Date: 17th January 2025
 

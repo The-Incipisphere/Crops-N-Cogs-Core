@@ -26,7 +26,8 @@ public class CropsNCogsCore {
 
     public CropsNCogsCore() {
         CropsNCogsCore.init();
-        DistExecutor.safeRunForDist(() -> ClientProxy::new, () -> UnifiedProxy::new); // !: Keep this as safeRunForDist for now. Only switch to unsafeRunForDist when this coremod is stable.
+        DistExecutor.unsafeRunForDist(() -> ClientProxy::new, () -> UnifiedProxy::new); // Use whenever possible for stable builds.
+        // DistExecutor.safeRunForDist(() -> ClientProxy::new, () -> UnifiedProxy::new); // Only use on unstable builds, or while developing.
     }
 
     public static void init() {
