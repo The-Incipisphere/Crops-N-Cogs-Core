@@ -5,6 +5,8 @@ import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import io.thedogofchaos.CropsNCogsCore.block.OreCropBlock;
+import io.thedogofchaos.CropsNCogsCore.exceptions.DuplicateRegistryEntryException;
+import io.thedogofchaos.CropsNCogsCore.exceptions.FrozenRegistryException;
 import io.thedogofchaos.CropsNCogsCore.item.OreHarvestedItem;
 import io.thedogofchaos.CropsNCogsCore.item.OreSeedItem;
 import io.thedogofchaos.CropsNCogsCore.organic.Crop;
@@ -42,7 +44,7 @@ public class CropRegistry implements ICropRegistry {
     private final Map<ResourceLocation, Crop> CROPS = new LinkedHashMap<>();
     @Getter
     @Setter
-    private boolean allowRegistration = false;
+    private boolean cropRegistryIsFrozen = false;
 
     public static CropRegistry getInstance() {
         return INSTANCE;
@@ -116,10 +118,14 @@ public class CropRegistry implements ICropRegistry {
     }
 
     public void register(Crop crop) {
-        if (this.allowRegistration) {
+        if (!this.cropRegistryIsFrozen) {
             if (this.CROPS.values().stream().noneMatch(c -> c.getCropName().equals(crop.getCropName()))) {
                 this.CROPS.put(crop.getCropInfo().getId(), crop);
+            } else {
+                throw new DuplicateRegistryEntryException("Tried to register crop '"+crop.getCropInfo().getId()+"', but that crop has already been registered!");
             }
+        } else {
+            throw new FrozenRegistryException("Crop Registry has already been frozen! Tried to register crop: "+crop.getCropInfo().getId());
         }
     }
 
