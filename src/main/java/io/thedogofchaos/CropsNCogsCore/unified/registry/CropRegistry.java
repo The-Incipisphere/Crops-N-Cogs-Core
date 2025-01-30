@@ -139,9 +139,7 @@ public class CropRegistry implements ICropRegistry {
 
     public Map<String, OreCropBlock> getCropBlocksAsOreCropBlock() {
         var list = new HashMap<String, OreCropBlock>();
-        this.CROP_BLOCKS.forEach((str, crop) -> {
-            list.put(str, crop.get());
-        });
+        this.CROP_BLOCKS.forEach((str, crop) -> list.put(str, crop.get()));
         return list;
     }
 
@@ -151,9 +149,7 @@ public class CropRegistry implements ICropRegistry {
 
     public Map<String, OreHarvestedItem> getHarvestedItemsAsOreHarvestedItem() {
         var list = new HashMap<String, OreHarvestedItem>();
-        this.CROP_HARVESTED_ITEMS.forEach((str, crop) -> {
-            list.put(str, crop.get());
-        });
+        this.CROP_HARVESTED_ITEMS.forEach((str, crop) -> list.put(str, crop.get()));
         return list;
 
     }
@@ -164,9 +160,7 @@ public class CropRegistry implements ICropRegistry {
 
     public Map<String, OreSeedItem> getSeedItemsAsOreSeedItem() {
         var list = new HashMap<String, OreSeedItem>();
-        this.CROP_SEED_ITEMS.forEach((str, crop) -> {
-            list.put(str, crop.get());
-        });
+        this.CROP_SEED_ITEMS.forEach((str, crop) -> list.put(str, crop.get()));
         return list;
     }
 
