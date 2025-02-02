@@ -68,10 +68,10 @@ repositories {
             includeGroup 'com.gregtechceu.gtceu'
         }
     }
-    //maven {
-    //    name 'FirstDarkDev'
-    //    url "https://maven.firstdarkdev.xyz/snapshots/"
-    //}
+    maven {
+        name 'FirstDarkDev'
+        url "https://maven.firstdarkdev.xyz/snapshots/"
+    }
     maven {
         name 'Quilt'
         url 'https://maven.quiltmc.org/repository/release/'
