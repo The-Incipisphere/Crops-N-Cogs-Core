@@ -112,10 +112,6 @@ repositories {
 		name = 'EMI'
 		url = "https://maven.terraformersmc.com/"
 	}
-    maven {
-        name 'Configuration'
-        url 'https://api.repsy.io/mvn/toma/public/'
-    }
 }
 
 dependencies {
@@ -148,7 +144,7 @@ dependencies {
     modImplementation("dev.latvian.mods:kubejs-forge:$project.kubejs_version")
 
     // Configuration (by Toma1O6)
-    modImplementation("curse.maven:configuration-444699:5840421") // i have to cursemaven this shit now
+    modImplementation("dev.toma.configuration:configuration-forge-$project.minecraft_version:$project.configuration_version")
 
     // Jade
     modImplementation("curse.maven:jade-324717:5876199") // Version 11.12.2
